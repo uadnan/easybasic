@@ -1,0 +1,90 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>GwBasic.Net</title>
+
+		 <!-- Styles -->
+        <link href='../assets/fonts/googlefont.css' rel='stylesheet' type='text/css'>
+        <link href="../assets/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
+        <link href="../assets/css/font-awesome.css" rel="stylesheet" type="text/css"/>
+        <link rel="stylesheet" href="../../node_modules/highlight.js/styles/github.css">
+        <script src="../../node_modules/highlight.js/lib/highlight.pack.js"></script>
+        <script>hljs.initHighlightingOnLoad();</script>
+	</head>
+    <body id="doc-body">
+        <div style="padding:20px;">
+            <h3>Features not yet implemented</h3>
+             <p>
+                The following language elements are not currently supported in PC-BASIC. The keyword
+                syntax is supported, so no <samp>Syntax error</samp> should be raised if
+                the statements or functions are used correctly. However, the statements
+                do nothing and the functions return zero or the empty string.
+            </p>
+            <p>
+                These language elements may be implemented in future
+                versions of PC-BASIC.
+            </p>
+            <table class="table table-striped">
+                <thead>
+                    <th>Statement</th>
+                    <th>Description</th>
+                    <th>PC-BASIC implementation</th>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><a href="#" onclick="window.top.addtab('MOTOR_tabli', 'MOTOR', 'Docs/MOTOR.html');"><code>MOTOR</code></a></td>
+                        <td>Turn on cassette motor</td>
+                        <td>Do nothing</td>
+                    </tr>
+                </tbody>
+            </table>
+            <table class="table table-striped">
+                <thead>
+                    <th>Function</th>
+                    <th>Description</th>
+                    <th>PC-BASIC implementation</th>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><a href="#ERDEV"><code>ERDEV</code></a></td>
+                        <td>Device error value</td>
+                        <td>Return <code>0</code></td>
+                    </tr>
+                    <tr>
+                        <td><a href="#ERDEV%24"><code>ERDEV$</code></a></td>
+                        <td>Name of device raising error</td>
+                        <td>Return <code>""</code></td>
+                    </tr>
+                    <tr>
+                        <td><a href="#EXTERR"><code>EXTERR</code></a></td>
+                        <td>Extended error information from DOS</td>
+                        <td>Return <code>0</code></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <script src="../assets/js/jquery.min.js"></script>
+        <script src="../assets/js/bootstrap.min.js"></script>
+        <script src="../assets/js/jquery.slimscroll.min.js"></script>
+        <script>
+            $('#doc-body').slimScroll({
+                height: $(window).height(),
+                railVisible: false,
+                railColor: '#222',
+                railOpacity: 0.01,
+                size: '12px',
+                color: '#000'
+            });
+            window.addEventListener('resize', function (event) {
+                $('#doc-body')[0].parentElement.style.height = ($(window).height()) + "px";
+                $('#doc-body').height($(window).height());
+            })
+            $(document).ready(function(){
+                window.top.document.getElementById('status').innerHTML = "Document Loaded";
+            })
+        </script>
+
+    </body>
+</html>

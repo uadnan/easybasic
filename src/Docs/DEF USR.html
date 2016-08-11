@@ -1,0 +1,83 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>GwBasic.Net</title>
+
+		 <!-- Styles -->
+        <link href='../assets/fonts/googlefont.css' rel='stylesheet' type='text/css'>
+        <link href="../assets/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
+        <link href="../assets/css/font-awesome.css" rel="stylesheet" type="text/css"/>
+        <link rel="stylesheet" href="../../node_modules/highlight.js/styles/github.css">
+        <script src="../../node_modules/highlight.js/lib/highlight.pack.js"></script>
+        <script>hljs.initHighlightingOnLoad();</script>
+	</head>
+    <body id="doc-body">
+        <div style="padding:20px;">
+            <h3 id="definitions">DEF USR</h3>
+            <pre>
+                <code>
+                    <b>DEF USR</b>[<var>n</var>] <b>=</b> <var>address</var>
+                </code>
+            </pre>
+       <p>
+            Does nothing.
+        </p>
+        <h4>Parameters</h4>
+        <ul>
+            <li>
+                <code><var>n</var></code> is a digit between 0 and 9 inclusive.
+            </li>
+            <li>
+                <code><var>address</var></code> is a numeric expression in <code>[-32768&#8212;65535]</code>.
+            </li>
+        </ul>
+        <h4>Notes</h4>
+        <ul>
+            <li>
+                In GW-BASIC, this statement sets the starting address of an assembly-language function.
+            </li>
+            <li>
+                This statement is not implemented in PC-BASIC.
+            </li>
+            <li>
+               If <code><var>address</var></code> is negative, it is interpreted as its two's complement.
+            </li>
+        </ul>
+        <h4>Errors</h4>
+        <ul>
+            <li>
+            <code><var>n</var></code> is not a digit in <code>[0&#8212;9]</code>: <samp>Syntax error</samp>.
+        </li>
+        <li>
+            <code><var>address</var></code> has a string value: <samp>Type mismatch</samp>.
+        </li>
+        <li>
+            <code><var>address</var></code> is not in <code>[-32768&#8212;65535]</code>: <samp>Overflow</samp>.
+        </li>
+        </ul>
+        </div>
+
+        <script src="../assets/js/jquery.min.js"></script>
+        <script src="../assets/js/bootstrap.min.js"></script>
+        <script src="../assets/js/jquery.slimscroll.min.js"></script>
+        <script>
+            $('#doc-body').slimScroll({
+                height: $(window).height(),
+                railVisible: false,
+                railColor: '#222',
+                railOpacity: 0.01,
+                size: '12px',
+                color: '#000'
+            });
+            window.addEventListener('resize', function (event) {
+                $('#doc-body')[0].parentElement.style.height = ($(window).height()) + "px";
+                $('#doc-body').height($(window).height());
+            })
+            $(document).ready(function(){
+                window.top.document.getElementById('status').innerHTML = "Document Loaded";
+            })
+        </script>
+
+    </body>
+</html>

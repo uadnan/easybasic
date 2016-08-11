@@ -1,0 +1,61 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>GwBasic.Net</title>
+
+		 <!-- Styles -->
+        <link href='../assets/fonts/googlefont.css' rel='stylesheet' type='text/css'>
+        <link href="../assets/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
+        <link href="../assets/css/font-awesome.css" rel="stylesheet" type="text/css"/>
+        <link rel="stylesheet" href="../../node_modules/highlight.js/styles/github.css">
+        <script src="../../node_modules/highlight.js/lib/highlight.pack.js"></script>
+        <script>hljs.initHighlightingOnLoad();</script>
+	</head>
+    <body id="doc-body">
+        <div style="padding:20px;">
+            <h3 id="definitions">BEEP (switch)</h3>
+            <pre>
+                <code>
+                    <b>BEEP</b> {<b>ON</b>|<b>OFF</b>}
+                </code>
+            </pre>
+       <p>
+            This statement has no effect.
+        </p>
+        <h4>Notes</h4>
+        <ul>
+            <li>
+                Only legal with the <code><a href="syntax">syntax</a>={pcjr|tandy}</code> option.
+            </li>
+            <li>
+                On PCjr and Tandy computers, <code>BEEP OFF</code> would turn off the internal speaker.
+                On PC-BASIC, both the internal and the external speaker are emulated through
+                the same sound system.
+            </li>
+        </ul>
+        </div>
+
+        <script src="../assets/js/jquery.min.js"></script>
+        <script src="../assets/js/bootstrap.min.js"></script>
+        <script src="../assets/js/jquery.slimscroll.min.js"></script>
+        <script>
+            $('#doc-body').slimScroll({
+                height: $(window).height(),
+                railVisible: false,
+                railColor: '#222',
+                railOpacity: 0.01,
+                size: '12px',
+                color: '#000'
+            });
+            window.addEventListener('resize', function (event) {
+                $('#doc-body')[0].parentElement.style.height = ($(window).height()) + "px";
+                $('#doc-body').height($(window).height());
+            })
+            $(document).ready(function(){
+                window.top.document.getElementById('status').innerHTML = "Document Loaded";
+            })
+        </script>
+
+    </body>
+</html>

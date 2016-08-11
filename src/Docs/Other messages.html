@@ -1,0 +1,86 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>GwBasic.Net</title>
+
+		 <!-- Styles -->
+        <link href='../assets/fonts/googlefont.css' rel='stylesheet' type='text/css'>
+        <link href="../assets/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
+        <link href="../assets/css/font-awesome.css" rel="stylesheet" type="text/css"/>
+        <link rel="stylesheet" href="../../node_modules/highlight.js/styles/github.css">
+        <script src="../../node_modules/highlight.js/lib/highlight.pack.js"></script>
+        <script>hljs.initHighlightingOnLoad();</script>
+	</head>
+    <body id="doc-body">
+        <div style="padding:20px;">
+            <h3>Other messages</h3>
+            <dl>
+        <dt>
+            <code>Break</code>
+        
+        </dt><dd>
+            Execution of a compound statement or program has been interrupted by
+            a <a href="#CONT"><code>CONT</code></a> statement or by a user
+            keyboard interrupt (such as <kbd>Ctrl</kbd>+<kbd>Break</kbd>). If the
+            interrupt happens in a program, the <code>Break</code> message will be
+            supplemented with the line number in which the interrupt occurred.
+        </dd>
+        <dt>
+            <code>?Redo from start</code>
+        </dt>
+        <dd>
+            The input provided on the console for an <a href="#INPUT"><code>INPUT</code></a>
+            statement does not match the expected format. The number or type of
+            inputs is not correct. Re-enter all inputs.
+        </dd>
+        <dt>
+            <code>Undefined line <var>ref_num</var> in <var>line_num</var></code>
+        </dt>
+        <dd>
+            The <a href="#RENUM"><code>RENUM</code></a> statement encountered
+            a reference to the line number <code><var>ref_num</var></code>
+            which is not defined in the program. The reference occurs on line number
+            <code><var>line_num</var></code>.
+            The undefined line number reference will not be renumbered.
+        </dd>
+        <dt>
+            <code><var>filename</var> Found.</code>
+        </dt>
+        <dd>
+            A file matching the requested specification has been found on the
+            cassette device. This message only occurs in direct mode.
+        </dd>
+        <dt>
+            <code><var>filename</var> Skipped.</code>
+        </dt>
+        <dd>
+            A file not matching the requested specification has been encountered on the
+            cassette device. This message only occurs in direct mode.
+        </dd>
+    </dl>
+        </div>
+
+        <script src="../assets/js/jquery.min.js"></script>
+        <script src="../assets/js/bootstrap.min.js"></script>
+        <script src="../assets/js/jquery.slimscroll.min.js"></script>
+        <script>
+            $('#doc-body').slimScroll({
+                height: $(window).height(),
+                railVisible: false,
+                railColor: '#222',
+                railOpacity: 0.01,
+                size: '12px',
+                color: '#000'
+            });
+            window.addEventListener('resize', function (event) {
+                $('#doc-body')[0].parentElement.style.height = ($(window).height()) + "px";
+                $('#doc-body').height($(window).height());
+            })
+            $(document).ready(function(){
+                window.top.document.getElementById('status').innerHTML = "Document Loaded";
+            })
+        </script>
+
+    </body>
+</html>

@@ -1,0 +1,67 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>GwBasic.Net</title>
+
+		 <!-- Styles -->
+        <link href='../assets/fonts/googlefont.css' rel='stylesheet' type='text/css'>
+        <link href="../assets/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
+        <link href="../assets/css/font-awesome.css" rel="stylesheet" type="text/css"/>
+        <link rel="stylesheet" href="../../node_modules/highlight.js/styles/github.css">
+        <script src="../../node_modules/highlight.js/lib/highlight.pack.js"></script>
+        <script>hljs.initHighlightingOnLoad();</script>
+	</head>
+    <body id="doc-body">
+        <div style="padding:20px;">
+            <h3 id="definitions">RESUME</h3>
+            <pre>
+                <code>
+                    <b>RESUME</b> [<b>0</b>|<b>NEXT</b>|<var>line</var>]
+                </code>
+            </pre>
+       <p>
+            Continues normal execution after an error handling routine.
+            If <code>0</code> or no option is specified, re-executes the statement that caused the
+            error. If <code>NEXT</code> is specified, executes the statement following the one that
+            caused the error. If <code><var>line</var></code> is specified, it must be a valid line number.
+        </p>
+        <h4>Errors</h4>
+        <ul>
+            <li>
+                <code>RESUME</code> is encountered outside of an error trapping routine:
+                <samp>RESUME without error</samp>.
+            </li>
+            <li>
+                The program ends inside an error trapping routine without a <code>RESUME</code>
+                or <code>END</code> statement: <samp>No RESUME</samp>.
+            </li>
+            <li>
+                <code><var>line</var></code> is not an existing line number: <samp>Undefined line number</samp>.
+            </li>
+        </ul>
+        </div>
+
+        <script src="../assets/js/jquery.min.js"></script>
+        <script src="../assets/js/bootstrap.min.js"></script>
+        <script src="../assets/js/jquery.slimscroll.min.js"></script>
+        <script>
+            $('#doc-body').slimScroll({
+                height: $(window).height(),
+                railVisible: false,
+                railColor: '#222',
+                railOpacity: 0.01,
+                size: '12px',
+                color: '#000'
+            });
+            window.addEventListener('resize', function (event) {
+                $('#doc-body')[0].parentElement.style.height = ($(window).height()) + "px";
+                $('#doc-body').height($(window).height());
+            })
+            $(document).ready(function(){
+                window.top.document.getElementById('status').innerHTML = "Document Loaded";
+            })
+        </script>
+
+    </body>
+</html>

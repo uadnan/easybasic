@@ -1,0 +1,66 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>GwBasic.Net</title>
+
+		 <!-- Styles -->
+        <link href='../assets/fonts/googlefont.css' rel='stylesheet' type='text/css'>
+        <link href="../assets/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
+        <link href="../assets/css/font-awesome.css" rel="stylesheet" type="text/css"/>
+        <link rel="stylesheet" href="../../node_modules/highlight.js/styles/github.css">
+        <script src="../../node_modules/highlight.js/lib/highlight.pack.js"></script>
+        <script>hljs.initHighlightingOnLoad();</script>
+	</head>
+    <body id="doc-body">
+        <div style="padding:20px;">
+            <h3 id="definitions">COM</h3>
+            <pre>
+                <code>
+                    <b>COM(</b><var>port</var><b>)</b> {<b>ON</b>|<b>OFF</b>|<b>STOP</b>}
+                </code>
+            </pre>
+       <ul>
+            <li>
+                <code>ON</code>: enables <code><a href="#ON-event">ON COM(<var>port</var>)</a></code> event trapping of the emulated serial port.
+            </li>
+            <li>
+                <code>OFF</code>: disables trapping.
+            </li>
+            <li>
+                <code>STOP</code>: halts trapping until <code>COM(<var>port</var>) ON</code> is used. Events that occur
+                while trapping is halted will trigger immediately when trapping is re-enabled.
+            </li>
+        </ul>
+        <h4>Parameters</h4>
+        <ul>
+            <li>
+                <code><var>port</var></code> is a numeric expression with a value of <code>1</code> or <code>2</code>. This specifies which
+                serial port (<code>COM1:</code> or <code>COM2:</code>) is trapped.
+            </li>
+        </ul>
+        </div>
+
+        <script src="../assets/js/jquery.min.js"></script>
+        <script src="../assets/js/bootstrap.min.js"></script>
+        <script src="../assets/js/jquery.slimscroll.min.js"></script>
+        <script>
+            $('#doc-body').slimScroll({
+                height: $(window).height(),
+                railVisible: false,
+                railColor: '#222',
+                railOpacity: 0.01,
+                size: '12px',
+                color: '#000'
+            });
+            window.addEventListener('resize', function (event) {
+                $('#doc-body')[0].parentElement.style.height = ($(window).height()) + "px";
+                $('#doc-body').height($(window).height());
+            })
+            $(document).ready(function(){
+                window.top.document.getElementById('status').innerHTML = "Document Loaded";
+            })
+        </script>
+
+    </body>
+</html>

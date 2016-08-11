@@ -1,0 +1,78 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>GwBasic.Net</title>
+
+		 <!-- Styles -->
+        <link href='../assets/fonts/googlefont.css' rel='stylesheet' type='text/css'>
+        <link href="../assets/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
+        <link href="../assets/css/font-awesome.css" rel="stylesheet" type="text/css"/>
+        <link rel="stylesheet" href="../../node_modules/highlight.js/styles/github.css">
+        <script src="../../node_modules/highlight.js/lib/highlight.pack.js"></script>
+        <script>hljs.initHighlightingOnLoad();</script>
+	</head>
+    <body id="doc-body">
+        <div style="padding:20px;">
+            <h3 id="definitions">GOTO</h3>
+            <pre>
+                <code>
+                    <b>GO</b>[ ]<b>TO</b> <var>line_number</var> [<var>anything</var>]
+                </code>
+            </pre>
+       <p>
+            Jumps to <code><var>line_number</var></code>.  Anything after <code><var>line_number</var></code> until the end of the
+            statement is ignored. If executed from a direct line, <code>GOTO</code> starts execution of the program at the specified line.
+        </p>
+        <h4>Parameters</h4>
+        <ul>
+            <li>
+                <code><var>line_number</var></code> is an existing line number literal.
+            </li>
+            <li>
+                Further characters on
+                the line are ignored until end of statement.
+            </li>
+        </ul>
+        <h4>Notes</h4>
+        <ul>
+            <li>
+                Any number of optional spaces is allowed between <code>GO</code> and <code>TO</code>, but they will
+                not be retained in the program.
+            </li>
+            <li>
+                If <code><var>line_number</var></code> is greater than <code>65529</code>, only the first 4 characters are
+                read (e.g. <code>GOTO 65530</code> is executed as <code>GOTO 6553</code>)
+            </li>
+        </ul>
+        <h4>Errors</h4>
+        <ul>
+            <li>
+                <code><var>line_number</var></code> does not exist: <samp>Undefined line number</samp>.
+            </li>
+        </ul>
+        </div>
+
+        <script src="../assets/js/jquery.min.js"></script>
+        <script src="../assets/js/bootstrap.min.js"></script>
+        <script src="../assets/js/jquery.slimscroll.min.js"></script>
+        <script>
+            $('#doc-body').slimScroll({
+                height: $(window).height(),
+                railVisible: false,
+                railColor: '#222',
+                railOpacity: 0.01,
+                size: '12px',
+                color: '#000'
+            });
+            window.addEventListener('resize', function (event) {
+                $('#doc-body')[0].parentElement.style.height = ($(window).height()) + "px";
+                $('#doc-body').height($(window).height());
+            })
+            $(document).ready(function(){
+                window.top.document.getElementById('status').innerHTML = "Document Loaded";
+            })
+        </script>
+
+    </body>
+</html>

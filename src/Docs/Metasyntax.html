@@ -1,0 +1,66 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>GwBasic.Net</title>
+
+		 <!-- Styles -->
+        <link href='../assets/fonts/googlefont.css' rel='stylesheet' type='text/css'>
+        <link href="../assets/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
+        <link href="../assets/css/font-awesome.css" rel="stylesheet" type="text/css"/>
+        <link rel="stylesheet" href="../../node_modules/highlight.js/styles/github.css">
+        <script src="../../node_modules/highlight.js/lib/highlight.pack.js"></script>
+        <script>hljs.initHighlightingOnLoad();</script>
+	</head>
+    <body id="doc-body">
+        <div style="padding:20px;">
+            <h3 id="metasyntax">Metasyntax</h3>
+            <p>
+                In descriptions of BASIC syntax, the following conventions apply.
+                Exact rendering of the markup may vary depending on the means used
+                to display this documentation.
+            </p><p>
+            </p><dl>
+                <dt><code><b>bold</b></code></dt>
+                <dd>Type exactly as shown.</dd>
+
+                <dt><code><var>italic</var></code></dt>
+                <dd>Replace with appropriate metavariable.</dd>
+
+                <dt><code>[a]</code></dt>
+                <dd>Entities within square brackets are optional.</dd>
+
+                <dt><code>{ a | b }</code></dt>
+                <dd>Disjunct alternatives of which one must be chosen.</dd>
+
+                <dt><code>[ a | b ]</code></dt>
+                <dd>Optional disjunct alternatives.</dd>
+
+                <dt><code>a ...</code></dt>
+                <dd>Preceding entity can be repeated.</dd>
+            </dl>
+        </div>
+
+        <script src="../assets/js/jquery.min.js"></script>
+        <script src="../assets/js/bootstrap.min.js"></script>
+        <script src="../assets/js/jquery.slimscroll.min.js"></script>
+        <script>
+            $('#doc-body').slimScroll({
+                height: $(window).height(),
+                railVisible: false,
+                railColor: '#222',
+                railOpacity: 0.01,
+                size: '12px',
+                color: '#000'
+            });
+            window.addEventListener('resize', function (event) {
+                $('#doc-body')[0].parentElement.style.height = ($(window).height()) + "px";
+                $('#doc-body').height($(window).height());
+            })
+            $(document).ready(function(){
+                window.top.document.getElementById('status').innerHTML = "Document Loaded";
+            })
+        </script>
+
+    </body>
+</html>
