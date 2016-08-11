@@ -1,6 +1,10 @@
 # EasyBasic
 **An Modern IDE for GwBasic programming language**
 
+![Editor][logo]
+
+[logo]: ./snaps/Editor.png
+
 This project is built using Electron.js and is the continuity of [GwBasic.Net](http://www.github.com/naumanumer/gwbasic.net).  The main focus of this project is to introduce the students, that are still taught gwbasic as their first programming language, with modern Styled Syntax Editor. and made the programming GwBasic at more ease.
 
 ## Dev: cheat sheet
