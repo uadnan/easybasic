@@ -47,7 +47,8 @@ function openDocs(element) {
         name == "Errors and Messages" ||
         name == "Technical reference" ||
         name == "Keycodes" ||
-        name == "Acknowledgements")
+        name == "Acknowledgements" ||
+        name == "Statements")
         return;
 
     if (name == "DEFINT, DEFDBL, DEFSNG, DEFSTR"){

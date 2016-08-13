@@ -3,10 +3,13 @@
 
 <head>
     <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>Easy Basic</title>
 
-    <link rel="stylesheet" href="./assets/css/photon.min.css">
+
+    <script>
+        function swapStyleSheet(sheet) {document.getElementById("pagestyle").setAttribute("href", sheet);}
+    </script>
+    <link id="pagestyle" rel="stylesheet" href="./assets/css/photon-dark.css">
     <link rel="stylesheet" href="./assets/css/bootstrap.min.css">
     <link rel="stylesheet" href="./assets/css/tabs.css">
     <link href="./assets/css/font-awesome.css" rel="stylesheet" type="text/css" />
@@ -15,80 +18,6 @@
 </head>
 
 <body>
-    <style>
-        .primary-sidebar {
-            background: #444;
-            overflow: hidden;
-        }
-        
-        .sidebar-button-list {
-            padding-top: 10px;
-        }
-        
-        .sidebar-button-list>li {
-            font-size: 20px;
-            padding: 10px 15px;
-        }
-        
-        .sidebar-button-list>li>a,
-        .sidebar-button-list>li>a>i {
-            cursor: pointer;
-            color: #bbb;
-        }
-        
-        .sidebar-button-list>li:hover,
-        .sidebar-button-list>li>a:hover,
-        .sidebar-button-list>li>a>i:hover {
-            color: #fff;
-        }
-        
-        .sidebar-button-list>.active {
-            color: #fff;
-        }
-        
-        .Example-li:hover:not(:active) {
-            background: #eee;
-        }
-        
-        .Example-li:active {
-            background: #dcdfe1;
-        }
-        
-        .drop-shadow {
-            box-shadow: inset -30px 36px 25px -45px rgba(0, 0, 0, 0.75);
-        }
-        .sidebar-button-list>li>a:hover,
-        .sidebar-button-list>li>a:focus{
-            text-decoration:blink;
-        }
-        .footer-btn{
-            border-radius: 2px;
-            padding-top: 3px;
-            color: #555;
-            padding-left: 2px;
-            padding-right: 2px;
-            margin: 1px;
-            font-size: 11pt;
-            cursor: pointer;
-        }
-        .footer-btn:hover,
-        .footer-btn:focus{
-            text-decoration:blink;
-            color: #555;
-        }
-        .footer-btn:hover{
-            -webkit-box-shadow: 0px 0px 3px 0px rgba(0,0,0,0.75);
-            -moz-box-shadow: 0px 0px 3px 0px rgba(0,0,0,0.75);
-            box-shadow: 0px 0px 3px 0px rgba(0,0,0,0.75);
-        }
-        #status{
-            margin-left:15px;
-        }
-        #example-list>li,
-        .nav-group-item{
-            cursor: pointer;
-        }
-    </style>
     <div class="window">
         <header class="toolbar toolbar-header">
             <div class="toolbar-actions">
@@ -97,15 +26,15 @@
                         <span class="icn icn-direction" style="font-size:15px;margin-right:5px;"></span> Easy Basic
                     </h1>
                 </div>
-                <div class="pull-right" style="margin-right: 5px;">
-                    <div class="btn-group">
-                        <button class="btn btn-default" id="min-btn">
+                <div class="pull-right" style="margin-right: 5px;" id="control-btns">
+                    <div class="ptn-group">
+                        <button class="ptn ptn-default" id="min-btn">
                                 <span class="icn icn-minus"></span>
                             </button>
-                        <button class="btn btn-default" id="max-btn">
+                        <button class="ptn ptn-default" id="max-btn">
                                 <span class="icn icn-popup"></span>
                             </button>
-                        <button class="btn btn-default active" id="close-btn">
+                        <button class="ptn ptn-default active" id="close-btn">
                                 <span class="icn icn-cancel "></span>
                             </button>
                     </div>
@@ -113,9 +42,83 @@
             </div>
         </header>
         <div class="window-content">
-            <div class="pane-group">
 
-                <div class="pane pane-mini primary-sidebar">
+            <div class="modal fade" id="myModal" role="dialog" aria-labelledby="myModalLabel">
+                <div class="modal-dialog modal-lg" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                            <h4 class="modal-title" id="myModalLabel"><i class="fa fa-comment-o"></i>Feedback</h4>
+                        </div>
+                        <div class="modal-body" id="feedback-body">
+                            <div class="row hidden" id="feedback-success">
+                                <div class="text-center">
+                                    <i class="fa fa-thumbs-up fa-5x" style="color: #396;"></i>
+                                    <h4>Feedback submitted successfully</h4>
+                                    <hr>
+                                    <input style="width: 100px; display: inline;" type="submit" value="Again" class="center form-control ptn ptn-default" id="feedback-again">
+                                </div>
+                            </div>
+                            <div class="row hidden" id="feedback-error">
+                                <div class="text-center">
+                                    <i class="fa fa-times fa-5x" style="color: #933;"></i>
+                                    <h4>Opps! something wents wrong.</h4>
+                                    <p id="detail"></p>
+                                    <hr>
+                                    <input style="width: 100px; display: inline;" type="submit" value="Try Again" class="center form-control ptn ptn-default" id="feedback-try-again">
+                                </div>
+                            </div>
+                            <form id="feedback" class="">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                    <label>Your Name</label>
+                                    <input type="text" id="feeback-name" placeholder="Name" class="form-control" required="True">
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                    <label>Email</label>
+                                    <input type="email" id="feeback-email" placeholder="Email" class="form-control" required="True">
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                    <label>Select the the catagory</label>
+                                    <select list="browsers" id="feeback-catagory" class="form-control">
+                                        <option>Message</option>
+                                        <option>Suggestion</option>
+                                        <option>Testimonial</option>
+                                        <option>Feature Request</option>
+                                    </select>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label>What you are?</label>
+                                        <input id="feeback-rank" class="form-control" placeholder="e.g Teacher at some school" required="True">
+                                    </div>
+                                </div>
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <label>What you want to say</label>
+                                        <textarea type="text" id="feeback-message" class="form-control" rows="6" required="True"></textarea>
+                                    </div>
+                                </div>
+                                <hr>
+                                <div class="col-md-12 form-group">
+                                    <input type="submit" value="Send" class="form-control ptn ptn-default pull-right" style="width: 70px;">
+                                    <span class="pull-right hidden" style="margin-top: 5px;" id="feedback-loader"><i class="fa fa-circle-o-notch fa-spin fa-lg fa-fw"></i></span>
+                                </div>
+                            </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pane-group">
+                <div class="pane pane-mini primary-sidebar" id="sidebar">
                     <ul class="list-unstyled sidebar-button-list">
                         <li><a id="home_tab_a" data-toggle="tab" href="#home"><i class="icon-home"></i></a></li>
                         <li><a id="files_tab_a" data-toggle="tab" href="#files"><i class="icon-list"></i></a></li>
@@ -133,31 +136,31 @@
                                 <h5 class="nav-group-title">Actions</h5>
 
                                 <span class="nav-group-item" id="createNewScript">
-                                        <span class="icn icn-doc"></span> Create New File
+                                        <span class="fa fa-file-o"></span> Create New File
                                 </span>
                                 <span class="nav-group-item" id="openScript">
-                                        <span class="icn icn-folder"></span> Open Existing
+                                        <span class="fa fa-folder-o"></span> Open Existing
                                 </span>
                                 <span class="nav-group-item">
                                         <span class="fa fa-terminal"></span> Open Shell
                                 </span>
                                 <span class="nav-group-item" data-toggle="tab" href="#comparer">
-                                        <span class="icn icn-docs"></span> File Comparer
+                                        <span class="fa fa-files-o"></span> File Comparer
                                 </span>
                                 <span class="nav-group-item" data-toggle="tab" href="#docs">
-                                        <span class="icn icn-book-open"></span> Documentation
+                                        <span class="fa fa-book"></span> Documentation
                                 </span>
                                 <span class="nav-group-item" data-toggle="tab" href="#files">
-                                        <span class="icn icn-doc-text"></span> Examples
+                                        <span class="fa fa-list"></span> Examples
                                 </span>
                                 <span class="nav-group-item" data-toggle="tab" href="#settings">
-                                        <span class="icn icn-cog"></span> Settings
+                                        <span class="fa fa-cog"></span> Settings
+                                </span>
+                                <span class="nav-group-item" >
+                                        <span class="fa fa-info" style="margin-right: 18px;"></span> About
                                 </span>
                                 <span class="nav-group-item">
-                                        <span class="icn icn-newspaper"></span> About
-                                </span>
-                                <span class="nav-group-item">
-                                        <span class="icn icn-users"></span> Credits
+                                        <span class="fa fa-users"></span> Credits
                                 </span>
                             </nav>
 
@@ -176,15 +179,11 @@
                                     <div style="margin-left:10px; margin-right:10px; margin-bottom:10px;">
                                         <input class="form-control search" type="text" placeholder="Search">
                                         <div class="row" style="margin-top: 5px; margin-bottom: 10px;">
-                                            <small style="padding-top:6px;padding-left:6px;">Sort by:</small>
-                                            <div class="btn-group pull-right">
-                                                <button class="sort btn btn-default" data-sort="type">
-                                                        Category
-                                                    </button>
-                                                <button class="sort btn btn-default " data-sort="name">
-                                                        Name
-                                                    </button>
-                                            </div>
+                                            <small style="padding-top:6px;padding-left:6px; vertical-align: sub;">Sort by:</small>
+                                            <ul class="list-unstyled list-inline pull-right">
+                                                <li><button class="sort button -dark center" data-sort="type">Catagory</button></li>
+                                                <li><button class="sort button -dark center" data-sort="name">Name</button></li>
+                                            </ul>
                                         </div>
                                     </div>
                                     <div id="example-list-div" style="overflow:hidden;" onscroll="shadow(this)">
@@ -199,23 +198,22 @@
                             <h5 class="text-center">File Comparer</h5>
                             <h5 class="nav-group-title">Select Files</h5>
                             <div class="row" style="margin-left:10px; margin-top:15px;">
-                                <button class="btn btn-default" style="margin-right:20px;" onclick="openOrigianl()">
-                                        <span class="icn icn-folder" style="margin-right:5px;"></span> Original File
-                                    </button>
+                                <button class="sort button -dark center" style="margin-right:20px;" onclick="openOrigianl()">
+                                    <span class="icn icn-folder" style="margin-right:5px;"></span> Original File
+                                </button>
                                 <p class="hidden" id="originalPath"></p>
                                 <p class="nav-group-title pull-right" id="originalName">No File Selected</p>
                             </div>
                             <div class="row" style="margin-left:10px; margin-top:10px; margin-bottom:10px;">
-                                <button class="btn btn-default" style="margin-right:20px;" onclick="openModified()">
-                                        <span class="icn icn-folder" style="margin-right:5px;"></span> Modified File
-                                    </button>
+                                <button class="sort button -dark center" style="margin-right:20px;" onclick="openModified()">
+                                    <span class="icn icn-folder" style="margin-right:5px;"></span> Modified File
+                                </button>
                                 <p class="hidden" id="modifiedPath"></p>
                                 <p class="nav-group-title pull-right" id="modifiedName">No File Selected </p>
                             </div>
-                            <button class="btn btn-default btn-large pull-right" style="margin-right:20px;" onclick="compare()">
-                                    <span class="icn icn-docs" style="margin-right:5px;"></span>
-                                    Compare
-                                </button>
+                            <button class="sort button -dark center pull-right" style="margin-right:20px;" onclick="compare()">
+                                    <span class="icn icn-docs" style="margin-right:5px;"></span>Compare
+                            </button>
                         </div>
 
                         <div id="docs" class="tab-pane fade">
@@ -237,7 +235,15 @@
 
                         <div id="settings" class="tab-pane fade">
                             <h5 class="text-center">Settings</h5>
-                            <h5 class="nav-group-title">Index</h5>
+                            <h5 class="nav-group-title">Theme</h5>
+                            <select class="form-control" id="themes" style="margin-left: 30px; margin-top: 20px; margin-bottom: 20px; width: 150px;">
+                                <option>Codepen</option>
+                                <option>Github</option>
+                                <option>Solarized Dark</option>
+                                <option>Solarized Light</option>
+                                <option>VS default</option>
+                                <option selected>VS Dark</option>
+                            </select>
                         </div>
                     </div>
                 </div>
@@ -258,7 +264,7 @@
                     <div class="some-content-related-div" style="margin-top:-10px;">
                         <div class="tab-content span4" id="tab-box">
                             <div class="tab-pane active" id="home_main" style="width:100%; height:100%;">
-                                <div style="width:100%;height:100%;background-color:#eee;">
+                                <div style="width:100%;height:100%;background-color:#eee;" id="main-div">
 
                                 </div>
                             </div>
@@ -273,13 +279,13 @@
                     <h1 class="title" id="status" style="margin-top: 2px">Ready</h1>
                 </div>
 
-                <div class="pull-right row">
+                <div class="pull-right row" style="margin-right:5px;">
                     <div class="pull-left">
                         <h1 class="title" id="LineCol" style="margin-right:10px; font-size: 9pt; margin-top: 3px;"></h1>
                     </div>
-                    <a class="footer-btn"><span class="icon-social-facebook"></span></a>
-                    <a class="footer-btn"><span class="icon-globe"></span></a>
-                    <a class="footer-btn"><span class="icon-emotsmile"></span></a>
+                    <a class="footer-ptn"><span class="icon-social-facebook"></span></a>
+                    <a class="footer-ptn"><span class="icon-globe"></span></a>
+                    <a class="footer-ptn" data-toggle="modal" data-target="#myModal"><span class="icon-emotsmile"></span></a>
                 </div>
             </div>
         </footer>
@@ -299,6 +305,73 @@
 
     <script src="assets/js/Index.js"></script>
     <script>if (window.module) module = window.module;</script>
+    <script type="text/javascript">
+        window.doorbellOptions = {
+            hideButton: true,
+            appKey: 'ai0GfZYPAywybN1YMV2q3Gsyxxmt6rKeJoM944D1Gh0myj8f81MFcmRjAsJwqJOH'
+        };
+        (function(w, d, t) {
+            var hasLoaded = false;
+            function l() {
+                 if (hasLoaded) {
+                      return;
+                }
+                hasLoaded = true;
+                window.doorbellOptions.windowLoaded = false;
+                var g = d.createElement(t);
+                g.id = 'doorbellScript';
+                g.type = 'text/javascript';
+                g.async = true;
+                g.src = 'https://embed.doorbell.io/button/4216?t='+(new Date().getTime());
+                (d.getElementsByTagName('head')[0]||d.getElementsByTagName('body')[0]).appendChild(g);
+            }
+            if (w.attachEvent) {
+                 w.attachEvent('onload', l);
+            }
+            else if (w.addEventListener) {
+                 w.addEventListener('load', l, false);
+            }
+            else {
+                  l();
+            }
+            if (d.readyState == 'complete') { l(); }
+        }(window, document, 'script'));
+
+        function sendFromMyForm() {
+            doorbell.send(
+                (
+                    "Name: '"+document.getElementById('feeback-name').value+"'\n"+
+                    "Email: '"+document.getElementById('feeback-email').value+"'\n"+
+                    "Catagory: '"+document.getElementById('feeback-catagory').value+"'\n"+
+                    "Message: '"+document.getElementById('feeback-message').value+"'\n"
+                ),
+                document.getElementById('feeback-email').value,
+                function() {
+                    $('#feedback-loader').addClass('hidden')
+                    $('#feedback').addClass('hidden');
+                    $('#feedback-success').removeClass('hidden');
+                },
+                function(error) {
+                    $('#feedback-loader').addClass('hidden')
+                    $('#feedback').addClass('hidden');
+                    $('#feedback-error').removeClass('hidden');
+                    document.getElementById('detail').innerHTML = "Error: "+error;
+                }
+            );
+        }
+        $("#feedback").submit(function(){
+            $('#feedback-loader').removeClass('hidden')
+            sendFromMyForm();
+        })
+        $('#feedback-try-again').on('click', function(){
+            $('#feedback-error').addClass('hidden');
+            $('#feedback').removeClass('hidden');
+        })
+        $('#feedback-again').on('click', function(){
+            $('#feedback-success').addClass('hidden');
+            $('#feedback').removeClass('hidden');
+        })
+    </script>
 </body>
 
 </html>

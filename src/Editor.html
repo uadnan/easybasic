@@ -3,40 +3,17 @@
 
 <head>
     <link href='assets/fonts/googlefont.css' rel='stylesheet' type='text/css'>
+    <link href='Editor themes/codepen.css' rel='stylesheet' type='text/css'>
+    <link href='Editor themes/github.css' rel='stylesheet' type='text/css'>
+    <link href='Editor themes/solarized-dark.css' rel='stylesheet' type='text/css'>
+    <link href='Editor themes/solarized-light.css' rel='stylesheet' type='text/css'>
     <link href="assets/css/loader.css" rel="stylesheet" type="text/css" />
     <script src="assets/js/jquery.min.js"></script>
 </head>
 
-<body style="font-size: 14px; line-height: 19px;overflow:hidden; background:white; width:100%;height:100vh; font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;">
+<body style="font-size: 11px; line-height: 19px;overflow:hidden; background:white; width:100%;height:100vh;font-family: Consolas, 'Liberation Mono', Menlo, Courier, monospace;">
 
     <div id="container" style="width:100%;height:100vh;"></div>
-
-    <style type="text/css">
-        .monaco-editor .token.LineNums {
-            color: #5576af;
-        }
-        
-        .monaco-editor .token.comment {
-            font-style: italic!important;
-        }
-        
-        .monaco-editor .token.functions {
-            color: #5d40d4;
-        }
-        
-        .monaco-editor .token.operators {
-            color: #bc4d2f;
-        }
-        
-        .monaco-editor .token.TypeKeywords {
-            color: #2d78c8;
-        }
-        
-        .myLineDecoration {
-            background: lightgreen;
-            width: 4px !important;
-        }
-    </style>
 
     <script src="../node_modules/monaco-editor/min/vs/loader.js"></script>
     <script src="assets/js/autocompletion.js"></script>
@@ -60,6 +37,7 @@
                     return "";
             }
         }
+        
         function getPreLineNum(preLine){
             lineNum=preLine.match(/^[0-9]+/)
             if (lineNum){ 
@@ -183,7 +161,10 @@
         function getGrammer(){
             return window.top.grammer;
         }
-        
+        function getTheme(){
+            var select= window.top.document.getElementById('themes');
+            return $(select).find("option:selected").text();
+        }
         function getWordAt(str, pos) {
 
             // Perform type conversions.
@@ -209,7 +190,6 @@
         }
 
         
-
         require.config({ paths: { 'vs': '../node_modules/monaco-editor/min/vs' }});
         require(['vs/editor/editor.main'], function() {
             var editor = monaco.editor.create(document.getElementById('container'), {
@@ -450,11 +430,27 @@
             editor.onDidScrollChange(function(e){
                 if(n==0){
                     window.top.document.getElementById('status').innerHTML = "Loaded Editor";
+                    window.setTheme(getTheme());
                     n++;
                 }
             })
             eval(getKeyBindings());
+            window.setTheme = function (theme){
+                if(theme == "Codepen")
+                    editor.updateOptions({ 'theme' : 'codepen' });
+                else if(theme == "Github")
+                    editor.updateOptions({ 'theme' : 'github' });
+                else if(theme == "Solarized Dark")
+                    editor.updateOptions({ 'theme' : 'solarized-dark' });
+                else if(theme == "Solarized Light")
+                    editor.updateOptions({ 'theme' : 'solarized-light' });
+                else if(theme == "VS default")
+                    editor.updateOptions({ 'theme' : 'vs' });
+                else if(theme == "VS Dark")
+                    editor.updateOptions({ 'theme' : 'vs-dark' });
+            }
         });
+        
     </script>
 </body>
 

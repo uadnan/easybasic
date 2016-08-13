@@ -25,7 +25,7 @@ document.getElementById("max-btn").addEventListener("click", function (e) {
 
 document.getElementById("close-btn").addEventListener("click", function (e) {
     var window = remote.getCurrentWindow();
-    //window.close();
+    window.close();
 });
 
 var options = {
@@ -162,4 +162,40 @@ function compare() {
     var modifiedName = document.getElementById('modifiedName').innerHTML;
     if (originalPath && modifiedPath)
         addtab('Editor', originalName + " ↔ " + modifiedName, "DiffEditor.html");
+}
+$('#themes').change(function () {
+    var selectedText = $(this).find("option:selected").text();
+    if (selectedText == "Codepen" ||
+        selectedText == "Solarized Dark" ||
+        selectedText == "VS Dark")
+        {
+            swapStyleSheet('./assets/css/photon-dark.css');
+            setEditorTheme(selectedText);
+            setDocTheme("Dark");
+        }
+    else if (selectedText == "Github" ||
+        selectedText == "Solarized Light" ||
+        selectedText == "VS default")
+        {
+            swapStyleSheet('./assets/css/photon.min.css');
+            setEditorTheme(selectedText);
+            setDocTheme("Light");
+        }
+});
+
+function setEditorTheme(theme){
+    var iframes= $('#tab-box iframe');
+    for (i = 0; i < iframes.length; i++) {
+        if(iframes[i].contentWindow.document.getElementById('container')){
+            iframes[i].contentWindow.setTheme(theme);
+        }
+    }
+}
+function setDocTheme(theme){
+    var iframes= $('#tab-box iframe');
+    for (i = 0; i < iframes.length; i++) {
+        if(iframes[i].contentWindow.document.getElementById('doc-body')){
+            iframes[i].contentWindow.swapStyleSheet(theme);
+        }
+    }
 }

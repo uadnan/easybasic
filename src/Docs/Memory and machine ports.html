@@ -6,9 +6,9 @@
 
 		 <!-- Styles -->
         <link href='../assets/fonts/googlefont.css' rel='stylesheet' type='text/css'>
-        <link href="../assets/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
+        <link id="pagestyle" href="" rel="stylesheet" type="text/css"/>
         <link href="../assets/css/font-awesome.css" rel="stylesheet" type="text/css"/>
-        <link rel="stylesheet" href="../../node_modules/highlight.js/styles/github.css">
+        <link id="codestyle" rel="stylesheet" href="">
         <script src="../../node_modules/highlight.js/lib/highlight.pack.js"></script>
         <script>hljs.initHighlightingOnLoad();</script>
 	</head>
@@ -69,23 +69,23 @@
                 </thead>
                 <tbody>
                     <tr>
-                        <td><a href="#FRE"><code>FRE</code></a></td>
+                        <td><a href="#" onclick="window.top.addtab('FRE_tabli', 'FRE', 'Docs/FRE.html');"><code>FRE</code></a></td>
                         <td>Amount of free memory</td>
                     </tr>
                     <tr>
-                        <td><a href="#INP"><code>INP</code></a></td>
+                        <td><a href="#" onclick="window.top.addtab('INP_tabli', 'INP', 'Docs/INP.html');"><code>INP</code></a></td>
                         <td>Byte at machine port</td>
                     </tr>
                     <tr>
-                        <td><a href="#PEEK"><code>PEEK</code></a></td>
+                        <td><a href="#" onclick="window.top.addtab('PEEK_tabli', 'PEEK', 'Docs/PEEK.html');"><code>PEEK</code></a></td>
                         <td>Byte at memory address</td>
                     </tr>
                     <tr>
-                        <td><a href="#VARPTR"><code>VARPTR</code></a></td>
+                        <td><a href="#" onclick="window.top.addtab('VARPTR_tabli', 'VARPTR', 'Docs/VARPTR.html');"><code>VARPTR</code></a></td>
                         <td>Memory address of variable</td>
                     </tr>
                     <tr>
-                        <td><a href="#VARPTR%24"><code>VARPTR$</code></a></td>
+                        <td><a href="#" onclick="window.top.addtab('VARPTR_s_tabli', 'VARPTR$', 'Docs/VARPTR$.html');"><code>VARPTR$</code></a></td>
                         <td>Byte representation of length and memory address of variable</td>
                     </tr>
                 </tbody>
@@ -112,6 +112,35 @@
                 window.top.document.getElementById('status').innerHTML = "Document Loaded";
             })
         </script>
-
+<script>
+            function swapStyleSheet(theme) {
+                var pagelink;
+                var codelink;
+                if (theme =="Dark"){
+                    pagelink = "../assets/css/bootstrap-dark.css";
+                    codelink = "../../node_modules/highlight.js/styles/agate.css";
+                }
+                else{
+                    pagelink = "../assets/css/bootstrap.min.css";
+                    codelink = "../../node_modules/highlight.js/styles/github.css";
+                }
+                document.getElementById("pagestyle").setAttribute("href", pagelink);
+                document.getElementById("codestyle").setAttribute("href", codelink);
+            }
+            
+            function getTheme(){
+                var select= window.top.document.getElementById('themes');
+                var selected = $(select).find("option:selected").text();
+                if (selected == "Codepen" ||
+                    selected == "Solarized Dark" ||
+                    selected == "VS Dark")
+                    return "Dark";
+                else if (selected == "Github" ||
+                    selected == "Solarized Light" ||
+                    selected == "VS default")
+                    return "Light";
+            }
+            swapStyleSheet(getTheme());
+        </script>
     </body>
 </html>
