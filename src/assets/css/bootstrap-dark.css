@@ -2372,7 +2372,7 @@ th {
     border-bottom-width: 2px
 }
 .table-striped>tbody>tr:nth-of-type(odd) {
-    background-color: #2d2d2d
+    background-color: #222
 }
 .table-hover>tbody>tr:hover {
     background-color: #f5f5f5
@@ -6140,4 +6140,7 @@ button.close {
     .hidden-print {
         display: none!important
     }
+}
+.slimScrollBar{
+    background: #ccc!important;
 }

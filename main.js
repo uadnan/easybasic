@@ -1,5 +1,7 @@
+global.sharedObject = {prop1: process.argv}
 const electron = require('electron');
 const app = electron.app;
+const globalShortcut = electron.globalShortcut;
 const BrowserWindow = electron.BrowserWindow;
 
 let mainWindow
@@ -14,8 +16,22 @@ function createWindow () {
     mainWindow = null
   })
 }
+// app.commandLine.appendSwitch('remote-debugging-port', '8080')
+app.on('ready', () => {
+  arguments = global.sharedObject.prop1;
+  console.log(arguments);
 
-app.on('ready', createWindow)
+  const ret = globalShortcut.register('CommandOrControl+X', () => {
+    console.log('CommandOrControl+X is pressed')
+  })
+  if (!ret) {
+    console.log('registration failed')
+  }
+
+  // Check whether a shortcut is registered.
+  console.log("Enabled Global Shortcut: ",globalShortcut.isRegistered('CommandOrControl+X'))
+  createWindow();
+})
 
 app.on('window-all-closed', function () {
   if (process.platform !== 'darwin') {
@@ -27,6 +43,10 @@ app.on('activate', function () {
   if (mainWindow === null) {
     createWindow()
   }
+})
+
+app.on('will-quit', () => {
+  globalShortcut.unregisterAll()
 })
 
 //Custom code

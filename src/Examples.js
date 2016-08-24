@@ -1,4 +1,4 @@
-path = './src/Examples.json';
+path = './json/Examples.json';
 
 var options = {
     valueNames: ['name', 'type'],

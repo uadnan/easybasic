@@ -1,10 +1,164 @@
-10 ? " _____________          ___________        ___________   ___          ___"
-20 ? "|   __________|        /  ______   |      /  _________|  \  \        /  /"
-30 ? "|  |                   /  /      |  |     /  /             \  \      /  /"
-40 ? "|  |                  /  /       |  |    |  |               \  \    /  /"
-50 ? "|  |________         /  /        |  |    \  \________        \  \  /  /"
-60 ? "|   ________|       /  /_________|  |     \________  \        \  \/  /"
-70 ? "|  |               /  ___________   |              \  \        |    /"
-80 ? "|  |              /  /           |  |              |  |        |   |"
-90 ? "|  |__________    /  /            |  |   __________/  /         |   |"
-100 ?"|_____________|   /__/             |__|  |___________/           |___|"  
+10 ' EASY
+30 ? STRING$(6, CHR$(&HC4));STRING$(14, CHR$(&HDB));STRING$(2, CHR$(&HC4));STRING$(14, CHR$(&HDB));STRING$(2, CHR$(&HC4));STRING$(14, CHR$(&HDB));STRING$(2, CHR$(&HC4));STRING$(8, CHR$(&HDB));STRING$(2, CHR$(&HC4));STRING$(8, CHR$(&HDB));
+40 ? STRING$(7, CHR$(&HC4)) 
+50 ? STRING$(6, CHR$(&HC4));CHR$(&HDB);CHR$(&HDB);CHR$(&HB0);CHR$(&HB0);CHR$(&HB0);CHR$(&HB0);CHR$(&HB0);CHR$(&HB0);CHR$(&HB0);CHR$(&HB0);CHR$(&HB0);CHR$(&HB0);CHR$(&HDB);CHR$(&HDB);CHR$(&HC4);
+60 ? CHR$(&HC4);CHR$(&HDB);CHR$(&HDB);CHR$(&HB0);CHR$(&HB0);CHR$(&HB0);CHR$(&HB0);CHR$(&HB0);CHR$(&HB0);CHR$(&HB0);CHR$(&HB0);CHR$(&HB0);CHR$(&HB0);CHR$(&HDB);CHR$(&HDB);CHR$(&HC4);
+70 ? CHR$(&HC4);CHR$(&HDB);CHR$(&HDB);CHR$(&HB0);CHR$(&HB0);CHR$(&HB0);CHR$(&HB0);CHR$(&HB0);CHR$(&HB0);CHR$(&HB0);CHR$(&HB0);CHR$(&HB0);CHR$(&HB0);CHR$(&HDB);CHR$(&HDB);CHR$(&HC4);
+80 ? CHR$(&HC4);CHR$(&HDB);CHR$(&HDB);CHR$(&HB0);CHR$(&HB0);CHR$(&HB0);CHR$(&HB0);CHR$(&HDB);CHR$(&HDB);CHR$(&HC4);CHR$(&HC4);CHR$(&HDB);CHR$(&HDB);CHR$(&HB0);CHR$(&HB0);CHR$(&HB0);CHR$(&HB0);CHR$(&HDB);CHR$(&HDB);STRING$(7, CHR$(&HC4))
+90 ? STRING$(6, CHR$(&HC4));CHR$(&HDB);CHR$(&HDB);CHR$(&HB0);CHR$(&HB0);CHR$(&HDB);CHR$(&HDB);CHR$(&HDB);CHR$(&HDB);CHR$(&HDB);CHR$(&HDB);CHR$(&HDB);CHR$(&HDB);CHR$(&HDB);CHR$(&HDB);CHR$(&HC4);
+100 ? CHR$(&HC4);CHR$(&HDB);CHR$(&HDB);CHR$(&HB0);CHR$(&HB0);CHR$(&HDB);CHR$(&HDB);CHR$(&HDB);CHR$(&HDB);CHR$(&HDB);CHR$(&HDB);CHR$(&HB0);CHR$(&HB0);CHR$(&HDB);CHR$(&HDB);CHR$(&HC4);
+110 ? CHR$(&HC4);CHR$(&HDB);CHR$(&HDB);CHR$(&HB0);CHR$(&HB0);CHR$(&HDB);CHR$(&HDB);CHR$(&HDB);CHR$(&HDB);CHR$(&HDB);CHR$(&HDB);CHR$(&HDB);CHR$(&HDB);CHR$(&HDB);CHR$(&HDB);CHR$(&HC4);
+120 ? CHR$(&HC4);CHR$(&HDB);CHR$(&HDB);CHR$(&HDB);CHR$(&HDB);CHR$(&HB0);CHR$(&HB0);CHR$(&HDB);CHR$(&HDB);CHR$(&HC4);CHR$(&HC4);CHR$(&HDB);CHR$(&HDB);CHR$(&HB0);CHR$(&HB0);CHR$(&HDB);CHR$(&HDB);CHR$(&HDB);CHR$(&HDB);STRING$(7, CHR$(&HC4))
+130 ? STRING$(6, CHR$(&HC4));CHR$(&HDB);CHR$(&HDB);CHR$(&HB0);CHR$(&HB0);CHR$(&HDB);CHR$(&HDB);STRING$(9, CHR$(&HC4));
+140 ? CHR$(&HC4);CHR$(&HDB);CHR$(&HDB);CHR$(&HB0);CHR$(&HB0);CHR$(&HDB);CHR$(&HDB);CHR$(&HC4);CHR$(&HC4);CHR$(&HDB);CHR$(&HDB);CHR$(&HB0);CHR$(&HB0);CHR$(&HDB);CHR$(&HDB);CHR$(&HC4);
+150 ? CHR$(&HC4);CHR$(&HDB);CHR$(&HDB);CHR$(&HB0);CHR$(&HB0);CHR$(&HDB);CHR$(&HDB);STRING$(9, CHR$(&HC4));
+160 ? STRING$(3, CHR$(&HC4));CHR$(&HDB);CHR$(&HDB);CHR$(&HB0);CHR$(&HB0);CHR$(&HB0);CHR$(&HB0);CHR$(&HDB);CHR$(&HDB);CHR$(&HB0);CHR$(&HB0);CHR$(&HB0);CHR$(&HB0);CHR$(&HDB);CHR$(&HDB);STRING$(9, CHR$(&HC4))
+170 ? STRING$(6, CHR$(&HC4));CHR$(&HDB);CHR$(&HDB);CHR$(&HB0);CHR$(&HB0);CHR$(&HDB);CHR$(&HDB);CHR$(&HDB);CHR$(&HDB);CHR$(&HDB);CHR$(&HDB);CHR$(&HDB);CHR$(&HDB);CHR$(&HDB);CHR$(&HDB);CHR$(&HC4);
+180 ? CHR$(&HC4);CHR$(&HDB);CHR$(&HDB);CHR$(&HB0);CHR$(&HB0);CHR$(&HDB);CHR$(&HDB);CHR$(&HDB);CHR$(&HDB);CHR$(&HDB);CHR$(&HDB);CHR$(&HB0);CHR$(&HB0);CHR$(&HDB);CHR$(&HDB);CHR$(&HC4);
+190 ? CHR$(&HC4);CHR$(&HDB);CHR$(&HDB);CHR$(&HB0);CHR$(&HB0);CHR$(&HDB);CHR$(&HDB);CHR$(&HDB);CHR$(&HDB);CHR$(&HDB);CHR$(&HDB);CHR$(&HDB);CHR$(&HDB);CHR$(&HDB);CHR$(&HDB);CHR$(&HC4);
+200 ? STRING$(3, CHR$(&HC4));CHR$(&HDB);CHR$(&HDB);CHR$(&HDB);CHR$(&HDB);CHR$(&HB0);CHR$(&HB0);CHR$(&HB0);CHR$(&HB0);CHR$(&HB0);CHR$(&HB0);CHR$(&HDB);CHR$(&HDB);CHR$(&HDB);CHR$(&HDB);STRING$(9, CHR$(&HC4))
+210 ? STRING$(6, CHR$(&HC4));CHR$(&HDB);CHR$(&HDB);CHR$(&HB0);CHR$(&HB0);CHR$(&HB0);CHR$(&HB0);CHR$(&HB0);CHR$(&HB0);CHR$(&HB0);CHR$(&HB0);CHR$(&HB0);CHR$(&HB0);CHR$(&HDB);CHR$(&HDB);CHR$(&HC4);
+220 ? CHR$(&HC4);CHR$(&HDB);CHR$(&HDB);CHR$(&HB0);CHR$(&HB0);CHR$(&HB0);CHR$(&HB0);CHR$(&HB0);CHR$(&HB0);CHR$(&HB0);CHR$(&HB0);CHR$(&HB0);CHR$(&HB0);CHR$(&HDB);CHR$(&HDB);CHR$(&HC4);
+230 ? CHR$(&HC4);CHR$(&HDB);CHR$(&HDB);CHR$(&HB0);CHR$(&HB0);CHR$(&HB0);CHR$(&HB0);CHR$(&HB0);CHR$(&HB0);CHR$(&HB0);CHR$(&HB0);CHR$(&HB0);CHR$(&HB0);CHR$(&HDB);CHR$(&HDB);CHR$(&HC4);
+240 ? STRING$(5, CHR$(&HC4));CHR$(&HDB);CHR$(&HDB);CHR$(&HDB);CHR$(&HDB);CHR$(&HB0);CHR$(&HB0);CHR$(&HDB);CHR$(&HDB);CHR$(&HDB);CHR$(&HDB);STRING$(11, CHR$(&HC4))
+250 ? STRING$(6, CHR$(&HC4));CHR$(&HDB);CHR$(&HDB);CHR$(&HB0);CHR$(&HB0);CHR$(&HDB);CHR$(&HDB);CHR$(&HDB);CHR$(&HDB);CHR$(&HDB);CHR$(&HDB);CHR$(&HDB);CHR$(&HDB);CHR$(&HDB);CHR$(&HDB);CHR$(&HC4);
+260 ? CHR$(&HC4);CHR$(&HDB);CHR$(&HDB);CHR$(&HB0);CHR$(&HB0);CHR$(&HDB);CHR$(&HDB);CHR$(&HDB);CHR$(&HDB);CHR$(&HDB);CHR$(&HDB);CHR$(&HB0);CHR$(&HB0);CHR$(&HDB);CHR$(&HDB);CHR$(&HC4);
+270 ? CHR$(&HC4);CHR$(&HDB);CHR$(&HDB);CHR$(&HDB);CHR$(&HDB);CHR$(&HDB);CHR$(&HDB);CHR$(&HDB);CHR$(&HDB);CHR$(&HDB);CHR$(&HDB);CHR$(&HB0);CHR$(&HB0);CHR$(&HDB);CHR$(&HDB);CHR$(&HC4);
+280 ? STRING$(7, CHR$(&HC4));CHR$(&HDB);CHR$(&HDB);CHR$(&HB0);CHR$(&HB0);CHR$(&HDB);CHR$(&HDB);STRING$(13, CHR$(&HC4))
+290 ? STRING$(6, CHR$(&HC4));CHR$(&HDB);CHR$(&HDB);CHR$(&HB0);CHR$(&HB0);CHR$(&HDB);CHR$(&HDB);CHR$(&HC4);CHR$(&HC4);CHR$(&HC4);CHR$(&HC4);CHR$(&HC4);CHR$(&HC4);CHR$(&HC4);CHR$(&HC4);CHR$(&HC4);
+300 ? CHR$(&HC4);CHR$(&HDB);CHR$(&HDB);CHR$(&HB0);CHR$(&HB0);CHR$(&HDB);CHR$(&HDB);CHR$(&HC4);CHR$(&HC4);CHR$(&HDB);CHR$(&HDB);CHR$(&HB0);CHR$(&HB0);CHR$(&HDB);CHR$(&HDB);CHR$(&HC4);
+310 ? STRING$(9, CHR$(&HC4));CHR$(&HDB);CHR$(&HDB);CHR$(&HB0);CHR$(&HB0);CHR$(&HDB);CHR$(&HDB);CHR$(&HC4);
+320 ? STRING$(7, CHR$(&HC4));CHR$(&HDB);CHR$(&HDB);CHR$(&HB0);CHR$(&HB0);CHR$(&HDB);CHR$(&HDB);STRING$(13, CHR$(&HC4))
+330 ? STRING$(6, CHR$(&HC4));CHR$(&HDB);CHR$(&HDB);CHR$(&HB0);CHR$(&HB0);CHR$(&HDB);CHR$(&HDB);CHR$(&HDB);CHR$(&HDB);CHR$(&HDB);CHR$(&HDB);CHR$(&HDB);CHR$(&HDB);CHR$(&HDB);CHR$(&HDB);CHR$(&HC4);
+340 ? CHR$(&HC4);CHR$(&HDB);CHR$(&HDB);CHR$(&HB0);CHR$(&HB0);CHR$(&HDB);CHR$(&HDB);CHR$(&HC4);CHR$(&HC4);CHR$(&HDB);CHR$(&HDB);CHR$(&HB0);CHR$(&HB0);CHR$(&HDB);CHR$(&HDB);CHR$(&HC4);
+350 ? CHR$(&HC4);CHR$(&HDB);CHR$(&HDB);CHR$(&HDB);CHR$(&HDB);CHR$(&HDB);CHR$(&HDB);CHR$(&HDB);CHR$(&HDB);CHR$(&HDB);CHR$(&HDB);CHR$(&HB0);CHR$(&HB0);CHR$(&HDB);CHR$(&HDB);CHR$(&HC4);
+360 ? STRING$(7, CHR$(&HC4));CHR$(&HDB);CHR$(&HDB);CHR$(&HB0);CHR$(&HB0);CHR$(&HDB);CHR$(&HDB);STRING$(13, CHR$(&HC4))
+370 ? STRING$(6, CHR$(&HC4));CHR$(&HDB);CHR$(&HDB);CHR$(&HB0);CHR$(&HB0);CHR$(&HB0);CHR$(&HB0);CHR$(&HB0);CHR$(&HB0);CHR$(&HB0);CHR$(&HB0);CHR$(&HB0);CHR$(&HB0);CHR$(&HDB);CHR$(&HDB);CHR$(&HC4);
+380 ? CHR$(&HC4);CHR$(&HDB);CHR$(&HDB);CHR$(&HB0);CHR$(&HB0);CHR$(&HDB);CHR$(&HDB);CHR$(&HC4);CHR$(&HC4);CHR$(&HDB);CHR$(&HDB);CHR$(&HB0);CHR$(&HB0);CHR$(&HDB);CHR$(&HDB);CHR$(&HC4);
+390 ? CHR$(&HC4);CHR$(&HDB);CHR$(&HDB);CHR$(&HB0);CHR$(&HB0);CHR$(&HB0);CHR$(&HB0);CHR$(&HB0);CHR$(&HB0);CHR$(&HB0);CHR$(&HB0);CHR$(&HB0);CHR$(&HB0);CHR$(&HDB);CHR$(&HDB);CHR$(&HC4);
+400 ? STRING$(7, CHR$(&HC4));CHR$(&HDB);CHR$(&HDB);CHR$(&HB0);CHR$(&HB0);CHR$(&HDB);CHR$(&HDB);STRING$(13, CHR$(&HC4))
+410 ? STRING$(6, CHR$(&HC4));CHR$(&HDB);CHR$(&HDB);CHR$(&HDB);CHR$(&HDB);CHR$(&HDB);CHR$(&HDB);CHR$(&HDB);CHR$(&HDB);CHR$(&HDB);CHR$(&HDB);CHR$(&HDB);CHR$(&HDB);CHR$(&HDB);CHR$(&HDB);CHR$(&HC4);
+420 ? CHR$(&HC4);CHR$(&HDB);CHR$(&HDB);CHR$(&HDB);CHR$(&HDB);CHR$(&HDB);CHR$(&HDB);CHR$(&HC4);CHR$(&HC4);CHR$(&HDB);CHR$(&HDB);CHR$(&HDB);CHR$(&HDB);CHR$(&HDB);CHR$(&HDB);CHR$(&HC4);
+430 ? CHR$(&HC4);CHR$(&HDB);CHR$(&HDB);CHR$(&HDB);CHR$(&HDB);CHR$(&HDB);CHR$(&HDB);CHR$(&HDB);CHR$(&HDB);CHR$(&HDB);CHR$(&HDB);CHR$(&HDB);CHR$(&HDB);CHR$(&HDB);CHR$(&HDB);CHR$(&HC4);
+440 ? STRING$(7, CHR$(&HC4));CHR$(&HDB);CHR$(&HDB);CHR$(&HDB);CHR$(&HDB);CHR$(&HDB);CHR$(&HDB);STRING$(13, CHR$(&HC4))
+450 ? STRING$(79, CHR$(&HC4))
+460 ' BASIC
+470 ? STRING$(2, CHR$(&HC4));STRING$(14, CHR$(&HDB));STRING$(3, CHR$(&HC4));
+480 ? CHR$(&HC4);STRING$(14, CHR$(&HDB));CHR$(&HC4);
+490 ? CHR$(&HC4);CHR$(&HDB);CHR$(&HDB);CHR$(&HDB);CHR$(&HDB);CHR$(&HDB);CHR$(&HDB);CHR$(&HDB);CHR$(&HDB);CHR$(&HDB);CHR$(&HDB);CHR$(&HDB);CHR$(&HDB);CHR$(&HDB);CHR$(&HDB);CHR$(&HC4);
+500 ? CHR$(&HC4);CHR$(&HDB);CHR$(&HDB);CHR$(&HDB);CHR$(&HDB);CHR$(&HDB);CHR$(&HDB);CHR$(&HDB);CHR$(&HDB);CHR$(&HDB);CHR$(&HDB);CHR$(&HC4);
+510 ? CHR$(&HC4);CHR$(&HDB);CHR$(&HDB);CHR$(&HDB);CHR$(&HDB);CHR$(&HDB);CHR$(&HDB);CHR$(&HDB);CHR$(&HDB);CHR$(&HDB);CHR$(&HDB);CHR$(&HDB);CHR$(&HDB);CHR$(&HDB);CHR$(&HDB);CHR$(&HC4)
+520 ? STRING$(2, CHR$(&HC4));STRING$(2, CHR$(&HDB));STRING$(10, CHR$(&HB0));STRING$(2, CHR$(&HDB));STRING$(3, CHR$(&HC4));
+530 ? CHR$(&HC4);STRING$(2, CHR$(&HDB));CHR$(&HB0);CHR$(&HB0);CHR$(&HB0);CHR$(&HB0);CHR$(&HB0);CHR$(&HB0);CHR$(&HB0);CHR$(&HB0);CHR$(&HB0);CHR$(&HB0);CHR$(&HDB);CHR$(&HDB);CHR$(&HC4);
+540 ? CHR$(&HC4);CHR$(&HDB);CHR$(&HDB);CHR$(&HB0);CHR$(&HB0);CHR$(&HB0);CHR$(&HB0);CHR$(&HB0);CHR$(&HB0);CHR$(&HB0);CHR$(&HB0);CHR$(&HB0);CHR$(&HB0);CHR$(&HDB);CHR$(&HDB);CHR$(&HC4);
+550 ? CHR$(&HC4);CHR$(&HDB);CHR$(&HDB);CHR$(&HB0);CHR$(&HB0);CHR$(&HB0);CHR$(&HB0);CHR$(&HB0);CHR$(&HB0);CHR$(&HDB);CHR$(&HDB);CHR$(&HC4);
+560 ? CHR$(&HC4);CHR$(&HDB);CHR$(&HDB);CHR$(&HB0);CHR$(&HB0);CHR$(&HB0);CHR$(&HB0);CHR$(&HB0);CHR$(&HB0);CHR$(&HB0);CHR$(&HB0);CHR$(&HB0);CHR$(&HB0);CHR$(&HDB);CHR$(&HDB);CHR$(&HC4)
+570 ? STRING$(2, CHR$(&HC4));STRING$(2, CHR$(&HDB));STRING$(2, CHR$(&HB0));STRING$(6, CHR$(&HDB));STRING$(2, CHR$(&HB0));STRING$(2, CHR$(&HDB));STRING$(3, CHR$(&HC4));
+580 ? CHR$(&HC4);STRING$(2, CHR$(&HDB));CHR$(&HB0);CHR$(&HB0);CHR$(&HDB);CHR$(&HDB);CHR$(&HDB);CHR$(&HDB);CHR$(&HDB);CHR$(&HDB);CHR$(&HB0);CHR$(&HB0);CHR$(&HDB);CHR$(&HDB);CHR$(&HC4);
+590 ? CHR$(&HC4);CHR$(&HDB);CHR$(&HDB);CHR$(&HB0);CHR$(&HB0);CHR$(&HDB);CHR$(&HDB);CHR$(&HDB);CHR$(&HDB);CHR$(&HDB);CHR$(&HDB);CHR$(&HDB);CHR$(&HDB);CHR$(&HDB);CHR$(&HDB);CHR$(&HC4);
+600 ? CHR$(&HC4);CHR$(&HDB);CHR$(&HDB);CHR$(&HDB);CHR$(&HDB);CHR$(&HB0);CHR$(&HB0);CHR$(&HDB);CHR$(&HDB);CHR$(&HDB);CHR$(&HDB);CHR$(&HC4);
+610 ? CHR$(&HC4);CHR$(&HDB);CHR$(&HDB);CHR$(&HB0);CHR$(&HB0);CHR$(&HDB);CHR$(&HDB);CHR$(&HDB);CHR$(&HDB);CHR$(&HDB);CHR$(&HDB);CHR$(&HDB);CHR$(&HDB);CHR$(&HDB);CHR$(&HDB);CHR$(&HC4)
+620 ? STRING$(2, CHR$(&HC4));STRING$(2, CHR$(&HDB));STRING$(2, CHR$(&HB0));STRING$(2, CHR$(&HDB));STRING$(2, CHR$(&HC4));STRING$(2, CHR$(&HDB));STRING$(2, CHR$(&HB0));STRING$(2, CHR$(&HDB));STRING$(3, CHR$(&HC4));
+630 ? CHR$(&HC4);STRING$(2, CHR$(&HDB));CHR$(&HB0);CHR$(&HB0);CHR$(&HDB);CHR$(&HDB);STRING$(2, CHR$(&HC4));;CHR$(&HDB);CHR$(&HDB);CHR$(&HB0);CHR$(&HB0);CHR$(&HDB);CHR$(&HDB);CHR$(&HC4);
+640 ? CHR$(&HC4);CHR$(&HDB);CHR$(&HDB);CHR$(&HB0);CHR$(&HB0);CHR$(&HDB);CHR$(&HDB);CHR$(&HC4);CHR$(&HC4);CHR$(&HC4);CHR$(&HC4);CHR$(&HC4);CHR$(&HC4);CHR$(&HC4);CHR$(&HC4);CHR$(&HC4);
+650 ? CHR$(&HC4);CHR$(&HC4);CHR$(&HC4);CHR$(&HDB);CHR$(&HDB);CHR$(&HB0);CHR$(&HB0);CHR$(&HDB);CHR$(&HDB);CHR$(&HC4);CHR$(&HC4);CHR$(&HC4);
+660 ? CHR$(&HC4);CHR$(&HDB);CHR$(&HDB);CHR$(&HB0);CHR$(&HB0);CHR$(&HDB);CHR$(&HDB);CHR$(&HC4);CHR$(&HC4);CHR$(&HC4);CHR$(&HC4);CHR$(&HC4);CHR$(&HC4);CHR$(&HC4);CHR$(&HC4);CHR$(&HC4)
+670 ? STRING$(2, CHR$(&HC4));STRING$(2, CHR$(&HDB));STRING$(2, CHR$(&HB0));STRING$(6, CHR$(&HDB));STRING$(2, CHR$(&HB0));STRING$(4, CHR$(&HDB));STRING$(1, CHR$(&HC4));
+680 ? CHR$(&HC4);STRING$(2, CHR$(&HDB));CHR$(&HB0);CHR$(&HB0);CHR$(&HDB);CHR$(&HDB);CHR$(&HDB);CHR$(&HDB);CHR$(&HDB);CHR$(&HDB);CHR$(&HB0);CHR$(&HB0);CHR$(&HDB);CHR$(&HDB);CHR$(&HC4);
+690 ? CHR$(&HC4);CHR$(&HDB);CHR$(&HDB);CHR$(&HB0);CHR$(&HB0);CHR$(&HDB);CHR$(&HDB);CHR$(&HDB);CHR$(&HDB);CHR$(&HDB);CHR$(&HDB);CHR$(&HDB);CHR$(&HDB);CHR$(&HDB);CHR$(&HDB);CHR$(&HC4);
+700 ? CHR$(&HC4);CHR$(&HC4);CHR$(&HC4);CHR$(&HDB);CHR$(&HDB);CHR$(&HB0);CHR$(&HB0);CHR$(&HDB);CHR$(&HDB);CHR$(&HC4);CHR$(&HC4);CHR$(&HC4);
+710 ? CHR$(&HC4);CHR$(&HDB);CHR$(&HDB);CHR$(&HB0);CHR$(&HB0);CHR$(&HDB);CHR$(&HDB);CHR$(&HC4);CHR$(&HC4);CHR$(&HC4);CHR$(&HC4);CHR$(&HC4);CHR$(&HC4);CHR$(&HC4);CHR$(&HC4);CHR$(&HC4)
+720 ? STRING$(2, CHR$(&HC4));STRING$(2, CHR$(&HDB));STRING$(12, CHR$(&HB0));STRING$(2, CHR$(&HDB));STRING$(1, CHR$(&HC4));
+730 ? CHR$(&HC4);CHR$(&HDB);CHR$(&HDB);CHR$(&HB0);CHR$(&HB0);CHR$(&HB0);CHR$(&HB0);CHR$(&HB0);CHR$(&HB0);CHR$(&HB0);CHR$(&HB0);CHR$(&HB0);CHR$(&HB0);CHR$(&HDB);CHR$(&HDB);CHR$(&HC4);
+740 ? CHR$(&HC4);CHR$(&HDB);CHR$(&HDB);CHR$(&HB0);CHR$(&HB0);CHR$(&HB0);CHR$(&HB0);CHR$(&HB0);CHR$(&HB0);CHR$(&HB0);CHR$(&HB0);CHR$(&HB0);CHR$(&HB0);CHR$(&HDB);CHR$(&HDB);CHR$(&HC4);
+750 ? CHR$(&HC4);CHR$(&HC4);CHR$(&HC4);CHR$(&HDB);CHR$(&HDB);CHR$(&HB0);CHR$(&HB0);CHR$(&HDB);CHR$(&HDB);CHR$(&HC4);CHR$(&HC4);CHR$(&HC4);
+760 ? CHR$(&HC4);CHR$(&HDB);CHR$(&HDB);CHR$(&HB0);CHR$(&HB0);CHR$(&HDB);CHR$(&HDB);CHR$(&HC4);CHR$(&HC4);CHR$(&HC4);CHR$(&HC4);CHR$(&HC4);CHR$(&HC4);CHR$(&HC4);CHR$(&HC4);CHR$(&HC4)
+770 ? STRING$(2, CHR$(&HC4));STRING$(2, CHR$(&HDB));STRING$(2, CHR$(&HB0));STRING$(8, CHR$(&HDB));STRING$(2, CHR$(&HB0));STRING$(2, CHR$(&HDB));STRING$(1, CHR$(&HC4));
+780 ? CHR$(&HC4);CHR$(&HDB);CHR$(&HDB);CHR$(&HB0);CHR$(&HB0);CHR$(&HDB);CHR$(&HDB);CHR$(&HDB);CHR$(&HDB);CHR$(&HDB);CHR$(&HDB);CHR$(&HB0);CHR$(&HB0);CHR$(&HDB);CHR$(&HDB);CHR$(&HC4);
+790 ? CHR$(&HC4);CHR$(&HDB);CHR$(&HDB);CHR$(&HDB);CHR$(&HDB);CHR$(&HDB);CHR$(&HDB);CHR$(&HDB);CHR$(&HDB);CHR$(&HDB);CHR$(&HDB);CHR$(&HB0);CHR$(&HB0);CHR$(&HDB);CHR$(&HDB);CHR$(&HC4);
+800 ? CHR$(&HC4);CHR$(&HC4);CHR$(&HC4);CHR$(&HDB);CHR$(&HDB);CHR$(&HB0);CHR$(&HB0);CHR$(&HDB);CHR$(&HDB);CHR$(&HC4);CHR$(&HC4);CHR$(&HC4);
+810 ? CHR$(&HC4);CHR$(&HDB);CHR$(&HDB);CHR$(&HB0);CHR$(&HB0);CHR$(&HDB);CHR$(&HDB);CHR$(&HC4);CHR$(&HC4);CHR$(&HC4);CHR$(&HC4);CHR$(&HC4);CHR$(&HC4);CHR$(&HC4);CHR$(&HC4);CHR$(&HC4)
+820 ? STRING$(2, CHR$(&HC4));STRING$(2, CHR$(&HDB));STRING$(2, CHR$(&HB0));STRING$(2, CHR$(&HDB));STRING$(4, CHR$(&HC4));STRING$(2, CHR$(&HDB));STRING$(2, CHR$(&HB0));STRING$(2, CHR$(&HDB));STRING$(1, CHR$(&HC4));
+830 ? CHR$(&HC4);CHR$(&HDB);CHR$(&HDB);CHR$(&HB0);CHR$(&HB0);CHR$(&HDB);CHR$(&HDB);STRING$(2, CHR$(&HC4));CHR$(&HDB);CHR$(&HDB);CHR$(&HB0);CHR$(&HB0);CHR$(&HDB);CHR$(&HDB);CHR$(&HC4);
+840 ? CHR$(&HC4);CHR$(&HC4);CHR$(&HC4);CHR$(&HC4);CHR$(&HC4);CHR$(&HC4);CHR$(&HC4);CHR$(&HC4);CHR$(&HC4);CHR$(&HDB);CHR$(&HDB);CHR$(&HB0);CHR$(&HB0);CHR$(&HDB);CHR$(&HDB);CHR$(&HC4);
+850 ? CHR$(&HC4);CHR$(&HC4);CHR$(&HC4);CHR$(&HDB);CHR$(&HDB);CHR$(&HB0);CHR$(&HB0);CHR$(&HDB);CHR$(&HDB);CHR$(&HC4);CHR$(&HC4);CHR$(&HC4);
+860 ? CHR$(&HC4);CHR$(&HDB);CHR$(&HDB);CHR$(&HB0);CHR$(&HB0);CHR$(&HDB);CHR$(&HDB);CHR$(&HC4);CHR$(&HC4);CHR$(&HC4);CHR$(&HC4);CHR$(&HC4);CHR$(&HC4);CHR$(&HC4);CHR$(&HC4);CHR$(&HC4)
+870 ? STRING$(2, CHR$(&HC4));STRING$(2, CHR$(&HDB));STRING$(2, CHR$(&HB0));STRING$(8, CHR$(&HDB));STRING$(2, CHR$(&HB0));STRING$(2, CHR$(&HDB));STRING$(1, CHR$(&HC4));
+880 ? CHR$(&HC4);CHR$(&HDB);CHR$(&HDB);CHR$(&HB0);CHR$(&HB0);CHR$(&HDB);CHR$(&HDB);STRING$(2, CHR$(&HC4));CHR$(&HDB);CHR$(&HDB);CHR$(&HB0);CHR$(&HB0);CHR$(&HDB);CHR$(&HDB);CHR$(&HC4);
+890 ? CHR$(&HC4);CHR$(&HDB);CHR$(&HDB);CHR$(&HDB);CHR$(&HDB);CHR$(&HDB);CHR$(&HDB);CHR$(&HDB);CHR$(&HDB);CHR$(&HDB);CHR$(&HDB);CHR$(&HB0);CHR$(&HB0);CHR$(&HDB);CHR$(&HDB);CHR$(&HC4);
+900 ? CHR$(&HC4);CHR$(&HDB);CHR$(&HDB);CHR$(&HDB);CHR$(&HDB);CHR$(&HB0);CHR$(&HB0);CHR$(&HDB);CHR$(&HDB);CHR$(&HDB);CHR$(&HDB);CHR$(&HC4);
+910 ? CHR$(&HC4);CHR$(&HDB);CHR$(&HDB);CHR$(&HB0);CHR$(&HB0);CHR$(&HDB);CHR$(&HDB);CHR$(&HDB);CHR$(&HDB);CHR$(&HDB);CHR$(&HDB);CHR$(&HDB);CHR$(&HDB);CHR$(&HDB);CHR$(&HDB);CHR$(&HC4)
+920 ? STRING$(2, CHR$(&HC4));STRING$(2, CHR$(&HDB));STRING$(12, CHR$(&HB0));STRING$(2, CHR$(&HDB));STRING$(1, CHR$(&HC4));
+930 ? CHR$(&HC4);CHR$(&HDB);CHR$(&HDB);CHR$(&HB0);CHR$(&HB0);CHR$(&HDB);CHR$(&HDB);STRING$(2, CHR$(&HC4));CHR$(&HDB);CHR$(&HDB);CHR$(&HB0);CHR$(&HB0);CHR$(&HDB);CHR$(&HDB);CHR$(&HC4);
+940 ? CHR$(&HC4);CHR$(&HDB);CHR$(&HDB);CHR$(&HB0);CHR$(&HB0);CHR$(&HB0);CHR$(&HB0);CHR$(&HB0);CHR$(&HB0);CHR$(&HB0);CHR$(&HB0);CHR$(&HB0);CHR$(&HB0);CHR$(&HDB);CHR$(&HDB);CHR$(&HC4);
+950 ? CHR$(&HC4);CHR$(&HDB);CHR$(&HDB);CHR$(&HB0);CHR$(&HB0);CHR$(&HB0);CHR$(&HB0);CHR$(&HB0);CHR$(&HB0);CHR$(&HDB);CHR$(&HDB);CHR$(&HC4);
+960 ? CHR$(&HC4);CHR$(&HDB);CHR$(&HDB);CHR$(&HB0);CHR$(&HB0);CHR$(&HB0);CHR$(&HB0);CHR$(&HB0);CHR$(&HB0);CHR$(&HB0);CHR$(&HB0);CHR$(&HB0);CHR$(&HB0);CHR$(&HDB);CHR$(&HDB);CHR$(&HC4)
+970 ? STRING$(2, CHR$(&HC4));STRING$(16, CHR$(&HDB));STRING$(1, CHR$(&HC4));
+980 ? CHR$(&HC4);STRING$(6, CHR$(&HDB));STRING$(2, CHR$(&HC4));STRING$(6, CHR$(&HDB));CHR$(&HC4);
+990 ? CHR$(&HC4);CHR$(&HDB);CHR$(&HDB);CHR$(&HDB);CHR$(&HDB);CHR$(&HDB);CHR$(&HDB);CHR$(&HDB);CHR$(&HDB);CHR$(&HDB);CHR$(&HDB);CHR$(&HDB);CHR$(&HDB);CHR$(&HDB);CHR$(&HDB);CHR$(&HC4);
+1000 ? CHR$(&HC4);CHR$(&HDB);CHR$(&HDB);CHR$(&HDB);CHR$(&HDB);CHR$(&HDB);CHR$(&HDB);CHR$(&HDB);CHR$(&HDB);CHR$(&HDB);CHR$(&HDB);CHR$(&HC4);
+1010 ? CHR$(&HC4);CHR$(&HDB);CHR$(&HDB);CHR$(&HDB);CHR$(&HDB);CHR$(&HDB);CHR$(&HDB);CHR$(&HDB);CHR$(&HDB);CHR$(&HDB);CHR$(&HDB);CHR$(&HDB);CHR$(&HDB);CHR$(&HDB);CHR$(&HDB);CHR$(&HC4)
+1015 ' wait for any key to press 
+1020 K$ = INKEY$
+1030 IF K$ = "" THEN 1020
+1040 ' BY
+1050 cls
+1060 for a = 1 to 6 : ? STRING$(79, CHR$(&HC4)): next a
+1070 ? STRING$(12, CHR$(&HC4));cHR$(&HC4);cHR$(&HC4);cHR$(&HC4);cHR$(&HC4);cHR$(&HC4);cHR$(&HC4);cHR$(&HC4);cHR$(&HC4);cHR$(&HC4);cHR$(&HC4);cHR$(&HDB);cHR$(&HDB);cHR$(&HDB);cHR$(&HDB);cHR$(&HDB);
+1075 ? cHR$(&HDB);cHR$(&HDB);cHR$(&HDB);cHR$(&HDB);cHR$(&HDB);cHR$(&HDB);cHR$(&HDB);cHR$(&HDB);cHR$(&HDB);cHR$(&HC4);cHR$(&HC4);cHR$(&HC4);cHR$(&HDB);cHR$(&HDB);cHR$(&HDB);cHR$(&HDB);
+1076 ? cHR$(&HDB);cHR$(&HDB);cHR$(&HDB);cHR$(&HDB);cHR$(&HC4);cHR$(&HC4);cHR$(&HDB);cHR$(&HDB);cHR$(&HDB);cHR$(&HDB);cHR$(&HDB);cHR$(&HDB);cHR$(&HDB);cHR$(&HDB);cHR$(&HC4);cHR$(&HC4);
+1077 ? STRING$(20, CHR$(&HC4))
+1080 ? STRING$(12, CHR$(&HC4));cHR$(&HC4);cHR$(&HC4);cHR$(&HC4);cHR$(&HC4);cHR$(&HC4);cHR$(&HC4);cHR$(&HC4);cHR$(&HC4);cHR$(&HC4);cHR$(&HC4);cHR$(&HDB);cHR$(&HDB);cHR$(&HB0);cHR$(&HB0);cHR$(&HB0);
+1085 ? cHR$(&HB0);cHR$(&HB0);cHR$(&HB0);cHR$(&HB0);cHR$(&HB0);cHR$(&HB0);cHR$(&HB0);cHR$(&HDB);cHR$(&HDB);cHR$(&HC4);cHR$(&HC4);cHR$(&HC4);cHR$(&HDB);cHR$(&HDB);cHR$(&HB0);cHR$(&HB0);
+1086 ? cHR$(&HB0);cHR$(&HB0);cHR$(&HDB);cHR$(&HDB);cHR$(&HC4);cHR$(&HC4);cHR$(&HDB);cHR$(&HDB);cHR$(&HB0);cHR$(&HB0);cHR$(&HB0);cHR$(&HB0);cHR$(&HDB);cHR$(&HDB);cHR$(&HC4);cHR$(&HC4);
+1087 ? STRING$(20, CHR$(&HC4))
+1090 ? STRING$(12, CHR$(&HC4));cHR$(&HDB);cHR$(&HDB);cHR$(&HDB);cHR$(&HDB);cHR$(&HDB);cHR$(&HDB);cHR$(&HC4);cHR$(&HC4);cHR$(&HC4);cHR$(&HC4);cHR$(&HDB);cHR$(&HDB);cHR$(&HB0);cHR$(&HB0);cHR$(&HDB);
+1095 ? cHR$(&HDB);cHR$(&HDB);cHR$(&HDB);cHR$(&HDB);cHR$(&HDB);cHR$(&HB0);cHR$(&HB0);cHR$(&HDB);cHR$(&HDB);cHR$(&HC4);cHR$(&HC4);cHR$(&HC4);cHR$(&HDB);cHR$(&HDB);cHR$(&HDB);cHR$(&HDB);
+1096 ? cHR$(&HB0);cHR$(&HB0);cHR$(&HDB);cHR$(&HDB);cHR$(&HC4);cHR$(&HC4);cHR$(&HDB);cHR$(&HDB);cHR$(&HB0);cHR$(&HB0);cHR$(&HDB);cHR$(&HDB);cHR$(&HDB);cHR$(&HDB);cHR$(&HC4);cHR$(&HC4);
+1097 ? cHR$(&HC4);cHR$(&HC4);cHR$(&HDB);cHR$(&HDB);cHR$(&HDB);cHR$(&HDB);cHR$(&HDB);cHR$(&HDB);STRING$(12, CHR$(&HC4))
+1100 ? STRING$(12, CHR$(&HC4));cHR$(&HDB);cHR$(&HDB);cHR$(&HB0);cHR$(&HB0);cHR$(&HDB);cHR$(&HDB);cHR$(&HC4);cHR$(&HC4);cHR$(&HC4);cHR$(&HC4);cHR$(&HDB);cHR$(&HDB);cHR$(&HB0);cHR$(&HB0);cHR$(&HDB);
+1105 ? cHR$(&HDB);cHR$(&HC4);cHR$(&HC4);cHR$(&HDB);cHR$(&HDB);cHR$(&HB0);cHR$(&HB0);cHR$(&HDB);cHR$(&HDB);cHR$(&HC4);cHR$(&HC4);cHR$(&HC4);cHR$(&HC4);cHR$(&HC4);cHR$(&HDB);cHR$(&HDB);
+1106 ? cHR$(&HB0);cHR$(&HB0);cHR$(&HB0);cHR$(&HB0);cHR$(&HDB);cHR$(&HDB);cHR$(&HB0);cHR$(&HB0);cHR$(&HB0);cHR$(&HB0);cHR$(&HDB);cHR$(&HDB);cHR$(&HC4);cHR$(&HC4);cHR$(&HC4);cHR$(&HC4);
+1107 ? cHR$(&HC4);cHR$(&HC4);cHR$(&HDB);cHR$(&HDB);cHR$(&HB0);cHR$(&HB0);cHR$(&HDB);cHR$(&HDB);STRING$(12, CHR$(&HC4))
+1110 ? STRING$(12, CHR$(&HC4));cHR$(&HDB);cHR$(&HDB);cHR$(&HDB);cHR$(&HDB);cHR$(&HDB);cHR$(&HDB);cHR$(&HC4);cHR$(&HC4);cHR$(&HC4);cHR$(&HC4);cHR$(&HDB);cHR$(&HDB);cHR$(&HB0);cHR$(&HB0);cHR$(&HDB);
+1115 ? cHR$(&HDB);cHR$(&HDB);cHR$(&HDB);cHR$(&HDB);cHR$(&HDB);cHR$(&HB0);cHR$(&HB0);cHR$(&HDB);cHR$(&HDB);cHR$(&HDB);cHR$(&HDB);cHR$(&HC4);cHR$(&HC4);cHR$(&HC4);cHR$(&HDB);cHR$(&HDB);
+1116 ? cHR$(&HDB);cHR$(&HDB);cHR$(&HB0);cHR$(&HB0);cHR$(&HB0);cHR$(&HB0);cHR$(&HB0);cHR$(&HB0);cHR$(&HDB);cHR$(&HDB);cHR$(&HDB);cHR$(&HDB);cHR$(&HC4);cHR$(&HC4);cHR$(&HC4);cHR$(&HC4);
+1117 ? cHR$(&HC4);cHR$(&HC4);cHR$(&HDB);cHR$(&HDB);cHR$(&HDB);cHR$(&HDB);cHR$(&HDB);cHR$(&HDB);STRING$(12, CHR$(&HC4))
+1120 ? STRING$(12, CHR$(&HC4));cHR$(&HC4);cHR$(&HC4);cHR$(&HC4);cHR$(&HC4);cHR$(&HC4);cHR$(&HC4);cHR$(&HC4);cHR$(&HC4);cHR$(&HC4);cHR$(&HC4);cHR$(&HDB);cHR$(&HDB);cHR$(&HB0);cHR$(&HB0);cHR$(&HB0);
+1125 ? cHR$(&HB0);cHR$(&HB0);cHR$(&HB0);cHR$(&HB0);cHR$(&HB0);cHR$(&HB0);cHR$(&HB0);cHR$(&HB0);cHR$(&HB0);cHR$(&HDB);cHR$(&HDB);cHR$(&HC4);cHR$(&HC4);cHR$(&HC4);cHR$(&HC4);cHR$(&HC4);
+1126 ? cHR$(&HDB);cHR$(&HDB);cHR$(&HDB);cHR$(&HDB);cHR$(&HB0);cHR$(&HB0);cHR$(&HDB);cHR$(&HDB);cHR$(&HDB);cHR$(&HDB);cHR$(&HC4);cHR$(&HC4);cHR$(&HC4);cHR$(&HC4);cHR$(&HC4);cHR$(&HC4);
+1127 ? cHR$(&HC4);cHR$(&HC4);cHR$(&HC4);cHR$(&HC4);cHR$(&HC4);cHR$(&HC4);cHR$(&HC4);cHR$(&HC4);STRING$(12, CHR$(&HC4))
+1130 ? STRING$(12, CHR$(&HC4));cHR$(&HDB);cHR$(&HDB);cHR$(&HDB);cHR$(&HDB);cHR$(&HDB);cHR$(&HDB);cHR$(&HC4);cHR$(&HC4);cHR$(&HC4);cHR$(&HC4);cHR$(&HDB);cHR$(&HDB);cHR$(&HB0);cHR$(&HB0);cHR$(&HDB);
+1135 ? cHR$(&HDB);cHR$(&HDB);cHR$(&HDB);cHR$(&HDB);cHR$(&HDB);cHR$(&HDB);cHR$(&HDB);cHR$(&HB0);cHR$(&HB0);cHR$(&HDB);cHR$(&HDB);cHR$(&HC4);cHR$(&HC4);cHR$(&HC4);cHR$(&HC4);cHR$(&HC4);
+1136 ? cHR$(&HC4);cHR$(&HC4);cHR$(&HDB);cHR$(&HDB);cHR$(&HB0);cHR$(&HB0);cHR$(&HDB);cHR$(&HDB);cHR$(&HC4);cHR$(&HC4);cHR$(&HC4);cHR$(&HC4);cHR$(&HC4);cHR$(&HC4);cHR$(&HC4);cHR$(&HC4);
+1137 ? cHR$(&HC4);cHR$(&HC4);cHR$(&HDB);cHR$(&HDB);cHR$(&HDB);cHR$(&HDB);cHR$(&HDB);cHR$(&HDB);STRING$(12, CHR$(&HC4))
+1140 ? STRING$(12, CHR$(&HC4));cHR$(&HDB);cHR$(&HDB);cHR$(&HB0);cHR$(&HB0);cHR$(&HDB);cHR$(&HDB);cHR$(&HC4);cHR$(&HC4);cHR$(&HC4);cHR$(&HC4);cHR$(&HDB);cHR$(&HDB);cHR$(&HB0);cHR$(&HB0);cHR$(&HDB);
+1145 ? cHR$(&HDB);cHR$(&HC4);cHR$(&HC4);cHR$(&HC4);cHR$(&HC4);cHR$(&HDB);cHR$(&HDB);cHR$(&HB0);cHR$(&HB0);cHR$(&HDB);cHR$(&HDB);cHR$(&HC4);cHR$(&HC4);cHR$(&HC4);cHR$(&HC4);cHR$(&HC4);
+1146 ? cHR$(&HC4);cHR$(&HC4);cHR$(&HDB);cHR$(&HDB);cHR$(&HB0);cHR$(&HB0);cHR$(&HDB);cHR$(&HDB);cHR$(&HC4);cHR$(&HC4);cHR$(&HC4);cHR$(&HC4);cHR$(&HC4);cHR$(&HC4);cHR$(&HC4);cHR$(&HC4);
+1147 ? cHR$(&HC4);cHR$(&HC4);cHR$(&HDB);cHR$(&HDB);cHR$(&HB0);cHR$(&HB0);cHR$(&HDB);cHR$(&HDB);STRING$(12, CHR$(&HC4))
+1150 ? STRING$(12, CHR$(&HC4));cHR$(&HDB);cHR$(&HDB);cHR$(&HDB);cHR$(&HDB);cHR$(&HDB);cHR$(&HDB);cHR$(&HC4);cHR$(&HC4);cHR$(&HC4);cHR$(&HC4);cHR$(&HDB);cHR$(&HDB);cHR$(&HB0);cHR$(&HB0);cHR$(&HDB);
+1155 ? cHR$(&HDB);cHR$(&HDB);cHR$(&HDB);cHR$(&HDB);cHR$(&HDB);cHR$(&HDB);cHR$(&HDB);cHR$(&HB0);cHR$(&HB0);cHR$(&HDB);cHR$(&HDB);cHR$(&HC4);cHR$(&HC4);cHR$(&HC4);cHR$(&HC4);cHR$(&HC4);
+1156 ? cHR$(&HC4);cHR$(&HC4);cHR$(&HDB);cHR$(&HDB);cHR$(&HB0);cHR$(&HB0);cHR$(&HDB);cHR$(&HDB);cHR$(&HC4);cHR$(&HC4);cHR$(&HC4);cHR$(&HC4);cHR$(&HC4);cHR$(&HC4);cHR$(&HC4);cHR$(&HC4);
+1157 ? cHR$(&HC4);cHR$(&HC4);cHR$(&HDB);cHR$(&HDB);cHR$(&HDB);cHR$(&HDB);cHR$(&HDB);cHR$(&HDB);STRING$(12, CHR$(&HC4))
+1158 ? STRING$(22, CHR$(&HC4));STRING$(2, CHR$(&HDB));STRING$(12, CHR$(&HB0));STRING$(2, CHR$(&HDB));STRING$(7, CHR$(&HC4));STRING$(2, CHR$(&HDB));STRING$(2, CHR$(&HB0));STRING$(2, CHR$(&HDB));STRING$(28, CHR$(&HC4))
+1160 ? STRING$(12, CHR$(&HC4));cHR$(&HC4);cHR$(&HC4);cHR$(&HC4);cHR$(&HC4);cHR$(&HC4);cHR$(&HC4);cHR$(&HC4);cHR$(&HC4);cHR$(&HC4);cHR$(&HC4);cHR$(&HDB);cHR$(&HDB);cHR$(&HDB);cHR$(&HDB);cHR$(&HDB);
+1165 ? cHR$(&HDB);cHR$(&HDB);cHR$(&HDB);cHR$(&HDB);cHR$(&HDB);cHR$(&HDB);cHR$(&HDB);cHR$(&HDB);cHR$(&HDB);cHR$(&HDB);cHR$(&HDB);cHR$(&HC4);cHR$(&HC4);cHR$(&HC4);cHR$(&HC4);cHR$(&HC4);
+1166 ? cHR$(&HC4);cHR$(&HC4);cHR$(&HDB);cHR$(&HDB);cHR$(&HDB);cHR$(&HDB);cHR$(&HDB);cHR$(&HDB);cHR$(&HC4);cHR$(&HC4);cHR$(&HC4);cHR$(&HC4);cHR$(&HC4);cHR$(&HC4);cHR$(&HC4);cHR$(&HC4);
+1167 ? cHR$(&HC4);cHR$(&HC4);cHR$(&HC4);cHR$(&HC4);cHR$(&HC4);cHR$(&HC4);cHR$(&HC4);cHR$(&HC4);STRING$(12, CHR$(&HC4))
+1170 for a = 1 to 6 : ? STRING$(79, CHR$(&HC4)): next a
+1175 ' wait for any key to press 
+1180 K$ = INKEY$
+1190 IF K$ = "" THEN 1180
+1200 ' nauman umer
+1210 ? cHR$(&HC9);cHR$(&HCD);cHR$(&HBB);cHR$(&HC4);cHR$(&HC9);cHR$(&HBB);cHR$(&HC4);cHR$(&HC4);cHR$(&HC4);cHR$(&HC4);cHR$(&HC4);cHR$(&HC4);cHR$(&HC4);cHR$(&HC4);cHR$(&HC4);cHR$(&HC4);cHR$(&HC4);cHR$(&HC4);cHR$(&HC4);
+1215 ? cHR$(&HC4);cHR$(&HC4);cHR$(&HC9);cHR$(&HBB);cHR$(&HC4);cHR$(&HC9);cHR$(&HBB)
+1220 ? cHR$(&HBA);cHR$(&HBA);cHR$(&HC8);cHR$(&HBB);cHR$(&HBA);cHR$(&HBA);cHR$(&HC4);cHR$(&HC4);cHR$(&HC4);cHR$(&HC4);cHR$(&HC4);cHR$(&HC4);cHR$(&HC4);cHR$(&HC4);cHR$(&HC4);cHR$(&HC4);cHR$(&HC4);cHR$(&HC4);cHR$(&HC4);
+1225 ? cHR$(&HC4);cHR$(&HC4);cHR$(&HBA);cHR$(&HBA);cHR$(&HC4);cHR$(&HBA);cHR$(&HBA)
+1230 ? cHR$(&HBA);cHR$(&HC9);cHR$(&HBB);cHR$(&HC8);cHR$(&HBC);cHR$(&HCC);cHR$(&HCD);cHR$(&HCD);cHR$(&HCB);cHR$(&HBB);cHR$(&HC9);cHR$(&HCB);cHR$(&HBB);cHR$(&HC9);cHR$(&HCB);cHR$(&HCD);cHR$(&HCD);cHR$(&HCB);cHR$(&HCD);
+1235 ? cHR$(&HBB);cHR$(&HC4);cHR$(&HBA);cHR$(&HBA);cHR$(&HC4);cHR$(&HBA);cHR$(&HCC);cHR$(&HBB);cHR$(&HC9);cHR$(&HCB);cHR$(&HCD);cHR$(&HCD);cHR$(&HCB);cHR$(&HCD);cHR$(&HBB)
+1240 ? cHR$(&HBA);cHR$(&HBA);cHR$(&HC8);cHR$(&HBB);cHR$(&HBA);cHR$(&HBA);cHR$(&HC9);cHR$(&HBB);cHR$(&HBA);cHR$(&HBA);cHR$(&HBA);cHR$(&HBA);cHR$(&HC8);cHR$(&HBC);cHR$(&HBA);cHR$(&HC9);cHR$(&HBB);cHR$(&HBA);cHR$(&HC9);
+1245 ? cHR$(&HBB);cHR$(&HBB);cHR$(&HBA);cHR$(&HBA);cHR$(&HC4);cHR$(&HBA);cHR$(&HBA);cHR$(&HC8);cHR$(&HBC);cHR$(&HBA);cHR$(&HBA);cHR$(&HCD);cHR$(&HB9);cHR$(&HC9);cHR$(&HBC)
+1250 ? cHR$(&HBA);cHR$(&HBA);cHR$(&HC4);cHR$(&HBA);cHR$(&HBA);cHR$(&HBA);cHR$(&HC9);cHR$(&HBB);cHR$(&HBA);cHR$(&HC8);cHR$(&HBC);cHR$(&HBA);cHR$(&HBA);cHR$(&HBA);cHR$(&HBA);cHR$(&HC9);cHR$(&HBB);cHR$(&HBA);cHR$(&HBA);
+1255 ? cHR$(&HBA);cHR$(&HBA);cHR$(&HBA);cHR$(&HC8);cHR$(&HCD);cHR$(&HBC);cHR$(&HBA);cHR$(&HBA);cHR$(&HBA);cHR$(&HBA);cHR$(&HBA);cHR$(&HCD);cHR$(&HB9);cHR$(&HBA)
+1260 ? cHR$(&HC8);cHR$(&HBC);cHR$(&HC4);cHR$(&HC8);cHR$(&HCD);cHR$(&HCA);cHR$(&HBC);cHR$(&HC8);cHR$(&HCA);cHR$(&HCD);cHR$(&HCD);cHR$(&HCA);cHR$(&HCA);cHR$(&HCA);cHR$(&HCA);cHR$(&HBC);cHR$(&HC8);cHR$(&HCA);cHR$(&HBC);
+1265 ? cHR$(&HC8);cHR$(&HBC);cHR$(&HC8);cHR$(&HCD);cHR$(&HCD);cHR$(&HCD);cHR$(&HCA);cHR$(&HCA);cHR$(&HCA);cHR$(&HCA);cHR$(&HCD);cHR$(&HCD);cHR$(&HCA);cHR$(&HBC)

@@ -1,4 +1,4 @@
-path = './src/Doc.json';
+path = './json/Doc.json';
 
 var list = "";
 

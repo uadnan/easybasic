@@ -4,7 +4,15 @@
   "description": "An IDE for GwBasic",
   "main": "main.js",
   "scripts": {
-    "start": "electron ."
+    "start": "electron .",
+    "dist": "build"
+  },
+  "build": {
+    "appId": "your.id",
+    "category": "your.app.category.type",
+    "win": {
+      "iconUrl": "https://raw.githubusercontent.com/Microsoft/vscode/master/resources/win32/code.ico"
+    }
   },
   "keywords": [
     "Easy",
@@ -14,10 +22,10 @@
   ],
   "author": "Nauman Umer",
   "devDependencies": {
+    "electron-packager": "^7.5.1",
     "electron-prebuilt": "^1.2.0",
-    "grunt-electron-installer": "^2.1.0"
-  },
-  "dependencies": {
-    "simple-line-icons": "^2.3.2"
+    "electron-winstaller": "^2.3.4",
+    "grunt-electron-installer": "^2.1.0",
+    "ncp": "^2.0.0"
   }
 }

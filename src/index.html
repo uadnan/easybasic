@@ -7,13 +7,22 @@
 
 
     <script>
-        function swapStyleSheet(sheet) {document.getElementById("pagestyle").setAttribute("href", sheet);}
+        function swapStyleSheet(sheet) {
+            if (sheet == "dark"){
+                document.getElementById("pagestyle").setAttribute("href", "./assets/css/photon-dark.css");
+                document.getElementById("contextMenuStyle").setAttribute("href", "./assets/css/jquery.contextmenu-dark.css");
+            }else{
+                document.getElementById("pagestyle").setAttribute("href", "./assets/css/photon.min.css");
+                document.getElementById("contextMenuStyle").setAttribute("href", "./assets/css/jquery.contextmenu.css");
+            }
+        }
     </script>
     <link id="pagestyle" rel="stylesheet" href="./assets/css/photon-dark.css">
     <link rel="stylesheet" href="./assets/css/bootstrap.min.css">
     <link rel="stylesheet" href="./assets/css/tabs.css">
     <link href="./assets/css/font-awesome.css" rel="stylesheet" type="text/css" />
     <link href="./assets/css/simple-line-icons.css" rel="stylesheet" type="text/css" />
+    <link id="contextMenuStyle" href="./assets/css/jquery.contextmenu-dark.css" rel="stylesheet" type="text/css" />
 
 </head>
 
@@ -156,11 +165,8 @@
                                 <span class="nav-group-item" data-toggle="tab" href="#settings">
                                         <span class="fa fa-cog"></span> Settings
                                 </span>
-                                <span class="nav-group-item" >
+                                <span class="nav-group-item" id="about">
                                         <span class="fa fa-info" style="margin-right: 18px;"></span> About
-                                </span>
-                                <span class="nav-group-item">
-                                        <span class="fa fa-users"></span> Credits
                                 </span>
                             </nav>
 
@@ -293,10 +299,13 @@
     <script>if (typeof module === 'object') {window.module = module; module = undefined;}</script>
 
     <script src="assets/js/jquery.min.js"></script>
+    <script src="assets/js/jquery.ui.position.js"></script>
+    <script src="assets/js/jquery.contextmenu.js"></script>
 
     <script src="assets/js/bootstrap.min.js"></script>
     <script src="assets/js/tabs.js"></script>
     <script src="assets/js/jquery.slimscroll.min.js"></script>
+    <script src="assets/js/contextMenu.js"></script>
 
     <script src="./Recent.js"></script>
     <script src="assets/js/List.js"></script>
@@ -305,6 +314,7 @@
 
     <script src="assets/js/Index.js"></script>
     <script>if (window.module) module = window.module;</script>
+
     <script type="text/javascript">
         window.doorbellOptions = {
             hideButton: true,

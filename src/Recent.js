@@ -1,5 +1,5 @@
 const fs = require('fs');
-var recentFilePath = './src/Recent.json';
+var recentFilePath = './json/Recent.json';
 var Recentstr = "";
 var icon = "";
 
@@ -70,7 +70,7 @@ function IsObjectPresent(array, Array2, Name) {
 }
 
 function addToRecent(path) {
-    var recentFilePath = './src/Recent.json';
+    var recentFilePath = './json/Recent.json';
     var json = fs.readFileSync(recentFilePath, "utf8");
     try {
         obj = JSON.parse(json);

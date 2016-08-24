@@ -2059,7 +2059,7 @@ td:last-child,th:last-child {
 }
 
 .Example-li:active {
-    background: #dcdfe1;
+    background: #1e1e1e;
 }
 
 .drop-shadow {
@@ -2193,4 +2193,8 @@ hr{
 }
 .modal-header{
     border-bottom: 1px solid #666!important;
+}
+
+.slimScrollBar{
+    background: #ccc!important;
 }

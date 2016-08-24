@@ -1,3 +1,13 @@
+(function() {
+    var ev = new $.Event('remove'),
+        orig = $.fn.remove;
+    $.fn.remove = function() {
+        $(this).trigger(ev);
+        return orig.apply(this, arguments);
+    }
+})();
+
+
 const remote = require('electron').remote;
 
 const ipc = require('electron').ipcRenderer
@@ -95,6 +105,9 @@ $('#createNewScript').on('click', function () {
 $('#openScript').on('click', function () {
     ipc.send('open-file-dialog');
 })
+$('#about').on('click', function () {
+    addtab('About', "About", "About.html");
+})
 
 ipc.on('opened-file', function (event, path) {
     path = path[0];
@@ -169,7 +182,7 @@ $('#themes').change(function () {
         selectedText == "Solarized Dark" ||
         selectedText == "VS Dark")
         {
-            swapStyleSheet('./assets/css/photon-dark.css');
+            swapStyleSheet('dark');
             setEditorTheme(selectedText);
             setDocTheme("Dark");
         }
@@ -177,7 +190,7 @@ $('#themes').change(function () {
         selectedText == "Solarized Light" ||
         selectedText == "VS default")
         {
-            swapStyleSheet('./assets/css/photon.min.css');
+            swapStyleSheet('light');
             setEditorTheme(selectedText);
             setDocTheme("Light");
         }
@@ -199,3 +212,5 @@ function setDocTheme(theme){
         }
     }
 }
+arguments = remote.getGlobal('sharedObject').prop1;
+console.log(arguments);

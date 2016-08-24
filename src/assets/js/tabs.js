@@ -1,3 +1,6 @@
+ipc = require('electron').ipcRenderer
+
+
 var closeAllTabs = function () {
     var buttonList = $('#myTab li button');
     if (buttonList[0]) {
@@ -78,11 +81,37 @@ function registerCloseEvent() {
     $(".closeTab").click(function () {
         
         var tabContentId = $(this).parent().attr("href");
-        $(this).parent().parent().remove(); //remove li of tab
-        $('#myTab a:last').tab('show'); // Select first tab
-        $(tabContentId).remove(); //remove respective tab content
-        document.getElementById('status').innerHTML = "Tab Closed";
+        if(!(tabContentId.match(/Editor/))){
+            $(this).parent().parent().remove(); //remove li of tab
+            $('#myTab a:last').tab('show'); // Select first tab
+            $(tabContentId).remove(); //remove respective tab content
+            document.getElementById('status').innerHTML = "Tab Closed";
+        }
+        else{
+            var saved = document.getElementById(tabContentId.slice(1)).contentWindow.isSaved;
+            if (saved){
+                $(this).parent().parent().remove(); //remove li of tab
+                $('#myTab a:last').tab('show'); // Select first tab
+                $(tabContentId).remove(); //remove respective tab content
+                document.getElementById('status').innerHTML = "Tab Closed";
+            }
+            else{
+                ipc.send('open-information-dialog');
+            }
+            ipc.on('information-dialog-selection', function (event, index) {
+                if (index === 0){
+                    document.getElementById(tabContentId.slice(1)).contentWindow.save();
+                }
+                else if(index === 1){
+                    $currentTab.parent().remove();
+                    $('#myTab a:last').tab('show');
+                    $(tabContentId).remove();
+                }
+            })
+        }
     });
+
+    
 }
 
 function showTab(tabId) {
@@ -104,10 +133,18 @@ function getElement(selector) {
 
 function removeCurrentTab() {
     var tabContentId = $currentTab.attr("href");
-    $currentTab.parent().remove();
-    $('#myTab a:last').tab('show');
-    $(tabContentId).remove();
+    var saved = document.getElementById(tabContentId).contentWindow.isSaved();
+    if (saved){
+        $currentTab.parent().remove();
+        $('#myTab a:last').tab('show');
+        $(tabContentId).remove();
+    }
+    else{
+        ipc.send('open-information-dialog');
+    }
 }
+
+
 
 
 

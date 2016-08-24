@@ -20,6 +20,7 @@
 
     <script>
         // limit: 11976 Lines
+        var isSaved = true;
         var n= 0;
         var LineStatus ="";
         var filepath = String(window.top.filepath);
@@ -47,29 +48,8 @@
                 return 0;
             }
         }
-        var save = function(text){
-            console.log(filepath);
-            if (filepath){
-                fs.writeFile(filepath, text, 'utf8', (err) => {
-                    if (err) throw err;
-                });
-            }
-            else{
-                ipc.send('save-file-dialog')
-
-                ipc.on('saved-file', function (event, path) {  
-                    fs.writeFile(path, text, 'utf8', (err) => {
-                        if (err) throw err;
-                        else{
-                            name = filepath.toString().split("\\")[filepath.toString().split("\\").length-1]
-                            setTitle(name);
-                        }
-                    });
-                    filepath=path;
-                })
-            };
-        }
-        var shortcutspath = "src/shortcuts.json"
+        
+        var shortcutspath = "json/shortcuts.json"
         function getKeyBindings() {
             fs.stat(shortcutspath.toString(), function(err, stats){
                 if (err){
@@ -199,6 +179,36 @@
                 automaticLayout:true,
                 folding: true
             });
+            editor.onDidChangeCursorPosition(function(e){
+                if (e.reason == 0)
+                    isSaved = false;
+            })
+            window.save = function(){
+             text = editor.getValue(); 
+                if (filepath){
+                    fs.writeFile(filepath, text, 'utf8', (err) => {
+                        if (err) throw err;
+                        else{
+                            isSaved =true;
+                        }
+                    });
+                }
+                else{
+                    ipc.send('save-file-dialog')
+
+                    ipc.on('saved-file', function (event, path) {  
+                        fs.writeFile(path, text, 'utf8', (err) => {
+                            if (err) throw err;
+                            else{
+                                name = filepath.toString().split("\\")[filepath.toString().split("\\").length-1]
+                                setTitle(name);
+                                isSaved =true;
+                            }
+                        });
+                        filepath=path;
+                    })
+                };
+            }
             function setKeyBinding(word){
 
                 var position = editor.getPosition();
