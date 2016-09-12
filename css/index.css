@@ -1,0 +1,16 @@
+#main-demo{
+    width: 100%;
+    height: 100%;
+    display: block;
+    border: 0;
+}
+#main-demo-containter{
+    height: 450px;
+    margin-right: 3rem;
+    margin-bottom: 3rem;
+    margin-left: 3rem;
+    display: block;
+    border-radius: 6px;
+    overflow: hidden;
+    box-shadow: 0 0 60px rgba(0,0,0,.3);
+}
