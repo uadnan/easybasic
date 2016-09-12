@@ -75,11 +75,19 @@
             })
         </script>
         <script>
-            function swapStyleSheet(theme) {
+            function (theme) {
                 var pagelink;
                 var codelink;
                 if (theme =="Dark"){
                     pagelink = "assets/css/bootstrap-dark.css";
+                    codelink = "../node_modules/highlight.js/styles/agate.css";
+                }
+                else if (sheet == "material-dark"){
+                    pagelink = "assets/css/bootstrap-dark.css";
+                    codelink = "../node_modules/highlight.js/styles/github.css";
+                }
+                else if (sheet == "material-light"){
+                    pagelink = "assets/css/bootstrap.min.css";
                     codelink = "../node_modules/highlight.js/styles/agate.css";
                 }
                 else{
@@ -95,11 +103,13 @@
                 var selected = $(select).find("option:selected").text();
                 if (selected == "Codepen" ||
                     selected == "Solarized Dark" ||
-                    selected == "VS Dark")
+                    selected == "VS Dark" ||
+                    selected == "Material Dark")
                     return "Dark";
                 else if (selected == "Github" ||
                     selected == "Solarized Light" ||
-                    selected == "VS default")
+                    selected == "VS default" ||
+                    selected == "Material Light")
                     return "Light";
             }
             swapStyleSheet(getTheme());

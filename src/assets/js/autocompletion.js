@@ -1209,7 +1209,7 @@ function gbAutoCompletion() {
 }
 
 const fs = window.top.require('fs');
-path = './json/assets/Detail.json';
+path = './json/Detail.json';
 fs.stat(path, function (err, stats) {
     if (err) {
         alert(err);

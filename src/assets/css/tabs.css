@@ -12,10 +12,6 @@
     cursor: pointer;
 }
 
-.nav-tabs>li>a:hover{
-    background-color: #f3f3f3;
-}
-
 .nav-tabs>li>a{
     border-radius: 0px;
     cursor: pointer;
@@ -81,4 +77,48 @@
 }
 .panel-button:hover{
     box-shadow: 5px 5px 5px -4px rgba(0, 0, 0, .1);
+}
+#myTab>li>a{
+    padding-right: 0;
+}
+#myTab>.active>a>.close{
+    margin-left: 15px;
+    text-shadow: 0 1px 0 transparent!important;
+    color: #28bdd5!important;
+    opacity: 1!important;    
+}
+#myTab>li>a>.close{
+    margin-top: 3px;
+    margin-left: 15px;
+    text-shadow: 0 1px 0 transparent!important;
+    color: #28bdd5!important;
+    opacity: 0!important;    
+}
+#myTab>li>.hover>.close{
+    margin-left: 15px;
+    text-shadow: 0 1px 0 transparent!important;
+    color: #28bdd5!important;
+    opacity: 1!important;   
+}
+
+
+
+
+.dragging, .dragging * {
+  cursor: move !important;
+}
+
+.dragged {
+  position: absolute;
+  opacity: 0.5;
+  z-index: 2000;
+}
+
+ol.example li.placeholder {
+  position: relative;
+  /** More li styles **/
+}
+ol.example li.placeholder:before {
+  position: absolute;
+  /** Define arrowhead **/
 }

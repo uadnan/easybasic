@@ -41,7 +41,7 @@ var addtab = function (type, name, URL) {
         var tabId = type + tabCount;
         tabCount = tabCount + 1;
 
-        $('.nav-tabs').append('<li ><a href="#' + tabId + '" id="' + tabId + '_tab-li"><button class="close closeTab" type="button" >×</button><i style="font-style: normal!important;">' + name + '</i></a></li>');
+        $('.nav-tabs').append('<li ><a href="#' + tabId + '" id="' + tabId + '_tab-li"><i class="close closeTab fa fa-remove" type="button" ></i><i style="font-style: normal!important;">' + name + '</i></a></li>');
         $('#tab-box').append('<iframe class="tab-pane" id="' + tabId + '" style="width: 100%; height: 100%; border-width: 0px;"></iframe>');
 
 
@@ -58,7 +58,7 @@ var addtab = function (type, name, URL) {
         if (!($("#" + type)[0])) {
             var tabId = type;
 
-            $('.nav-tabs').append('<li><a href="#' + tabId + '" id="' + tabId + '_tab-li"><button class="close closeTab" type="button" >×</button>' + name + '</a></li>');
+            $('.nav-tabs').append('<li><a href="#' + tabId + '" id="' + tabId + '_tab-li"><i class="close closeTab fa fa-remove" type="button" ></i>' + name + '</a></li>');
             $('#tab-box').append('<iframe class="tab-pane" id="' + tabId + '" style="width: 100%; height: 100%; border-width: 0px;"></iframe>');
 
 
@@ -214,5 +214,12 @@ $('.scroller-left').click(function () {
 $('#myTab').on('DOMSubtreeModified', function () {
     setTimeout(function () {
         reAdjust();
+        $( "#myTab li a" )
+  .mouseover(function() {
+    $(this).addClass('hover')
+  })
+  .mouseout(function() {
+    $( this ).removeClass('hover')
+  });
     }, 100);
 })

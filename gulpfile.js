@@ -8,6 +8,9 @@ var gulp = require('gulp'),
   ncp = require('ncp').ncp,
   rimraf = require('rimraf');
 
+var release_windows = require('./build.windows'); 
+var os = require('os'); 
+
 var failed = false;
 var copyJson = fs.readFileSync("Copy.json", "utf8");
 var copyFile2 = JSON.parse(copyJson).files;
@@ -68,7 +71,7 @@ gulp.task('cleanForGithub', function () {
 
 gulp.task('package', function () {
   //var packager = childProcess.spawn('node', ['--version']);
-  var packager = childProcess.spawn('electron-packager.cmd', ['.', '--platform=win32', '--arch=ia32']);
+  var packager = childProcess.spawn('electron-packager.cmd', ['.', '--platform=win32', '--arch=ia32', '--icon="resources/windows/icon.ico"']);
 
   packager.stderr.on('data', (data) => {
   failed = true;
@@ -181,3 +184,16 @@ function addRequiredFiles(){
     });
   }
 }
+
+gulp.task('build-electron', ['build'], function () { 
+     switch (os.platform()) { 
+         case 'darwin': 
+         // execute build.osx.js 
+         break; 
+         case 'linux': 
+         //execute build.linux.js 
+         break; 
+         case 'win32': 
+         return release_windows.build(); 
+     } 
+}); 

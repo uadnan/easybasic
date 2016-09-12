@@ -7,11 +7,13 @@
     <link href='Editor themes/github.css' rel='stylesheet' type='text/css'>
     <link href='Editor themes/solarized-dark.css' rel='stylesheet' type='text/css'>
     <link href='Editor themes/solarized-light.css' rel='stylesheet' type='text/css'>
+    <link href='Editor themes/material-dark.css' rel='stylesheet' type='text/css'>
+    <link href='Editor themes/material-light.css' rel='stylesheet' type='text/css'>
     <link href="assets/css/loader.css" rel="stylesheet" type="text/css" />
     <script src="assets/js/jquery.min.js"></script>
 </head>
 
-<body style="font-size: 11px; line-height: 19px;overflow:hidden; background:white; width:100%;height:100vh;font-family: Consolas, 'Liberation Mono', Menlo, Courier, monospace;">
+<body style="font-size: 11px; line-height: 19px;overflow:hidden; background:white; width:100%;height:100vh;font-family: roboto;">
 
     <div id="container" style="width:100%;height:100vh;"></div>
 
@@ -134,7 +136,8 @@
             }
         }
         function getTxt(){
-            var text = window.top.text; 
+            var text = window.top.text;
+            window.top.text = ""; 
             window.top.filepath = "";
             return text;
         }
@@ -142,8 +145,8 @@
             return window.top.grammer;
         }
         function getTheme(){
-            var select= window.top.document.getElementById('themes');
-            return $(select).find("option:selected").text();
+            var select= window.top.document.getElementById('theme');
+            return $(select).val();
         }
         function getWordAt(str, pos) {
 
@@ -179,6 +182,7 @@
                 automaticLayout:true,
                 folding: true
             });
+            
             editor.onDidChangeCursorPosition(function(e){
                 if (e.reason == 0)
                     isSaved = false;
@@ -458,6 +462,10 @@
                     editor.updateOptions({ 'theme' : 'vs' });
                 else if(theme == "VS Dark")
                     editor.updateOptions({ 'theme' : 'vs-dark' });
+                else if(theme == "Material Dark")
+                    editor.updateOptions({ 'theme' : 'material-dark' });
+                else if(theme == "Material Light")
+                    editor.updateOptions({ 'theme' : 'material-light' });
             }
         });
         

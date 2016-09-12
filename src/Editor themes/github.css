@@ -1,3 +1,7 @@
+@font-face {
+    font-family: sourceCode;
+    src: url('../assets/fonts/SourceCodePro-Regular.ttf');
+}
 .monaco-editor.github .monaco-editor-background {    
     background: #fff;
 
@@ -55,7 +59,7 @@
     color: #e07000
 }
 .monaco-editor.github .token.number {
-    color: #0086b3;
+    color: #008080;
 }
 .monaco-editor.github .token.number.hex {
     color: #3030c0
@@ -287,7 +291,7 @@
     color: #2b91af
 }
 .monaco-editor.github .token.string {
-    color: #183691
+    color: #d14
 }
 .monaco-editor.github .token.string.tag {
     color: blue
@@ -308,7 +312,7 @@
     color: #183691
 }
 .monaco-editor.github .token.support.property-value {
-    color: #0451a5
+    color: #d14;
 }
 .monaco-editor.github .token.variable.parameter {
     color: #018
@@ -318,7 +322,8 @@
 }
 .monaco-editor.github .token.keyword,
 .monaco-editor.github .token.keyword.control {
-    color: #a71d5d
+    color: #333;
+    font-weight: bold;
 }
 .monaco-editor.github .token.keyword.operator {
     color: #666
@@ -358,6 +363,7 @@
     padding-right: 10px;
     border: solid #eee;
     border-width: 0 1px 0 0;
+    font-family: sourceCode;
 }
 .monaco-editor.github .view-overlays .selected-text {
     background: #e5ebf1
@@ -389,7 +395,11 @@
     border: 1px solid #b9b9b9
 }
 .monaco-editor.github .token {
-    color: #000
+    color: #000;
+    font-size: 12pt;
+    font-family: sourceCode;
+    font-size: 13px;
+    color: rgb(112, 112, 112);
 }
 .monaco-editor.github .token.whitespace {
     color: rgba(51, 51, 51, .2)!important
@@ -441,7 +451,7 @@
 }
 
 .monaco-editor .github .token.functions {
-    color: #795da3;
+    color: #d14
 }
 
 .monaco-editor .github .token.operators {
@@ -449,7 +459,7 @@
 }
 
 .monaco-editor .github .token.TypeKeywords {
-    color: #2d78c8;
+    color: #008080;
 }
 
 
@@ -478,7 +488,7 @@
 }
 
 .monaco-editor .vs-dark .token.functions {
-    color: #795da3;
+    color: #a71d5d
 }
 
 .monaco-editor .vs-dark .token.operators {

@@ -2,7 +2,10 @@ path = './json/Examples.json';
 
 var options = {
     valueNames: ['name', 'type'],
-    item: '<li class="list-group-item Example-li" onclick="openExample(this);"><p class="name" style="font-size: 14px;"></p><strong class="type"></strong></li>'
+    item: '<li class="mdl-list__item mdl-list__item--two-line Example-li" onclick="openExample(this);">'+
+    '<span class="mdl-list__item-primary-content"><i class="icn icn-docs mdl-list__item-icon"></i><span class="name">Bryan Cranston</span>'+
+    '<span class="mdl-list__item-sub-title type"></span></span>'+
+    '</li>'
 };
 fs.stat(path, function (err, stats) {
     if (err) {

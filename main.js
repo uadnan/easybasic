@@ -4,33 +4,269 @@ const app = electron.app;
 const globalShortcut = electron.globalShortcut;
 const BrowserWindow = electron.BrowserWindow;
 
+const ipc = require('electron').ipcMain
+const dialog = require('electron').dialog
+
+const Menu = electron.Menu
+
 let mainWindow
 
 function createWindow () {
   
-  mainWindow = new BrowserWindow({minWidth:768, frame:false, minHeight: 600})
+  mainWindow = new BrowserWindow({minWidth:768, minHeight: 600})
   mainWindow.loadURL(`file://${__dirname}/src/index.html`)
-  mainWindow.maximize(true);
+  //mainWindow.maximize(true);
 
   mainWindow.on('closed', function () {
     mainWindow = null
   })
 }
+
+let template = [
+  {
+    label: '&File',
+    submenu: [
+      {
+        label: 'New File',
+        accelerator: 'CmdOrCtrl+N',
+        click: function(){
+          mainWindow.webContents.send('OpenFile', null)
+        }
+      }, {
+        label: 'New Window',
+        accelerator: 'CmdOrCtrl+Shift+N',
+        click: function(){
+          let win = new BrowserWindow({minWidth:768, minHeight: 600})
+          win.loadURL(`file://${__dirname}/src/index.html`)
+          win = null
+        } 
+      }, {
+          label:'Open File...',
+          accelerator: 'CmdOrCtrl+O',
+          click: function(){
+            dialog.showOpenDialog({
+              properties: ['openFile'],
+              filters: [
+                {name: 'GwBasic file', extensions: ['bas']},
+                {name: 'Plain Text', extensions: ['txt']},
+                {name: 'All Files', extensions: ['*']}
+              ]
+            }, function (files) {
+              if (typeof files == 'object') mainWindow.webContents.send('OpenFile', files[0]);
+              else mainWindow.webContents.send('OpenFile', files);
+            })
+          }
+      }, {type: 'separator'},{
+        label:'Save',
+          accelerator: 'CmdOrCtrl+S',
+          click: function(){
+            
+          }
+      }, {
+        label:'Save As...',
+          accelerator: 'CmdOrCtrl+Shift+S',
+          click: function(){
+            
+          }
+      }, {
+        label:'Save All',
+          click: function(){
+            
+          }
+      }, {type: 'separator'},{
+        label:'Close Editor',
+        accelerator: 'CmdOrCtrl+F4',
+        click: function(){
+          
+        }
+      }, {
+        label:'Exit',
+        click: function(){
+          
+        }
+      }
+    ]
+  }, {
+    label: 'View',
+    submenu: [{
+      label: 'Reload',
+      accelerator: 'CmdOrCtrl+R',
+      click: function (item, focusedWindow) {
+        if (focusedWindow) {
+          // on reload, start fresh and close any old
+          // open secondary windows
+          if (focusedWindow.id === 1) {
+            BrowserWindow.getAllWindows().forEach(function (win) {
+              if (win.id > 1) {
+                win.close()
+              }
+            })
+          }
+          focusedWindow.reload()
+        }
+      }
+    }, {
+      label: 'Toggle Full Screen',
+      accelerator: (function () {
+        if (process.platform === 'darwin') {
+          return 'Ctrl+Command+F'
+        } else {
+          return 'F11'
+        }
+      })(),
+      click: function (item, focusedWindow) {
+        if (focusedWindow) {
+          focusedWindow.setFullScreen(!focusedWindow.isFullScreen())
+        }
+      }
+    }, {
+      label: 'Toggle Developer Tools',
+      accelerator: (function () {
+        if (process.platform === 'darwin') {
+          return 'Alt+Command+I'
+        } else {
+          return 'Ctrl+Shift+I'
+        }
+      })(),
+      click: function (item, focusedWindow) {
+        if (focusedWindow) {
+          focusedWindow.toggleDevTools()
+        }
+      }
+    }, {
+      type: 'separator'
+    }, {
+      label: 'App Menu Demo',
+      click: function (item, focusedWindow) {
+        if (focusedWindow) {
+          const options = {
+            type: 'info',
+            title: 'Application Menu Demo',
+            buttons: ['Ok'],
+            message: 'This demo is for the Menu section, showing how to create a clickable menu item in the application menu.'
+          }
+          electron.dialog.showMessageBox(focusedWindow, options, function () {})
+        }
+      }
+    }]
+  }, {
+    label: 'Window',
+    role: 'window',
+    submenu: [{
+      label: 'Minimize',
+      accelerator: 'CmdOrCtrl+M',
+      role: 'minimize'
+    }, {
+      label: 'Close',
+      accelerator: 'CmdOrCtrl+W',
+      role: 'close'
+    }, {
+      type: 'separator'
+    }, {
+      label: 'Reopen Window',
+      accelerator: 'CmdOrCtrl+Shift+T',
+      enabled: false,
+      key: 'reopenMenuItem',
+      click: function () {
+        app.emit('activate')
+      }
+    }]
+  }, {
+    label: 'Help',
+    role: 'help',
+    submenu: [{
+      label: 'Learn More',
+      click: function () {
+        electron.shell.openExternal('http://electron.atom.io')
+      }
+    }]
+  }
+]
+
+function addUpdateMenuItems (items, position) {
+  if (process.mas) return
+
+  const version = electron.app.getVersion()
+  let updateItems = [{
+    label: `Version ${version}`,
+    enabled: false
+  }, {
+    label: 'Checking for Update',
+    enabled: false,
+    key: 'checkingForUpdate'
+  }, {
+    label: 'Check for Update',
+    visible: false,
+    key: 'checkForUpdate',
+    click: function () {
+      require('electron').autoUpdater.checkForUpdates()
+    }
+  }, {
+    label: 'Restart and Install Update',
+    enabled: true,
+    visible: false,
+    key: 'restartToUpdate',
+    click: function () {
+      require('electron').autoUpdater.quitAndInstall()
+    }
+  }]
+
+  items.splice.apply(items, [position, 0].concat(updateItems))
+}
+
+function findReopenMenuItem () {
+  const menu = Menu.getApplicationMenu()
+  if (!menu) return
+
+  let reopenMenuItem
+  menu.items.forEach(function (item) {
+    if (item.submenu) {
+      item.submenu.items.forEach(function (item) {
+        if (item.key === 'reopenMenuItem') {
+          reopenMenuItem = item
+        }
+      })
+    }
+  })
+  return reopenMenuItem
+}
+
+if (process.platform === 'win32') {
+  const helpMenu = template[template.length - 1].submenu
+  addUpdateMenuItems(helpMenu, 0)
+}
+
+app.on('ready', function () {
+  const menu = Menu.buildFromTemplate(template)
+  Menu.setApplicationMenu(menu)
+})
+
+app.on('browser-window-created', function () {
+  let reopenMenuItem = findReopenMenuItem()
+  if (reopenMenuItem) reopenMenuItem.enabled = false
+})
+
+app.on('window-all-closed', function () {
+  let reopenMenuItem = findReopenMenuItem()
+  if (reopenMenuItem) reopenMenuItem.enabled = true
+})
 // app.commandLine.appendSwitch('remote-debugging-port', '8080')
 app.on('ready', () => {
-  arguments = global.sharedObject.prop1;
-  console.log(arguments);
+  // arguments = global.sharedObject.prop1;
+  // console.log(arguments);
 
-  const ret = globalShortcut.register('CommandOrControl+X', () => {
-    console.log('CommandOrControl+X is pressed')
-  })
-  if (!ret) {
-    console.log('registration failed')
-  }
+  // const ret = globalShortcut.register('CommandOrControl+X', () => {
+  //   console.log('CommandOrControl+X is pressed')
+  // })
+  // if (!ret) {
+  //   console.log('registration failed')
+  // }
 
-  // Check whether a shortcut is registered.
-  console.log("Enabled Global Shortcut: ",globalShortcut.isRegistered('CommandOrControl+X'))
+  // // Check whether a shortcut is registered.
+  // console.log("Enabled Global Shortcut: ",globalShortcut.isRegistered('CommandOrControl+X'))
+
   createWindow();
+
 })
 
 app.on('window-all-closed', function () {
@@ -51,21 +287,9 @@ app.on('will-quit', () => {
 
 //Custom code
 
-const ipc = require('electron').ipcMain
-const dialog = require('electron').dialog
-
-ipc.on('open-file-dialog', function (event) {
-  dialog.showOpenDialog({
-    properties: ['openFile'],
-    filters: [
-      {name: 'GwBasic file', extensions: ['bas']},
-      {name: 'Plain Text', extensions: ['txt']},
-      {name: 'All Files', extensions: ['*']}
-    ]
-  }, function (files) {
-    if (files) event.sender.send('opened-file', files)
-  })
-})
+function openFile() {
+  
+}
 
 ipc.on('open-file-o-dialog', function (event) {
   dialog.showOpenDialog({
@@ -76,7 +300,10 @@ ipc.on('open-file-o-dialog', function (event) {
       {name: 'All Files', extensions: ['*']}
     ]
   }, function (files) {
-    if (files) event.sender.send('opened-o-file', files)
+    if (files){
+        if (typeof files == 'object') event.sender.send('opened-o-file', files[0])
+        else event.sender.send('opened-o-file', files);
+    }
   })
 })
 
@@ -89,7 +316,10 @@ ipc.on('open-file-m-dialog', function (event) {
       {name: 'All Files', extensions: ['*']}
     ]
   }, function (files) {
-    if (files) event.sender.send('opened-m-file', files)
+    if (files){
+        if (typeof files == 'object') event.sender.send('opened-m-file', files[0])
+        else event.sender.send('opened-m-file', files);
+    }
   })
 })
 
@@ -102,7 +332,10 @@ ipc.on('save-file-dialog', function (event) {
       {name: 'All Files', extensions: ['*']}
     ]
   }, function (files, Text) {
-    if (files) event.sender.send('saved-file', files)
+    if (files){
+        if (typeof files == 'object') event.sender.send('saved-file', files[0])
+        else event.sender.send('saved-file', files);
+    } 
   })
 })
 
@@ -121,3 +354,19 @@ ipc.on('open-information-dialog', function (event) {
     event.sender.send('information-dialog-selection', index)
   })
 })
+
+ipc.on('openexisting', function(event){
+  console.log('dd');
+      dialog.showOpenDialog({
+        properties: ['openFile'],
+        filters: [
+          {name: 'GwBasic file', extensions: ['bas']},
+          {name: 'Plain Text', extensions: ['txt']},
+          {name: 'All Files', extensions: ['*']}
+        ]
+      }, function (files) {
+        if (typeof files == 'object') mainWindow.webContents.send('OpenFile', files[0]);
+        else mainWindow.webContents.send('OpenFile', files);
+      })
+})
+          

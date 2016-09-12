@@ -1,3 +1,14 @@
+const remote = require('electron').remote;
+const ipc = require('electron').ipcRenderer
+
+var grammer = "";
+var filepath = "";
+var text = "";
+
+function hasClass(element, cls) {
+    return (' ' + element.className + ' ').indexOf(' ' + cls + ' ') > -1;
+}
+
 (function() {
     var ev = new $.Event('remove'),
         orig = $.fn.remove;
@@ -7,37 +18,6 @@
     }
 })();
 
-
-const remote = require('electron').remote;
-
-const ipc = require('electron').ipcRenderer
-
-
-var grammer = "";
-var filepath = "";
-var text = "";
-var EndOfLineSequence = "";
-var encoding = "";
-
-document.getElementById("min-btn").addEventListener("click", function (e) {
-    var window = remote.getCurrentWindow();
-    window.minimize();
-});
-
-document.getElementById("max-btn").addEventListener("click", function (e) {
-    var window = remote.getCurrentWindow();
-    if (!window.isMaximized()) {
-        window.maximize();
-    } else {
-        window.unmaximize();
-    }
-});
-
-document.getElementById("close-btn").addEventListener("click", function (e) {
-    var window = remote.getCurrentWindow();
-    window.close();
-});
-
 var options = {
     valueNames: ['name', 'type']
 };
@@ -45,13 +25,13 @@ var options = {
 var userList = new List('docs-list', options);
 
 $(window).resize(function () {
-    $('.some-content-related-div').height($(document).height() - 42 - 24 - 35);
+    $('.some-content-related-div').height($(document).height() - 42 - 24);
 })
 
-$('.some-content-related-div').height($(document).height() - 42 - 24 - 35);
+$('.some-content-related-div').height($(document).height() - 42 - 25);
 
 $('#doc-list-div').slimScroll({
-    height: $(window).height() - 140,
+    height: $(window).height() - 130,
     railVisible: false,
     railColor: '#222',
     railOpacity: 0.01,
@@ -59,7 +39,7 @@ $('#doc-list-div').slimScroll({
     color: '#000'
 });
 $('#example-list-div').slimScroll({
-    height: $(window).height() - 140 - 24 - 10,
+    height: $(window).height() - 140 - 24,
     railVisible: false,
     railColor: '#222',
     railOpacity: 0.01,
@@ -67,7 +47,7 @@ $('#example-list-div').slimScroll({
     color: '#000'
 });
 $('#recent-list-div').slimScroll({
-    height: $(window).height() - 140 - 205,
+    height: $(window).height() - 140 - 170,
     railVisible: false,
     railColor: '#222',
     railOpacity: 0.01,
@@ -85,23 +65,20 @@ function shadow(sendr) {
     }
 }
 window.addEventListener('resize', function (event) {
-    $('#recent-list-div')[0].parentElement.style.height = ($(window).height() - 140 - 205) + "px";
-    $('#recent-list-div').height($(window).height() - 140 - 205);
+    $('#recent-list-div')[0].parentElement.style.height = ($(window).height() - 140 - 175) + "px";
+    $('#recent-list-div').height($(window).height() - 140 - 175);
 
-    $('#example-list-div')[0].parentElement.style.height = ($(window).height() - 140 - 24 - 10) + "px";
-    $('#example-list-div').height($(window).height() - 140 - 24 - 10);
+    $('#example-list-div')[0].parentElement.style.height = ($(window).height() - 140 - 24) + "px";
+    $('#example-list-div').height($(window).height() - 140 - 24);
 
-    $('#doc-list-div')[0].parentElement.style.height = ($(window).height() - 140) + "px";
-    $('#doc-list-div').height($(window).height() - 140);
+    $('#doc-list-div')[0].parentElement.style.height = ($(window).height() - 130) + "px";
+    $('#doc-list-div').height($(window).height() - 130);
 })
 
-$('#createNewScript').on('click', function () {
+function createNew(text) {
     grammer = "gb";
-    EndOfLineSequence = "CRLF";
-    encoding = "utf8";
-    text = "10 ' Write your basic code here\n20 "
     addtab('Editor', "Untitled", "Editor.html");
-})
+}
 $('#openScript').on('click', function () {
     ipc.send('open-file-dialog');
 })
@@ -126,8 +103,6 @@ function openFile(path) {
         }
     })
     text = fs.readFileSync(path, "utf8");
-    EndOfLineSequence = "CRLF";
-    encoding = "utf8";
     var name = filepath.toString().split("\\")[filepath.toString().split("\\").length - 1];
     var extension = name.split(".")[name.split(".").length - 1];
 
@@ -176,23 +151,25 @@ function compare() {
     if (originalPath && modifiedPath)
         addtab('Editor', originalName + " ↔ " + modifiedName, "DiffEditor.html");
 }
-$('#themes').change(function () {
-    var selectedText = $(this).find("option:selected").text();
+$('#theme').change(function () {
+    var selectedText = ($(this).val());
     if (selectedText == "Codepen" ||
         selectedText == "Solarized Dark" ||
+        selectedText == "Material Dark" ||
         selectedText == "VS Dark")
         {
             swapStyleSheet('dark');
             setEditorTheme(selectedText);
-            setDocTheme("Dark");
+            setDocTheme(selectedText);
         }
     else if (selectedText == "Github" ||
         selectedText == "Solarized Light" ||
-        selectedText == "VS default")
+        selectedText == "VS default" ||
+        selectedText == "Material Light")
         {
             swapStyleSheet('light');
             setEditorTheme(selectedText);
-            setDocTheme("Light");
+            setDocTheme(selectedText);
         }
 });
 
@@ -208,9 +185,52 @@ function setDocTheme(theme){
     var iframes= $('#tab-box iframe');
     for (i = 0; i < iframes.length; i++) {
         if(iframes[i].contentWindow.document.getElementById('doc-body')){
+            
             iframes[i].contentWindow.swapStyleSheet(theme);
         }
     }
 }
 arguments = remote.getGlobal('sharedObject').prop1;
-console.log(arguments);
+if (length == 4){
+    path = arguments[3]
+    console.log(path);
+    fs.stat(path.toString(), function (err, stats) {
+        if (err) {
+            window.filepath = ""
+            dialog.showErrorBox('Unable to read file', err)
+        }
+    })
+    text = fs.readFileSync(path, "utf8");
+    createNew();
+}
+
+ipc.on('OpenFile', function (e, path) {
+    if (path != null) {
+        fs.stat(path.toString(), function (err, stats) {
+            if (err) {
+                window.filepath = ""
+                dialog.showErrorBox('Unable to read file', err)
+            }
+        })
+        text = fs.readFileSync(path, "utf8");
+        createNew();
+    }
+  else createNew();
+})
+
+function toogleSidebar(){
+    var sidebar = document.getElementsByClassName('sidebar')[0];
+    var hidden = hasClass(sidebar, 'hidden');
+    if(hidden)
+        $('.sidebar').removeClass('hidden');
+    else
+        $('.sidebar').addClass('hidden');
+}
+
+ $('#addbtnnew').on('click', function(){
+     createNew();
+ })
+
+ $('#addbtnopen').on('click', function(){
+     ipc.send('openexisting');
+ })

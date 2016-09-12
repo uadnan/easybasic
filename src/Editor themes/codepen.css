@@ -886,3 +886,8 @@
 .monaco-editor .codepen .token.TypeKeywords {
     color: #aaa;
 }
+
+
+.monaco-editor{
+    padding-top: 2px;
+}

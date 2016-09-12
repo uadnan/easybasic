@@ -5,13 +5,32 @@
   "main": "main.js",
   "scripts": {
     "start": "electron .",
-    "dist": "build"
+    "dist": "build -w --x64 --ia32 --asar=fasle --nsis",
+    "prerelease:osx": "rimraf release/osx && mkdirp release/osx",
+    "release:osx": "cp -rv dist/osx/*.{dmg,zip} release/osx && PACKAGE_VERSION=$(cat app/package.json | grep version | head -1 | awk -F: '{ print $2 }' | sed 's/[\",]//g' | tr -d '[[:space:]]') && echo $PACKAGE_VERSION >> ./release/osx/VERSION",
+    "prerelease:win32": "rimraf release/win32 && mkdirp release/win32",
+    "release:win32": "cp -v dist/win-ia32/{RELEASES,*.nupkg,*.exe} release/win32",
+    "prerelease:win64": "rimraf release/win64 && mkdirp release/win64",
+    "release:win64": "cp -v dist/win/{RELEASES,*.nupkg,*.exe} release/win64",
+    "release": "npm run release:win32 && npm run release:win64",
+    "deploy": "PACKAGE_VERSION=$(cat app/package.json | grep version | head -1 | awk -F: '{ print $2 }' | sed 's/[\",]//g' | tr -d '[[:space:]]') && aws s3 sync release/ s3://eatodo/updates/$PACKAGE_VERSION/ --acl public-read && aws s3 sync s3://eatodo/updates/$PACKAGE_VERSION/ s3://eatodo/updates/latest/ --delete --acl public-read",
+    "all": "npm run dist && npm run release && npm run deploy",
+    "build": "build"
   },
   "build": {
-    "appId": "your.id",
+    "appId": "com.electron.easybasic",
+    "copyright": "Copyright © Nauman Umer",
+    "asar": false,
+    "productName": "Easy Basic",
     "category": "your.app.category.type",
     "win": {
-      "iconUrl": "https://raw.githubusercontent.com/Microsoft/vscode/master/resources/win32/code.ico"
+      "target": "nsis",
+      "icon": "./resources/windows/icon.ico"
+    },
+    "nsis": {
+      "oneClick": false,
+      "script": "./resources/windows/installer.nsi",
+      "installerHeader": "./resources/windows/header.nsi"
     }
   },
   "keywords": [
@@ -24,8 +43,15 @@
   "devDependencies": {
     "electron-packager": "^7.5.1",
     "electron-prebuilt": "^1.2.0",
+    "electron-squirrel-startup": "^1.0.0",
     "electron-winstaller": "^2.3.4",
+    "grunt": "^1.0.1",
     "grunt-electron-installer": "^2.1.0",
-    "ncp": "^2.0.0"
+    "ncp": "^2.0.0",
+    "asar": "^0.12.3",
+    "fs-jetpack": "^0.9.2"
+  },
+  "dependencies": {
+    
   }
 }
