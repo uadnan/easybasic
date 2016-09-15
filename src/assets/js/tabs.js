@@ -22,7 +22,7 @@ var closeAllTabs = function () {
 
 function addintablist(name, tabid){
     document.getElementById('tabsList').innerHTML += `<span class="nav-group-item" id="sidetab-${tabid}" onclick="sidetabopen(this)">
-                <span class="icn icn-cancel"></span>
+                <span class="icn icn-cancel" onclick="closetab(this)"></span>
                 ${name}<small class="hidden">${tabid}</small>
                 </span>`;
 }
@@ -168,6 +168,11 @@ $(document).on('shown.bs.tab', 'a[data-toggle="tab"]', function (e) {
 function sidetabopen(element){
     var tabid = element.querySelectorAll('.hidden')[0].innerHTML;
     showTab(tabid);
+}
+function closetab(element){
+    var tabid = element.parentElement.querySelectorAll('.hidden')[0].innerHTML + "_tab-li";
+    var closebtn = document.getElementById(tabid).querySelectorAll('.closeTab')[0];
+    closebtn.click();
 }
 
 
