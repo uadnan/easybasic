@@ -1,5 +1,7 @@
-const remote = require('electron').remote;
-const ipc = require('electron').ipcRenderer
+if(!demo){
+    const remote = require('electron').remote;
+    const ipc = require('electron').ipcRenderer
+}
 
 var grammer = "";
 var filepath = "";
@@ -33,24 +35,23 @@ $('.some-content-related-div').height($(document).height() - 42 - 25);
 $('#doc-list-div').slimScroll({
     height: $(window).height() - 130,
     railVisible: false,
-    railColor: '#222',
-    railOpacity: 0.01,
     size: '12px',
     color: '#000'
 });
 $('#example-list-div').slimScroll({
     height: $(window).height() - 140 - 24,
     railVisible: false,
-    railColor: '#222',
-    railOpacity: 0.01,
     size: '12px',
     color: '#000'
 });
 $('#recent-list-div').slimScroll({
     height: $(window).height() - 140 - 170,
     railVisible: false,
-    railColor: '#222',
-    railOpacity: 0.01,
+    size: '12px',
+    color: '#000'
+});
+$('#tabs-list-div').slimScroll({
+    height: 193,
     size: '12px',
     color: '#000'
 });
@@ -197,7 +198,7 @@ if (length == 4){
     fs.stat(path.toString(), function (err, stats) {
         if (err) {
             window.filepath = ""
-            dialog.showErrorBox('Unable to read file', err)
+            alert(err, 'Unable to read file')
         }
     })
     text = fs.readFileSync(path, "utf8");
@@ -205,11 +206,12 @@ if (length == 4){
 }
 
 ipc.on('OpenFile', function (e, path) {
+    
     if (path != null) {
         fs.stat(path.toString(), function (err, stats) {
             if (err) {
                 window.filepath = ""
-                dialog.showErrorBox('Unable to read file', err)
+                alert(err, 'Unable to read file')
             }
         })
         text = fs.readFileSync(path, "utf8");
@@ -218,13 +220,14 @@ ipc.on('OpenFile', function (e, path) {
   else createNew();
 })
 
-function toogleSidebar(){
-    var sidebar = document.getElementsByClassName('sidebar')[0];
+function tooglebar(bar){
+    var sidebar = (bar == 'side') ? document.getElementsByClassName('sidebar')[0] : document.getElementsByClassName('toolbar-footer')[0];
+    var barClass = (bar == 'side') ? '.sidebar' : '.toolbar-footer';
     var hidden = hasClass(sidebar, 'hidden');
     if(hidden)
-        $('.sidebar').removeClass('hidden');
+        $(barClass).removeClass('hidden');
     else
-        $('.sidebar').addClass('hidden');
+        $(barClass).addClass('hidden');
 }
 
  $('#addbtnnew').on('click', function(){
@@ -234,3 +237,12 @@ function toogleSidebar(){
  $('#addbtnopen').on('click', function(){
      ipc.send('openexisting');
  })
+ $('#addbtncomapre').on('click', function(){
+     $('#sidetab li:eq(2) a').tab('show');
+ })
+ $('#addbtnshell').on('click', function(){
+     ipc.send('run-shell', "");
+ })
+ ipc.on('togglebar', function (e, bar) {
+     tooglebar(bar);
+ });

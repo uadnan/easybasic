@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -13,6 +14,29 @@
                 document.getElementById("contextMenuStyle").setAttribute("href", "./assets/css/jquery.contextmenu.css");
             }
         }
+        var QueryString = function () {
+            // This function is anonymous, is executed immediately and 
+            // the return value is assigned to QueryString!
+            var query_string = {};
+            var query = window.location.search.substring(1);
+            var vars = query.split("&");
+            for (var i=0;i<vars.length;i++) {
+                var pair = vars[i].split("=");
+                    // If first entry with this name
+                if (typeof query_string[pair[0]] === "undefined") {
+                query_string[pair[0]] = decodeURIComponent(pair[1]);
+                    // If second entry with this name
+                } else if (typeof query_string[pair[0]] === "string") {
+                var arr = [ query_string[pair[0]],decodeURIComponent(pair[1]) ];
+                query_string[pair[0]] = arr;
+                    // If third or later entry with this name
+                } else {
+                query_string[pair[0]].push(decodeURIComponent(pair[1]));
+                }
+            } 
+            return query_string;
+        }();
+        var demo = QueryString.demo;
     </script>
     <link id="pagestyle" rel="stylesheet" href="./assets/css/photon-dark.css">
     <link rel="stylesheet" href="./assets/css/material.blue_grey-teal.min.css">
@@ -26,7 +50,7 @@
 
 <body>
     <div class="window">
-        <!--<header class="toolbar toolbar-header">
+        <header class="toolbar toolbar-header hidden">
             <div class="toolbar-actions">
                 <div class="pull-left">
                     <h1 class="title" style="margin-top: 6px; margin-left: 15px;">
@@ -47,7 +71,7 @@
                     </div>
                 </div>
             </div>
-        </header>-->
+        </header>
         <div class="window-content">
 
             <div class="modal fade" id="myModal" role="dialog" aria-labelledby="myModalLabel">
@@ -131,47 +155,25 @@
 
             <div class="pane-group">
                 <div class="pane pane-mini primary-sidebar" id="sidebar">
-                    <ul class="list-unstyled sidebar-button-list">
-                        <li><a id="home_tab_a" data-toggle="tab" href="#home"><i class="icon-home"></i></a></li>
+                    <ul class="list-unstyled sidebar-button-list" id="sidetab">
+                        <li><a id="home_tab_a" data-toggle="tab" href="#home"><i class="icon-note"></i></a></li>
                         <li><a id="files_tab_a" data-toggle="tab" href="#files"><i class="icon-list"></i></a></li>
                         <li><a id="comparer_tab_a" data-toggle="tab" href="#comparer"><i class="icon-docs"></i></a></li>
                         <li><a id="docs_tab_a" data-toggle="tab" href="#docs"><i class="icon-notebook"></i></a></li>
-                        <li><a id="settings_tab_a" data-toggle="tab" href="#settings"><i class="icon-settings"></i></a></li>
+                        <!--<li><a id="settings_tab_a" data-toggle="tab" href="#settings"><i class="icon-settings"></i></a></li>-->
                     </ul>
                 </div>
 
                 <div class="pane pane-sm sidebar" style="overflow: hidden;">
                     <div class="tab-content">
                         <div id="home" class="tab-pane fade in active">
-                            <h5 class="text-center">Home</h5>
-                            <nav class="nav-group">
-                                <h5 class="nav-group-title">Actions</h5>
-
-                                <span class="nav-group-item" id="createNewScript">
-                                        <span class="fa fa-file-o"></span> Create New File
-                                </span>
-                                <span class="nav-group-item" id="openScript">
-                                        <span class="fa fa-folder-o"></span> Open Existing
-                                </span>
-                                <span class="nav-group-item">
-                                        <span class="fa fa-terminal"></span> Open Shell
-                                </span>
-                                <span class="nav-group-item" data-toggle="tab" href="#comparer">
-                                        <span class="fa fa-files-o"></span> File Comparer
-                                </span>
-                                <span class="nav-group-item" data-toggle="tab" href="#docs">
-                                        <span class="fa fa-book"></span> Documentation
-                                </span>
-                                <span class="nav-group-item" data-toggle="tab" href="#files">
-                                        <span class="fa fa-list"></span> Examples
-                                </span>
-                                <span class="nav-group-item" data-toggle="tab" href="#settings">
-                                        <span class="fa fa-cog"></span> Settings
-                                </span>
-                                <span class="nav-group-item" id="about">
-                                        <span class="fa fa-info" style="margin-right: 18px;"></span> About
-                                </span>
-                            </nav>
+                            <h5 class="text-center">Explorer</h5>
+                            <h5 class="nav-group-title">Tabs</h5>
+                            <div id="tabs-list-div" style="overflow:hidden;" onscroll="shadow(this)">
+                                <nav class="nav-group" id="tabsList">
+                                    
+                                </nav>
+                            </div>
 
                             <h5 class="nav-group-title">Recents</h5>
                             <div id="recent-list-div" style="overflow:hidden;" onscroll="shadow(this)">
@@ -495,6 +497,19 @@
         $('#focusbtn').focusout(function(){
             showAddBtn();
         })
+        if(demo){
+            $("header").removeClass("hidden");
+            $('.some-content-related-div').css('position', "absolute");
+            $('.some-content-related-div').css('bottom', "0px");
+            $('.some-content-related-div').css('top', "60px");
+            $('.some-content-related-div').css('right', "0px");
+            $('.some-content-related-div').css('left', "0px");
+            $('#tabsList')[0].innerHTML = `<span class="nav-group-item">
+                <span class="fa fa-file"></span>
+                Untitled
+                </span>`
+            createNew();
+        }
     </script>
 </body>
 

@@ -1209,15 +1209,16 @@ function gbAutoCompletion() {
 }
 
 const fs = window.top.require('fs');
-path = './json/Detail.json';
-fs.stat(path, function (err, stats) {
-    if (err) {
-        alert(err);
-    }
-})
-json = fs.readFileSync(path, "utf8");
-obj = JSON.parse(json);
-
+if(fs){
+    path = './json/Detail.json';
+    fs.stat(path, function (err, stats) {
+        if (err) {
+            alert(err);
+        }
+    })
+    json = fs.readFileSync(path, "utf8");
+    obj = JSON.parse(json);
+}
 function getHoverInfo(word) {
     if (obj[word]) {
         return {

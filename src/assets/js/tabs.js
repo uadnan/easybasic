@@ -1,5 +1,5 @@
-ipc = require('electron').ipcRenderer
-
+if (!demo)
+    ipc = require('electron').ipcRenderer
 
 var closeAllTabs = function () {
     var buttonList = $('#myTab li button');
@@ -35,7 +35,7 @@ $(function () {
 
 // function registerComposeButtonEvent() {
 
-var addtab = function (type, name, URL) {
+function addtab (type, name, URL) {
     document.getElementById('status').innerHTML = '<i class="fa fa-spinner fa-pulse fa-3x fa-fw" style="font-size:10pt;"></i>Loading tab...';
     if (type == "Editor") {
         var tabId = type + tabCount;
@@ -44,7 +44,9 @@ var addtab = function (type, name, URL) {
         $('.nav-tabs').append('<li ><a href="#' + tabId + '" id="' + tabId + '_tab-li"><i class="close closeTab fa fa-remove" type="button" ></i><i style="font-style: normal!important;">' + name + '</i></a></li>');
         $('#tab-box').append('<iframe class="tab-pane" id="' + tabId + '" style="width: 100%; height: 100%; border-width: 0px;"></iframe>');
 
-
+        if(demo){
+            URL = "demoEditor.html";
+        }
         LoadUrl("", URL, "#" + tabId);
         // var frame = window.frames[tabId];
         // frame.setTxt(Data);
@@ -52,6 +54,7 @@ var addtab = function (type, name, URL) {
         $(this).tab('show');
         showTab(tabId);
         registerCloseEvent();
+        add
         return tabId;
     }
     else {

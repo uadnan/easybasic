@@ -3,12 +3,12 @@ const electron = require('electron');
 const app = electron.app;
 const globalShortcut = electron.globalShortcut;
 const BrowserWindow = electron.BrowserWindow;
+const exec = require('child_process').exec;
 
 const ipc = require('electron').ipcMain
 const dialog = require('electron').dialog
 
 const Menu = electron.Menu
-
 let mainWindow
 
 function createWindow () {
@@ -89,6 +89,27 @@ let template = [
   }, {
     label: 'View',
     submenu: [{
+        label:'Toggle Full Screen',
+        accelerator: 'F11'
+      }, {
+        label:'Toggle Menubar',
+        accelerator: 'CmdorCtrl+ALt+M',
+        click: function(){
+          mainWindow.setMenuBarVisibility(mainWindow.isMenuBarVisible() == true ? false :true);
+        }
+      }, {
+        label:'Toggle Status Bar',
+        accelerator: 'CmdorCtrl+Alt+S',
+        click: function(){
+          mainWindow.webContents.send('togglebar', 'status');
+        }
+      },  {
+        label:'Toggle Sidebar',
+        accelerator: 'CmdorCtrl+B',
+        click: function(){
+          mainWindow.webContents.send('togglebar', 'side');
+        }
+      }, {type: 'separator'}, {
       label: 'Reload',
       accelerator: 'CmdOrCtrl+R',
       click: function (item, focusedWindow) {
@@ -132,43 +153,6 @@ let template = [
         if (focusedWindow) {
           focusedWindow.toggleDevTools()
         }
-      }
-    }, {
-      type: 'separator'
-    }, {
-      label: 'App Menu Demo',
-      click: function (item, focusedWindow) {
-        if (focusedWindow) {
-          const options = {
-            type: 'info',
-            title: 'Application Menu Demo',
-            buttons: ['Ok'],
-            message: 'This demo is for the Menu section, showing how to create a clickable menu item in the application menu.'
-          }
-          electron.dialog.showMessageBox(focusedWindow, options, function () {})
-        }
-      }
-    }]
-  }, {
-    label: 'Window',
-    role: 'window',
-    submenu: [{
-      label: 'Minimize',
-      accelerator: 'CmdOrCtrl+M',
-      role: 'minimize'
-    }, {
-      label: 'Close',
-      accelerator: 'CmdOrCtrl+W',
-      role: 'close'
-    }, {
-      type: 'separator'
-    }, {
-      label: 'Reopen Window',
-      accelerator: 'CmdOrCtrl+Shift+T',
-      enabled: false,
-      key: 'reopenMenuItem',
-      click: function () {
-        app.emit('activate')
       }
     }]
   }, {
@@ -252,8 +236,6 @@ app.on('window-all-closed', function () {
 })
 // app.commandLine.appendSwitch('remote-debugging-port', '8080')
 app.on('ready', () => {
-  // arguments = global.sharedObject.prop1;
-  // console.log(arguments);
 
   // const ret = globalShortcut.register('CommandOrControl+X', () => {
   //   console.log('CommandOrControl+X is pressed')
@@ -267,6 +249,8 @@ app.on('ready', () => {
 
   createWindow();
 
+  arguments = global.sharedObject.prop1;
+  mainWindow.webContents.send('OpenFile', arguments[1]);
 })
 
 app.on('window-all-closed', function () {
@@ -369,4 +353,11 @@ ipc.on('openexisting', function(event){
         else mainWindow.webContents.send('OpenFile', files);
       })
 })
-          
+ipc.on('run-shell', function(e, parameters){
+  var path = app.getAppPath();
+  console.log(`'${path}\\PC-BASIC\\pcbasic.exe'`);
+  exec(`"${path}\\PC-BASIC\\pcbasic.exe" ${parameters}`, function (err, stdout, stderr) {
+      console.log(stdout);
+      console.log(stderr);
+  });
+})

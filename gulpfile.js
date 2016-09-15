@@ -5,8 +5,7 @@ var gulp = require('gulp'),
   electronInstaller = require('electron-winstaller'),
   packager = require('electron-packager'),
   fs = require('fs'),
-  ncp = require('ncp').ncp,
-  rimraf = require('rimraf');
+  ncp = require('ncp').ncp;
 
 var release_windows = require('./build.windows'); 
 var os = require('os'); 

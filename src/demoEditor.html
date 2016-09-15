@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <link href='assets/fonts/googlefont.css' rel='stylesheet' type='text/css'>
+    <link href='Editor themes/codepen.css' rel='stylesheet' type='text/css'>
+    <link href='Editor themes/github.css' rel='stylesheet' type='text/css'>
+    <link href='Editor themes/solarized-dark.css' rel='stylesheet' type='text/css'>
+    <link href='Editor themes/solarized-light.css' rel='stylesheet' type='text/css'>
+    <link href='Editor themes/material-dark.css' rel='stylesheet' type='text/css'>
+    <link href='Editor themes/material-light.css' rel='stylesheet' type='text/css'>
+    <link href="assets/css/loader.css" rel="stylesheet" type="text/css" />
+    <script src="assets/js/jquery.min.js"></script>
+</head>
+
+<body style="font-size: 11px; line-height: 19px;overflow:hidden; background:white; width:100%;height:100vh;font-family: roboto;">
+
+    <div id="container" style="width:100%;height:100vh;"></div>
+
+    <script src="./monaco-editor/min/vs/loader.js"></script>
+    <script src="assets/js/autocompletion.js"></script>
+    <script>
+        String.prototype.matchAll = function(regexp) {
+            var matches = [];
+            this.replace(regexp, function() {
+                var arr = ([]).slice.call(arguments, 0);
+                var extras = arr.splice(-2);
+                arr.index = extras[0];
+                arr.input = extras[1];
+                matches.push(arr);
+            });
+            return matches.length ? matches : null;
+        };
+        require.config({ paths: { 'vs': 'monaco-editor/min/vs' }});
+        require(['vs/editor/editor.main'], function() {
+            var editor = monaco.editor.create(document.getElementById('container'), {
+                value: "10 ' you can test the editor by writing your basic code here.",
+                language: 'gb',
+                parameterHints: true,
+                automaticLayout:true,
+                folding: true,
+                theme: "material-dark"
+            });
+            function getVariableIntellisence(text){
+                var variableRe = /([a-z][0-9]*)+([$]|#|!|%){0,1}( )*(?:=)/ig;
+                var result = text.matchAll(variableRe);
+                var tempArray;
+                if (result){
+                    var variablesArray = [];
+                    result.forEach(function(variable){
+                        variableName = variable[0].replace("=", "").replace(' ','');
+                        tempArray = [{
+                            label: variableName,
+                            kind: monaco.languages.CompletionItemKind.Variable,
+                            insertText: variableName
+                        }];
+                        if(!IsObjectPresent(variablesArray, tempArray, 'label'))
+                            variablesArray = variablesArray.concat(tempArray);
+                    })
+                    return variablesArray;
+                }
+                else{
+                    return null;
+                }
+            }
+            monaco.languages.registerCompletionItemProvider('gb', {
+                provideCompletionItems: function(model, position) {
+                    
+                    var textUntilPosition = model.getValueInRange({startLineNumber: position.lineNumber, startColumn: 1, endLineNumber: position.lineNumber, endColumn: position.column});
+                    var variables =getVariableIntellisence(editor.getValue());
+                    var comment = textUntilPosition.match(/'/);
+                    if (comment) 
+                        return [];
+
+                    words = textUntilPosition.split(' ').reverse();
+                    var intellisence= [];
+                    var n = 0;
+                    words.some(function(word) {
+                        n+=1;
+                        if (word.toLowerCase() == 'beep'){
+                            intellisence = beepSwitches();
+                            return true;
+                        }
+                        else if (word == 'print')
+                        {
+                            intellisence = gbFunctions();
+                            if (variables)
+                                intellisence = intellisence.concat(variables);
+                            return true;
+                        }
+                    })
+                    if (n==words.length){
+                        intellisence = gbFunctions().concat(gbAutoCompletion());
+                        if (variables)
+                            intellisence = intellisence.concat(variables);
+                    }
+                    return intellisence;
+                }
+            });
+        });
+    </script>
+</body>
+</html>
