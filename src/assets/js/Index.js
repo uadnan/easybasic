@@ -1,6 +1,6 @@
-if(!demo){
-    const remote = require('electron').remote;
-    const ipc = require('electron').ipcRenderer
+if (!demo) {
+    var remote = require('electron').remote;
+    var ipc = require('electron').ipcRenderer
 }
 
 var grammer = "";
@@ -11,10 +11,10 @@ function hasClass(element, cls) {
     return (' ' + element.className + ' ').indexOf(' ' + cls + ' ') > -1;
 }
 
-(function() {
+(function () {
     var ev = new $.Event('remove'),
         orig = $.fn.remove;
-    $.fn.remove = function() {
+    $.fn.remove = function () {
         $(this).trigger(ev);
         return orig.apply(this, arguments);
     }
@@ -93,6 +93,10 @@ ipc.on('opened-file', function (event, path) {
     openFile(path);
 })
 function openFile(path) {
+    if (!path){
+        createNew('');
+        return;
+    }
     if (window.filepath != "") {
         return alert("Please Wait While Another File is Loading...")
     }
@@ -157,42 +161,40 @@ $('#theme').change(function () {
     if (selectedText == "Codepen" ||
         selectedText == "Solarized Dark" ||
         selectedText == "Material Dark" ||
-        selectedText == "VS Dark")
-        {
-            swapStyleSheet('dark');
-            setEditorTheme(selectedText);
-            setDocTheme(selectedText);
-        }
+        selectedText == "VS Dark") {
+        swapStyleSheet('dark');
+        setEditorTheme(selectedText);
+        setDocTheme(selectedText);
+    }
     else if (selectedText == "Github" ||
         selectedText == "Solarized Light" ||
         selectedText == "VS default" ||
-        selectedText == "Material Light")
-        {
-            swapStyleSheet('light');
-            setEditorTheme(selectedText);
-            setDocTheme(selectedText);
-        }
+        selectedText == "Material Light") {
+        swapStyleSheet('light');
+        setEditorTheme(selectedText);
+        setDocTheme(selectedText);
+    }
 });
 
-function setEditorTheme(theme){
-    var iframes= $('#tab-box iframe');
+function setEditorTheme(theme) {
+    var iframes = $('#tab-box iframe');
     for (i = 0; i < iframes.length; i++) {
-        if(iframes[i].contentWindow.document.getElementById('container')){
+        if (iframes[i].contentWindow.document.getElementById('container')) {
             iframes[i].contentWindow.setTheme(theme);
         }
     }
 }
-function setDocTheme(theme){
-    var iframes= $('#tab-box iframe');
+function setDocTheme(theme) {
+    var iframes = $('#tab-box iframe');
     for (i = 0; i < iframes.length; i++) {
-        if(iframes[i].contentWindow.document.getElementById('doc-body')){
-            
+        if (iframes[i].contentWindow.document.getElementById('doc-body')) {
+
             iframes[i].contentWindow.swapStyleSheet(theme);
         }
     }
 }
 arguments = remote.getGlobal('sharedObject').prop1;
-if (length == 4){
+if (length == 4) {
     path = arguments[3]
     console.log(path);
     fs.stat(path.toString(), function (err, stats) {
@@ -206,43 +208,32 @@ if (length == 4){
 }
 
 ipc.on('OpenFile', function (e, path) {
-    
-    if (path != null) {
-        fs.stat(path.toString(), function (err, stats) {
-            if (err) {
-                window.filepath = ""
-                alert(err, 'Unable to read file')
-            }
-        })
-        text = fs.readFileSync(path, "utf8");
-        createNew();
-    }
-  else createNew();
+    openFile(path);
 })
 
-function tooglebar(bar){
+function tooglebar(bar) {
     var sidebar = (bar == 'side') ? document.getElementsByClassName('sidebar')[0] : document.getElementsByClassName('toolbar-footer')[0];
     var barClass = (bar == 'side') ? '.sidebar' : '.toolbar-footer';
     var hidden = hasClass(sidebar, 'hidden');
-    if(hidden)
+    if (hidden)
         $(barClass).removeClass('hidden');
     else
         $(barClass).addClass('hidden');
 }
 
- $('#addbtnnew').on('click', function(){
-     createNew();
- })
+$('#addbtnnew').on('click', function () {
+    createNew();
+})
 
- $('#addbtnopen').on('click', function(){
-     ipc.send('openexisting');
- })
- $('#addbtncomapre').on('click', function(){
-     $('#sidetab li:eq(2) a').tab('show');
- })
- $('#addbtnshell').on('click', function(){
-     ipc.send('run-shell', "");
- })
- ipc.on('togglebar', function (e, bar) {
-     tooglebar(bar);
- });
+$('#addbtnopen').on('click', function () {
+    ipc.send('openexisting');
+})
+$('#addbtncomapre').on('click', function () {
+    $('#sidetab li:eq(2) a').tab('show');
+})
+$('#addbtnshell').on('click', function () {
+    ipc.send('run-shell', "");
+})
+ipc.on('togglebar', function (e, bar) {
+    tooglebar(bar);
+});

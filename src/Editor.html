@@ -443,6 +443,13 @@
                     n++;
                 }
             })
+            editor.onDidBlurEditor(()=>{
+                window.top.document.getElementById('LineCol').innerHTML = "";
+            })
+            editor.onDidFocusEditorText(()=>{
+                LineStatus = "Ln "+editor.getPosition().lineNumber+", Col "+editor.getPosition().column; 
+                window.top.document.getElementById('LineCol').innerHTML = LineStatus;
+            })
             eval(getKeyBindings());
             window.setTheme = function (theme){
                 if(theme == "Codepen")

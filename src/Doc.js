@@ -1,4 +1,4 @@
-path = './json/Doc.json';
+path = `${apppath}/json/Doc.json`;
 
 var list = "";
 

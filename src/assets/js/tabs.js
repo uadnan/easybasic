@@ -20,6 +20,13 @@ var closeAllTabs = function () {
     }
 }
 
+function addintablist(name, tabid){
+    document.getElementById('tabsList').innerHTML += `<span class="nav-group-item" id="sidetab-${tabid}" onclick="sidetabopen(this)">
+                <span class="icn icn-cancel"></span>
+                ${name}<small class="hidden">${tabid}</small>
+                </span>`;
+}
+
 var currentTab;
 var tabCount = 0;
 $(function () {
@@ -41,7 +48,7 @@ function addtab (type, name, URL) {
         var tabId = type + tabCount;
         tabCount = tabCount + 1;
 
-        $('.nav-tabs').append('<li ><a href="#' + tabId + '" id="' + tabId + '_tab-li"><i class="close closeTab fa fa-remove" type="button" ></i><i style="font-style: normal!important;">' + name + '</i></a></li>');
+        $('.nav-tabs').append('<li ><a href="#' + tabId + '" id="' + tabId + '_tab-li" data-toggle="tab"><i class="close closeTab fa fa-remove" type="button" ></i><i style="font-style: normal!important;">' + name + '</i></a></li>');
         $('#tab-box').append('<iframe class="tab-pane" id="' + tabId + '" style="width: 100%; height: 100%; border-width: 0px;"></iframe>');
 
         if(demo){
@@ -51,22 +58,25 @@ function addtab (type, name, URL) {
         // var frame = window.frames[tabId];
         // frame.setTxt(Data);
 
+        addintablist(name, tabId);
         $(this).tab('show');
         showTab(tabId);
         registerCloseEvent();
-        add
+
+
         return tabId;
     }
     else {
         if (!($("#" + type)[0])) {
             var tabId = type;
 
-            $('.nav-tabs').append('<li><a href="#' + tabId + '" id="' + tabId + '_tab-li"><i class="close closeTab fa fa-remove" type="button" ></i>' + name + '</a></li>');
+            $('.nav-tabs').append('<li><a href="#' + tabId + '" id="' + tabId + '_tab-li" data-toggle="tab"><i class="close closeTab fa fa-remove" type="button" ></i>' + name + '</a></li>');
             $('#tab-box').append('<iframe class="tab-pane" id="' + tabId + '" style="width: 100%; height: 100%; border-width: 0px;"></iframe>');
 
 
             LoadUrl("", URL, "#" + tabId);
 
+            addintablist(name, tabId);
             $(this).tab('show');
             showTab(tabId);
             registerCloseEvent();
@@ -82,8 +92,9 @@ function addtab (type, name, URL) {
 function registerCloseEvent() {
 
     $(".closeTab").click(function () {
-        
         var tabContentId = $(this).parent().attr("href");
+        var sidetabid = '#sidetab-'+tabContentId.substr(1);
+        $(sidetabid).remove();
         if(!(tabContentId.match(/Editor/))){
             $(this).parent().parent().remove(); //remove li of tab
             $('#myTab a:last').tab('show'); // Select first tab
@@ -146,6 +157,25 @@ function removeCurrentTab() {
         ipc.send('open-information-dialog');
     }
 }
+$(document).on('shown.bs.tab', 'a[data-toggle="tab"]', function (e) {
+    var newtabid = "#sidetab-"+ e.target.id.replace('_tab-li', '')
+    $(newtabid).addClass('active');
+    var pretabid = "#sidetab-"+ e.relatedTarget.id.replace('_tab-li', '')
+    var pretab = $(pretabid);
+    if (pretab)
+        $(pretabid).removeClass('active');
+})
+function sidetabopen(element){
+    var tabid = element.querySelectorAll('.hidden')[0].innerHTML;
+    showTab(tabid);
+}
+
+
+
+
+
+
+
 
 
 

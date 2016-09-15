@@ -14,7 +14,7 @@ let mainWindow
 function createWindow () {
   
   mainWindow = new BrowserWindow({minWidth:768, minHeight: 600})
-  mainWindow.loadURL(`file://${__dirname}/src/index.html`)
+  mainWindow.loadURL(`file://${__dirname}/src/index.html?path=${app.getAppPath()}`)
   //mainWindow.maximize(true);
 
   mainWindow.on('closed', function () {
@@ -37,7 +37,7 @@ let template = [
         accelerator: 'CmdOrCtrl+Shift+N',
         click: function(){
           let win = new BrowserWindow({minWidth:768, minHeight: 600})
-          win.loadURL(`file://${__dirname}/src/index.html`)
+          win.loadURL(`file://${__dirname}/src/index.html?path=${app.getAppPath()}`)
           win = null
         } 
       }, {
