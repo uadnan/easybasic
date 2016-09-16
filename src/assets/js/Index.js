@@ -194,8 +194,8 @@ function setDocTheme(theme) {
     }
 }
 arguments = remote.getGlobal('sharedObject').prop1;
-if (length == 4) {
-    path = arguments[3]
+if (arguments.length > 1) {
+    path = arguments[1]
     console.log(path);
     fs.stat(path.toString(), function (err, stats) {
         if (err) {
