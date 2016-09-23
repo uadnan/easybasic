@@ -56,30 +56,7 @@ let template = [
               else mainWindow.webContents.send('OpenFile', files);
             })
           }
-      }, {type: 'separator'},{
-        label:'Save',
-          accelerator: 'CmdOrCtrl+S',
-          click: function(){
-            
-          }
-      }, {
-        label:'Save As...',
-          accelerator: 'CmdOrCtrl+Shift+S',
-          click: function(){
-            
-          }
-      }, {
-        label:'Save All',
-          click: function(){
-            
-          }
-      }, {type: 'separator'},{
-        label:'Close Editor',
-        accelerator: 'CmdOrCtrl+F4',
-        click: function(){
-          
-        }
-      }, {
+      }, {type: 'separator'}, {
         label:'Exit',
         click: function(){
           
@@ -91,6 +68,12 @@ let template = [
     submenu: [{
         label:'Toggle Full Screen',
         accelerator: 'F11'
+      }, {
+        label:'Show Command palette',
+        accelerator: 'CmdOrCtrl+P',
+        click: function(){
+          mainWindow.webContents.send('openCmdPalette');
+        }
       }, {
         label:'Toggle Menubar',
         accelerator: 'CmdorCtrl+ALt+M',

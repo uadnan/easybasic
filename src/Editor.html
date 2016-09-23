@@ -176,6 +176,24 @@
         
         require.config({ paths: { 'vs': 'monaco-editor/min/vs' }});
         require(['vs/editor/editor.main'], function() {
+            window.setTheme = function (theme){
+                if(theme == "Codepen")
+                    editor.updateOptions({ 'theme' : 'codepen' });
+                else if(theme == "Github")
+                    editor.updateOptions({ 'theme' : 'github' });
+                else if(theme == "Solarized Dark")
+                    editor.updateOptions({ 'theme' : 'solarized-dark' });
+                else if(theme == "Solarized Light")
+                    editor.updateOptions({ 'theme' : 'solarized-light' });
+                else if(theme == "VS default")
+                    editor.updateOptions({ 'theme' : 'vs' });
+                else if(theme == "VS Dark")
+                    editor.updateOptions({ 'theme' : 'vs-dark' });
+                else if(theme == "Material Dark")
+                    editor.updateOptions({ 'theme' : 'material-dark' });
+                else if(theme == "Material Light")
+                    editor.updateOptions({ 'theme' : 'material-light' });
+            }
             var editor = monaco.editor.create(document.getElementById('container'), {
                 value: getTxt(),
                 language: getGrammer(),
@@ -183,7 +201,6 @@
                 automaticLayout:true,
                 folding: true
             });
-            
             editor.onDidChangeCursorPosition(function(e){
                 if (e.reason == 0)
                     isSaved = false;
@@ -280,6 +297,14 @@
                     return getHoverInfo(word.toLowerCase());
                 }
             });
+            getNewLineNumber = function (){
+                var currentLineNumber = editor.getPosition().lineNumber;
+                var currentLineText = editor.getModel().getLineContent(currentLineNumber);
+                console.log(currentLineText);
+                var LineNum=getLineNum(currentLineText)-11;
+                var nextLinNum = LineNum+10;
+                return nextLinNum;
+            }
             editor.addAction({
                 id: 'Save',
                 label: 'Save',
@@ -357,17 +382,17 @@
                 keybindingContext: null,
                 contextMenuGroupId: '4_change/2_bla',
                 run: function(ed) {
-                    var position = ed.getPosition();
-                    var text = ed.getValue(position);
-                    var splitedText=text.split("\n");
-                    var Line = getPreLine(position, splitedText);
-                    var LineNum=getLineNum(Line)-9;
-                    if (LineNum>-1){
-                        splitedText[position.lineNumber-1]=String(splitedText[position.lineNumber-1]).replace(/^[0-9]+/, LineNum);
-                        ed.setValue(splitedText.join("\n"));
-                        ed.setPosition(position);
-                    }
-                    return null;
+                    var currentLineNumber = editor.getPosition().lineNumber;
+                    var currentLineText = editor.getModel().getLineContent(currentLineNumber);
+                    var LineNum=getLineNum(currentLineText)-9;
+                    var LinNumLenght = (LineNum-1).toString().length;
+
+
+                    editor.executeEdits(currentLineText, [{ 
+                         range: new monaco.Range(currentLineNumber, 1, currentLineNumber, LinNumLenght+1), 
+                         text: LineNum.toString() 
+                    }]);
+                    editor.pushUndoStop
                 },
                 enablement: {
                     textFocus: true,
@@ -382,56 +407,36 @@
                 keybindingContext: null,
                 contextMenuGroupId: '4_change/2_bla',
                 run: function(ed) {
-                    var position = ed.getPosition();
-                    var text = ed.getValue(position);
-                    var splitedText=text.split("\n");
-                    var Line = getPreLine(position, splitedText);
-                    var LineNum=getLineNum(Line)-11;
-                    if (LineNum>-1){
-                        splitedText[position.lineNumber-1]=String(splitedText[position.lineNumber-1]).replace(/^[0-9]+/, LineNum);
-                        ed.setValue(splitedText.join("\n"));
-                        ed.setPosition(position);
-                    }
-                    return null;
+                    var currentLineNumber = editor.getPosition().lineNumber;
+                    var currentLineText = editor.getModel().getLineContent(currentLineNumber);
+                    var LineNum=getLineNum(currentLineText)-11;
+                    if (LineNum <0)
+                        return;
+                    var LinNumLenght = (LineNum+1).toString().length;
+
+
+                    editor.executeEdits(currentLineText, [{ 
+                         range: new monaco.Range(currentLineNumber, 1, currentLineNumber, LinNumLenght+1), 
+                         text: LineNum.toString() 
+                    }]);
+                    editor.pushUndoStop
                 },
                 enablement: {
                     textFocus: true,
                     wordAtPosition: true,
                 }
             });
-            editor.addAction({
-                id: 'addLineNum',
-                label: 'Next Line with Line Number',
-                keybindings: [monaco.KeyMod.Alt | monaco.KeyCode.Enter],
-
-                keybindingContext: null,
-                contextMenuGroupId: '4_change/2_bla',
-                run: function(ed) {
-                    var position = ed.getPosition();
-                    var text = ed.getValue(position);
-                    var splitedText=text.split("\n");
-                    var preLine = getPreLine(position, splitedText);
-                    if (!splitedText[position.lineNumber]){
-                        var linenum = getLineNum(getPreLineNum(preLine), NaN);
-                    }
-                    else{
-                        position.lineNumber = position.lineNumber+1;
-                        var nextLine = getPreLine(position, splitedText);
-                        var linenum = getLineNum(getPreLineNum(preLine), getPreLineNum(nextLine));
-                        position.lineNumber =position.lineNumber - 1;
-                    }
-
-                    splitedText[position.lineNumber-1]=String(splitedText[position.lineNumber-1]).insert(position.column-1, "\n"+linenum);
-                    text = splitedText.join("\n");
-                    ed.setValue(text);
-                    position.lineNumber= position.lineNumber+1;
-                    position.column = linenum.length+1;
-                    ed.setPosition(position);
-                },
-                enablement: {
-                    textFocus: true,
-                }
-            });
+            editor.addCommand(monaco.KeyCode.Enter, function(accessor) {
+                var currentLineNumber = editor.getPosition().lineNumber;
+                var currentLineText = editor.getModel().getLineContent(currentLineNumber);
+                var LineNum=getLineNum(currentLineText)-11;
+                var nextLinNum = LineNum+11;
+                if (nextLinNum == 0)
+                    nextLineNumstr= '';
+                else 
+                    nextLineNumstr = nextLinNum.toString() +' ';
+                editor.trigger('bla', 'type', { text: `\n${nextLineNumstr}` });
+            }, '!suggestWidgetVisible && !renameInputVisible && !inSnippetMode && !quickFixWidgetVisible')
             editor.onDidChangeCursorPosition(function(e){
                 LineStatus = "Ln "+e.position.lineNumber+", Col "+e.position.column; 
                 window.top.document.getElementById('LineCol').innerHTML = LineStatus;
@@ -451,24 +456,6 @@
                 window.top.document.getElementById('LineCol').innerHTML = LineStatus;
             })
             eval(getKeyBindings());
-            window.setTheme = function (theme){
-                if(theme == "Codepen")
-                    editor.updateOptions({ 'theme' : 'codepen' });
-                else if(theme == "Github")
-                    editor.updateOptions({ 'theme' : 'github' });
-                else if(theme == "Solarized Dark")
-                    editor.updateOptions({ 'theme' : 'solarized-dark' });
-                else if(theme == "Solarized Light")
-                    editor.updateOptions({ 'theme' : 'solarized-light' });
-                else if(theme == "VS default")
-                    editor.updateOptions({ 'theme' : 'vs' });
-                else if(theme == "VS Dark")
-                    editor.updateOptions({ 'theme' : 'vs-dark' });
-                else if(theme == "Material Dark")
-                    editor.updateOptions({ 'theme' : 'material-dark' });
-                else if(theme == "Material Light")
-                    editor.updateOptions({ 'theme' : 'material-light' });
-            }
         });
         
     </script>

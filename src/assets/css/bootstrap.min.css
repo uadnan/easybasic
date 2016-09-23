@@ -3396,7 +3396,6 @@ textarea.input-group-sm>.input-group-btn>.btn {
     display: block;
     padding: 10px 15px
 }
-.nav>li>a:focus,
 .nav>li>a:hover {
     text-decoration: none;
     background-color: #eee

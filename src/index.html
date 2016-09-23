@@ -44,10 +44,17 @@
     <link rel="stylesheet" href="./assets/css/material.blue_grey-teal.min.css">
     <link rel="stylesheet" href="./assets/css/bootstrap.min.css">
     <link rel="stylesheet" href="./assets/css/tabs.css">
+    <link rel="stylesheet" href="./assets/css/hud.css">
     <link href="./assets/css/font-awesome.css" rel="stylesheet" type="text/css" />
     <link href="./assets/css/simple-line-icons.css" rel="stylesheet" type="text/css" />
     <link id="contextMenuStyle" href="./assets/css/jquery.contextmenu-dark.css" rel="stylesheet" type="text/css" />
     <link href="./assets/css/getmdl-select.min.css" rel="stylesheet" type="text/css" />
+    <style>
+        .context-menu-list{
+            background-color: #283339;
+            width: 240px;
+        }
+    </style>
 </head>
 
 <body>
@@ -349,8 +356,8 @@
                     <div class="pull-left">
                         <h1 class="title" id="LineCol" style="margin-right:10px; font-size: 9pt; margin-top: 3px;"></h1>
                     </div>
-                    <a class="footer-ptn"><span class="icon-social-facebook"></span></a>
-                    <a class="footer-ptn"><span class="icon-globe"></span></a>
+                    <a class="footer-ptn" id="fblink"><span class="icon-social-facebook"></span></a>
+                    <a class="footer-ptn" id="weblink"><span class="icon-globe"></span></a>
                     <a class="footer-ptn" data-toggle="modal" data-target="#myModal"><span class="icon-emotsmile"></span></a>
                 </div>
             </div>
@@ -375,10 +382,18 @@
     <script src="./Examples.js"></script>
     <script src="./Doc.js"></script>
 
+    <script src="assets/js/handlebars.min.js"></script>
+    <script src="assets/js/fuse.min.js"></script>
+    
+    <script src="assets/js/commands.js"></script>
+    <script src="assets/js/hud.js"></script>
+
     <script src="assets/js/Index.js"></script>
     <script>if (window.module) module = window.module;</script>
 
     <script type="text/javascript">
+        
+
         var doorbell = null;
         window.doorbellOptions = {
             hideButton: true,

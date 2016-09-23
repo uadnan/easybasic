@@ -48,8 +48,8 @@ function swapStyleSheet() {
     }
     document.getElementById("pagestyle").setAttribute("href", pagelink);
     document.getElementById("DocStyle").setAttribute("href", docStyle);
-    if (document.getElementById("codestyle"))
-        document.getElementById("codestyle").setAttribute("href", codelink);
+    //if (document.getElementById("codestyle"))
+    //    document.getElementById("codestyle").setAttribute("href", codelink);
 }
 swapStyleSheet();
 
@@ -66,6 +66,21 @@ window.addEventListener('resize', function (event) {
     $('#doc-body')[0].parentElement.style.height = ($(window).height()) + "px";
     $('#doc-body').height($(window).height());
 })
+// function higlightcode(){
+//     var codes = $('pre')
+//     require.config({ paths: { 'vs': '../monaco-editor/min/vs' }});
+//     require(['vs/editor/editor.main'], function() {
+//     for(var i=0; i<codes.length; i++){
+//         monaco.editor.colorizeElement(codes[i],{
+//             theme: 'vs-dark',
+//             language: 'css',
+//             automaticLayout:true,
+//             folding: true
+//         });
+//     }
+//     });
+// }
 $(document).ready(function(){
     window.top.document.getElementById('status').innerHTML = "Document Loaded";
+    // higlightcode();
 })

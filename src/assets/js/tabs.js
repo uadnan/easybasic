@@ -1,29 +1,25 @@
 if (!demo)
     ipc = require('electron').ipcRenderer
 
+var tabs=[] 
+
 var closeAllTabs = function () {
-    var buttonList = $('#myTab li button');
-    if (buttonList[0]) {
-        buttonList.click();
+    var buttonList = $('#myTab li a .close');
+    if (buttonList.length > 0) {
+        for (i = 0; i < buttonList.length; i++) { 
+            $(buttonList[i]).click();
+        }
     }
     else {
-        setTimeout(function () {
-            toastr.options = {
-                closeButton: true,
-                progressBar: true,
-                showMethod: 'fadeIn',
-                hideMethod: 'fadeOut',
-                timeOut: 5000
-            };
-            toastr.warn('No Tab Found.');
-        }, 1800);
+        console.warn('WARN: No opened tab');
     }
 }
 
 function addintablist(name, tabid){
     document.getElementById('tabsList').innerHTML += `<span class="nav-group-item" id="sidetab-${tabid}" onclick="sidetabopen(this)">
                 <span class="icn icn-cancel" onclick="closetab(this)"></span>
-                ${name}<small class="hidden">${tabid}</small>
+                <span class="name">${name}</span>
+                <small class="hidden">${tabid}</small>
                 </span>`;
 }
 
@@ -63,14 +59,18 @@ function addtab (type, name, URL) {
         showTab(tabId);
         registerCloseEvent();
 
-
+        tabs.push({
+            'caption': name,
+            'command': '',
+            'args': { 'url': '#'+tabId}
+        });
         return tabId;
     }
     else {
         if (!($("#" + type)[0])) {
             var tabId = type;
 
-            $('.nav-tabs').append('<li><a href="#' + tabId + '" id="' + tabId + '_tab-li" data-toggle="tab"><i class="close closeTab fa fa-remove" type="button" ></i>' + name + '</a></li>');
+            $('.nav-tabs').append('<li><a href="#' + tabId + '" id="' + tabId + '_tab-li" data-toggle="tab"><i class="close closeTab fa fa-remove" type="button" ></i><i style="font-style: normal!important;">' + name + '</i></a></li>');
             $('#tab-box').append('<iframe class="tab-pane" id="' + tabId + '" style="width: 100%; height: 100%; border-width: 0px;"></iframe>');
 
 
@@ -80,6 +80,13 @@ function addtab (type, name, URL) {
             $(this).tab('show');
             showTab(tabId);
             registerCloseEvent();
+
+            tabs.push({
+                'caption': name,
+                'command': '',
+                'args': { 'url': '#'+tabId}
+            });
+
             return;
         }
         else {
@@ -90,9 +97,31 @@ function addtab (type, name, URL) {
 //}
 
 function registerCloseEvent() {
+    $(".closeTab").parent().bind("DOMSubtreeModified",function(){
+        var tabContentId = $(".closeTab").parent().attr("href");
+        var sidetabid = '#sidetab-'+tabContentId.substr(1);
+        var sidetext = $(sidetabid+" .name").html(); // sidebar text
 
+        //getting tab new name
+        var tabtext=($(".closeTab").parent().children()[1]).innerHTML
+
+        //setting sidebar text
+        $(sidetabid+" .name").html(tabtext);
+    });
     $(".closeTab").click(function () {
         var tabContentId = $(this).parent().attr("href");
+        
+        var name = $(this).parent().children('i')[1].innerHTML;
+        // removing tab from tab list
+         tab = {
+            'caption': name,
+            'command': '',
+            'args': { 'url': tabContentId}
+        }
+
+        var index = tabs.indexOf(tab)
+        tabs.splice(index, 1);
+
         var sidetabid = '#sidetab-'+tabContentId.substr(1);
         $(sidetabid).remove();
         if(!(tabContentId.match(/Editor/))){
@@ -157,7 +186,7 @@ function removeCurrentTab() {
         ipc.send('open-information-dialog');
     }
 }
-$(document).on('shown.bs.tab', 'a[data-toggle="tab"]', function (e) {
+$(document).on('shown.bs.tab', '#myTab a[data-toggle="tab"]', function (e) {
     var newtabid = "#sidetab-"+ e.target.id.replace('_tab-li', '')
     $(newtabid).addClass('active');
     var pretabid = "#sidetab-"+ e.relatedTarget.id.replace('_tab-li', '')

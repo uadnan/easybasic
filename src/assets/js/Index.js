@@ -1,6 +1,9 @@
 if (!demo) {
     var remote = require('electron').remote;
     var ipc = require('electron').ipcRenderer
+    const shell = require('electron').shell
+    const BrowserWindow = require('electron').remote.BrowserWindow
+    const dialog = require('electron').remote.dialog
 }
 
 var grammer = "";
@@ -19,6 +22,14 @@ function hasClass(element, cls) {
         return orig.apply(this, arguments);
     }
 })();
+
+$('#fblink').on('click', function () {
+    shell.openExternal('https://goo.gl/pOvE9r')
+})
+
+$('#weblink').on('click', function () {
+    shell.openExternal('https://goo.gl/L3dBYl')
+})
 
 var options = {
     valueNames: ['name', 'type']
@@ -196,15 +207,16 @@ function setDocTheme(theme) {
 arguments = remote.getGlobal('sharedObject').prop1;
 if (arguments.length > 1) {
     path = arguments[1]
-    console.log(path);
-    fs.stat(path.toString(), function (err, stats) {
-        if (err) {
-            window.filepath = ""
-            alert(err, 'Unable to read file')
-        }
-    })
-    text = fs.readFileSync(path, "utf8");
-    createNew();
+    if (!path == "."){
+        fs.stat(path.toString(), function (err, stats) {
+            if (err) {
+                window.filepath = ""
+                alert(err, 'Unable to read file')
+            }
+        })
+        text = fs.readFileSync(path, "utf8");
+        createNew();
+    }
 }
 
 ipc.on('OpenFile', function (e, path) {
@@ -237,3 +249,45 @@ $('#addbtnshell').on('click', function () {
 ipc.on('togglebar', function (e, bar) {
     tooglebar(bar);
 });
+ipc.on('openCmdPalette', function (e, bar) {
+    hud.updateSuggestions(tabs);
+    var CmdShown = hud.isShown();
+    CmdShown ? hud.hide(): hud.show(); 
+});
+
+$(document).ready(function () {
+    hud.presentSuggestions(tabs);
+    hud.hide();
+});
+
+//Context Menu
+function CloseThisTab(){
+    $('#myTab .active a .close').click()
+}
+
+// hang controller
+win.webContents.on('crashed', function () {
+    const options = {
+        type: 'info',
+        title: 'Renderer Process Crashed',
+        message: 'This process has crashed.',
+        buttons: ['Reload', 'Close']
+    }
+    dialog.showMessageBox(options, function (index) {
+        if (index === 0) win.reload()
+        else win.close()
+    })
+})
+win.on('unresponsive', function () {
+    const options = {
+      type: 'info',
+      title: 'Renderer Process Hanging',
+      message: 'This process is hanging.',
+      buttons: ['Reload', 'Close']
+    }
+    dialog.showMessageBox(options, function (index) {
+      if (index === 0) win.reload()
+      else win.close()
+    })
+  })
+
