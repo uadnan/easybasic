@@ -32,7 +32,8 @@ h3{
     padding-bottom: 23px;
     padding-top: 23px;
 }
-code{
+code,
+kbd{
     background: rgb(51, 60, 66)!important;
     color: rgba(255, 255, 255, .7)!important;
     font-family: Consolas;
@@ -48,4 +49,15 @@ code{
 ::-webkit-scrollbar-thumb {
     background: rgba(256,256,256, .3);
     border-radius: 1px;
+}
+p{
+    text-align: justify;
+    text-indent: 1em;
+}
+.my-thumbnail{
+    padding: 4px;
+    background-color: #293440;    
+    border: 1px solid #444;
+    border-radius: 2px;
+    margin-bottom: 10px;
 }

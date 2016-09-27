@@ -290,14 +290,19 @@
         {
             "name": "Acknowledgements",
             "data": [
-                "Contributors",
                 "Shoulder of Gaints",
-                "Technical Documentation",
                 "Fonts",
-                "Unicode-codepage mappings",
-                "Bibliography",
                 "Development tools",
-                "Emulators"
+                "About Author",
+                "About Easy Basic"
+            ]
+        },
+        {
+            "name": "License",
+            "data": [
+                "PcBasic",
+                "EasyBasic",
+                "PcBasic Documenation"
             ]
         }
     ]
