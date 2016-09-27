@@ -2,14 +2,22 @@ var helpCmds = [
   {
     'cmd': ">",
     'caption': 'Show all commands'
-  },
-  {
-    'cmd': ':',
-    'caption': 'Goto line number'
+  }, {
+    'cmd': "#",
+    'caption': 'Documenation List'
+  }, {
+    'cmd': "!",
+    'caption': 'Examples List'
   }
 ];
 var allCmds = [
-  
+  {    
+    'caption': 'Open Shell',
+    'command': 'openShell'
+  }, {
+    'caption': 'Close All Tab',
+    'command': 'closeAll'
+  }
 ]
 var defaultCommands = [
   {

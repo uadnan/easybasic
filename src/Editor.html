@@ -436,7 +436,7 @@
                 else 
                     nextLineNumstr = nextLinNum.toString() +' ';
                 editor.trigger('bla', 'type', { text: `\n${nextLineNumstr}` });
-            }, '!suggestWidgetVisible && !renameInputVisible && !inSnippetMode && !quickFixWidgetVisible')
+            }, 'editorTextFocus && !suggestWidgetVisible && !renameInputVisible && !inSnippetMode && !quickFixWidgetVisible')
             editor.onDidChangeCursorPosition(function(e){
                 LineStatus = "Ln "+e.position.lineNumber+", Col "+e.position.column; 
                 window.top.document.getElementById('LineCol').innerHTML = LineStatus;

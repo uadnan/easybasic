@@ -1,10 +1,8 @@
-if (!demo) {
-    var remote = require('electron').remote;
-    var ipc = require('electron').ipcRenderer
-    const shell = require('electron').shell
-    const BrowserWindow = require('electron').remote.BrowserWindow
-    const dialog = require('electron').remote.dialog
-}
+var remote = require('electron').remote;
+var ipc = require('electron').ipcRenderer
+const shell = require('electron').shell
+const mainWindow = require('electron').remote.getCurrentWindow();
+const dialog = require('electron').remote.dialog
 
 var grammer = "";
 var filepath = "";
@@ -220,7 +218,37 @@ if (arguments.length > 1) {
 }
 
 ipc.on('OpenFile', function (e, path) {
-    openFile(path);
+    if (path){
+        fs.open(path, 'r', function(status, fd) {
+            var buffer = new Buffer([0]);
+            fs.read(fd, buffer, 0, 1, 0, function(err, num) {
+                var firstByte = buffer[0].toString(16);
+                if (firstByte == "ff" || firstByte == 'fe' )
+                {
+                    var file= (firstByte == "ff")? 'Tokenised': 'Protected';
+                    const options = {
+                        type: 'warning',
+                        title: 'Warning',
+                        message: `We deteached that the file '${path}' is ${file} Binary File.\n\n Would you want to convert it to Plain Text.`,
+                        buttons: ['Yes', 'No']
+                    }
+                    dialog.showMessageBox(options, function (index) {
+                        if (index==1)
+                            openFile(path)
+                        else{
+                            ipc.send('run-convert')
+                        }
+                    })
+                }
+                else if (firstByte == 'fc')
+                    alert(`We deteached that the file '${path}' is QBASIC file.`)
+                else
+                    openFile(path);
+            });
+        });
+    }
+    else
+        openFile(path);
 })
 
 function tooglebar(bar) {
@@ -266,7 +294,7 @@ function CloseThisTab(){
 }
 
 // hang controller
-win.webContents.on('crashed', function () {
+mainWindow.webContents.on('crashed', function () {
     const options = {
         type: 'info',
         title: 'Renderer Process Crashed',
@@ -278,7 +306,7 @@ win.webContents.on('crashed', function () {
         else win.close()
     })
 })
-win.on('unresponsive', function () {
+mainWindow.on('unresponsive', function () {
     const options = {
       type: 'info',
       title: 'Renderer Process Hanging',

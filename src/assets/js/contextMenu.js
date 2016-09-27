@@ -14,7 +14,7 @@ $(function(){
      * Context-Menu with custom command "label"
      **************************************************/
     $.contextMenu({
-        selector: '',
+        selector: 'null',
         items: {
             "close": {
                 type: "label",

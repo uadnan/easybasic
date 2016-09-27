@@ -1,7 +1,11 @@
 if (!demo)
     ipc = require('electron').ipcRenderer
 
-var tabs=[] 
+var tabs=[]
+
+function openTabById(id){
+    $(`#myTab a[href="${id}"]`).click();
+}
 
 var closeAllTabs = function () {
     var buttonList = $('#myTab li a .close');
@@ -61,8 +65,8 @@ function addtab (type, name, URL) {
 
         tabs.push({
             'caption': name,
-            'command': '',
-            'args': { 'url': '#'+tabId}
+            'command': 'openTab',
+            'args': { 'URL': '#'+tabId}
         });
         return tabId;
     }
@@ -83,8 +87,8 @@ function addtab (type, name, URL) {
 
             tabs.push({
                 'caption': name,
-                'command': '',
-                'args': { 'url': '#'+tabId}
+                'command': 'openTab',
+                'args': { 'URL': '#'+tabId}
             });
 
             return;
@@ -115,8 +119,8 @@ function registerCloseEvent() {
         // removing tab from tab list
          tab = {
             'caption': name,
-            'command': '',
-            'args': { 'url': tabContentId}
+            'command': 'openTab',
+            'args': { 'URL': tabContentId}
         }
 
         var index = tabs.indexOf(tab)

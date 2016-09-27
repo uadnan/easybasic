@@ -1,5 +1,5 @@
 path = `${apppath}/json/Examples.json`;
-
+var hudExamples = [];
 var options = {
     valueNames: ['name', 'type'],
     item: '<li class="mdl-list__item mdl-list__item--two-line Example-li" onclick="openExample(this);">'+
@@ -8,26 +8,30 @@ var options = {
     '</li>'
 };
 var json;
-if(!demo){
-    fs.stat(path, function (err, stats) {
-        if (err) {
-            alert(err);
-        }
+fs.stat(path, function (err, stats) {
+    if (err) {
+        alert(err);
+    }
+})
+json = fs.readFileSync(path, "utf8");
+obj = JSON.parse(json);
+
+
+obj.examples.forEach(function (node) {
+    hudExamples.push({
+        'caption': node.name,
+        'command': 'openExample'
     })
-    json = fs.readFileSync(path, "utf8");
-    obj = JSON.parse(json);
-    var values = obj.examples;
-    var userList = new List('users', options, values);
-}
-else{
-    $.getJSON('https://raw.githubusercontent.com/naumanumer/easybasic/master/json/Examples.json', function(data) {
-        var values = data.examples;
-        var userList = new List('users', options, values);
-    });
-}
+})
+
+var values = obj.examples;
+var userList = new List('users', options, values);
+
 function openExample(element) {
-    var filename = element.querySelectorAll('.name')[0].innerHTML + ".bas";
-    console.log(filename);
-    var path = ".\\Examples\\" + filename;
+    var filename = element.querySelectorAll('.name')[0].innerHTML;
+    addExampleTab(filename);
+}
+function addExampleTab(filename){
+    var path = ".\\Examples\\" + filename + '.bas';
     openFile(path);
 }

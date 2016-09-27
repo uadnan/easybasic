@@ -51,7 +51,7 @@ var hud = (function ($, Handlebars, Fuse) {
                 }
                 // Submit Command
                 if (isVisable && (13 === event.which) && (currentSuggestions.length > 0)) {
-                    var current_index = $('.active').index();
+                    var current_index = $('.suggestion.active').index();
                     runCommand(currentSuggestions[current_index]);
                     hide();
                 }
@@ -98,7 +98,7 @@ var hud = (function ($, Handlebars, Fuse) {
         $options.removeClass('active');
         $suggestionListDiv.animate({
             scrollTop: $options.eq(nextIndex).offset().top - $suggestionListDiv.offset().top + $suggestionListDiv.scrollTop()
-        }, 200);
+        }, 10);
         $options.eq(nextIndex).addClass('active');
     }
 
@@ -122,16 +122,28 @@ var hud = (function ($, Handlebars, Fuse) {
     function handleCommandFieldChanged() {
         var fieldText = $(commandField).val();
         if (fieldText === '') {
-            updateSuggestions(allSuggestions);
+            updateSuggestions(tabs);
         } else {
             if (fieldText === "?") {
                 updateSuggestions(helpCmds);
             }
-            else if (fieldText.charAt(0) === ">") {
-                updateSuggestions(allCmds)
+            else if (fieldText === ">") {
+                presentSuggestions(allCmds)
+            }
+            else if (fieldText === "#") {
+                presentSuggestions(hudJson);
+            }
+            else if (fieldText === "!") {
+                presentSuggestions(hudExamples);
             }
             else {
-                var results = fuse.search(fieldText);
+                if (fieldText.charAt(0) === "?" ||
+                    fieldText.charAt(0) === ">" ||
+                    fieldText.charAt(0) === "#" ||
+                    fieldText.charAt(0) === "!")
+                    var results = fuse.search(fieldText.slice(1));
+                else
+                    var results = fuse.search(fieldText);
                 updateSuggestions(results);
             }
         }
@@ -165,21 +177,19 @@ var hud = (function ($, Handlebars, Fuse) {
     }
 
     function presentSuggestions(suggestions) {
-        console.log('presentSuggestions');
-        console.log(suggestions);
-        allSuggestions = suggestions;                  // Update the list of all suggestions
+        allSuggestions = suggestions; // Update the list of all suggestions              
         var fuseOptions = {
             shouldSort: true,
             threshold: 0.3,
             keys: ['caption']
         };      // Use the caption as the fuzzy search key
         fuse = new Fuse(allSuggestions, fuseOptions); // Create a new fuse object of the new list of suggestions
-        show();
-        $(commandField).val('');
+        //$(commandField).val('');
         updateSuggestions(allSuggestions);
     }
 
     function updateSuggestions(suggestions) {
+        
         currentSuggestions = suggestions;
         selectedSuggestionIndex = 0;
         $(suggestionsDiv).empty();
@@ -190,13 +200,17 @@ var hud = (function ($, Handlebars, Fuse) {
     }
 
     function runCommand(suggestion) {
-        var runCommandMessage = {
-            'action': 'RunCommand',
-            'command': suggestion.command,
-            'args': suggestion.args
-        };
-        console.log(runCommandMessage)
-    }
+        if (suggestion.command == 'openTab')
+            openTabById(suggestion.args.URL)
+        else if (suggestion.command == 'openShell')
+            ipc.send('run-shell', '');
+        else if (suggestion.command == 'closeAll')
+            closeAllTabs();
+        else if (suggestion.command == 'openDocs')
+            addDocTab(suggestion.caption);
+        else if (suggestion.command == 'openExample')
+            addExampleTab(suggestion.caption);
+    }  
 
     var exports = {
         'initialize': initialize,
