@@ -229,15 +229,12 @@ ipc.on('OpenFile', function (e, path) {
                     const options = {
                         type: 'warning',
                         title: 'Warning',
-                        message: `We deteached that the file '${path}' is ${file} Binary File.\n\n Would you want to convert it to Plain Text.`,
+                        message: `We deteached that the file '${path}' is ${file} Binary File.\n\n Would you want to open it.`,
                         buttons: ['Yes', 'No']
                     }
                     dialog.showMessageBox(options, function (index) {
-                        if (index==1)
+                        if (index==0)
                             openFile(path)
-                        else{
-                            ipc.send('run-convert')
-                        }
                     })
                 }
                 else if (firstByte == 'fc')

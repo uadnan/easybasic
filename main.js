@@ -9,6 +9,7 @@ const ipc = require('electron').ipcMain
 const dialog = require('electron').dialog
 var fs = require('fs');
 const spawn = require('child_process').spawn;
+var path = require('path');
 
 const Menu = electron.Menu
 let mainWindow
@@ -349,23 +350,21 @@ ipc.on('run-shell', function(e, parameters){
 })
 
 ipc.on('run-convert', function(e, parameters){
-  var path = app.getAppPath();
-  var spawn = require('child_process').spawn;
-  const child = exec(`"${path}\\PC-BASIC\\a.bat"`, []);
-  //var child = spawn(process.execPath, [process.argv[1], 123]);
-  var stdout = '';
-  var stderr = '';
-  child.stdout.on('data', function(buf) {
-    //console.log('[STR] stdout "%s"', String(buf));
-    stdout += buf;
+  const spawn = require('child_process').spawn;
+  var filepath = path.join(__dirname, 'PC-BASIC\\pcbasic.com');
+  const ls = spawn(filepath, 
+    ['--load="Art.BAS"', '--convert=A'],
+    [{cwd: path.join(__dirname, 'PC-BASIC'), shell: true}]);
+
+  ls.stdout.on('data', (data) => {
+    console.log(`stdout: ${data}`);
   });
-  child.stderr.on('data', function(buf) {
-    //console.log('[STR] stderr "%s"', String(buf));
-    stderr += buf;
+
+  ls.stderr.on('data', (data) => {
+    console.log(`stderr: ${data}`);
   });
-  child.on('close', function(code) {
-    console.log('[END] code', code);
-    console.log('[END] stdout "%s"', stdout);
-    console.log('[END] stderr "%s"', stderr);
+
+  ls.on('close', (code) => {
+    console.log(`child process exited with code ${code}`);
   });
 })
