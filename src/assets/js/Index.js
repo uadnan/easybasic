@@ -101,7 +101,7 @@ ipc.on('opened-file', function (event, path) {
     addToRecent(path);
     openFile(path);
 })
-function openFile(path) {
+function openFile(path, isExample =false) {
     if (!path){
         createNew('');
         return;
@@ -110,6 +110,7 @@ function openFile(path) {
         return alert("Please Wait While Another File is Loading...")
     }
     window.filepath = path;
+    
     fs.stat(path.toString(), function (err, stats) {
         if (err) {
             window.filepath = ""
@@ -133,6 +134,8 @@ function openFile(path) {
     else
         grammer = "";
 
+    if (isExample)
+        window.filepath = '';
     addtab('Editor', name, "Editor.html");
 }
 
@@ -315,4 +318,3 @@ mainWindow.on('unresponsive', function () {
       else win.close()
     })
   })
-

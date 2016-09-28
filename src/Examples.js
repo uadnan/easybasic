@@ -33,5 +33,5 @@ function openExample(element) {
 }
 function addExampleTab(filename){
     var path = ".\\Examples\\" + filename + '.bas';
-    openFile(path);
+    openFile(path, true);
 }
