@@ -4,75 +4,42 @@ var recentFilePath = `${apppath}/json/Recent.json`;
 var Recentstr = "";
 var icon = "";
 var json;
-if(!demo){
-    fs.stat(recentFilePath, function (err, stats) {
-        if (err) {
-            alert(err);
-        }
-    })
-    json = fs.readFileSync(recentFilePath, "utf8");
-}
-else{
-    $.getJSON('https://raw.githubusercontent.com/naumanumer/easybasic/master/json/Recent.json', function(data) {
-        if (data.files.length == 0) {
-            document.getElementById('RecentList').innerHTML = '<i>No recent file found</i>';
-            console.warn("No Recent File Found.")
-        }
-        else {
-            data.files.forEach(function (file) {
-                if (file.extension.toUpperCase() == "BAS")
-                    icon = "fa fa-file-code-o"
-
-                else if (file.extension.toUpperCase() == "TXT")
-                    icon = "fa fa-file-text-o"
-
-                else if (file.extension.toUpperCase() == "BAZ" || file.extension.toUpperCase() == "ZIP")
-                    icon = "fa fa-file-archive-o"
-
-                else
-                    icon = "fa fa-file-o"
-
-
-                Recentstr = Recentstr + '<span class="nav-group-item" onclick="openRecent(this)">' +
-                    '<span class="' + icon + '"></span>' +
-                    file.Name + '<small class="hidden">' + file.Path + '</small>' +
-                    '</span>';
-            }, this);
-        }
-
-        document.getElementById('RecentList').innerHTML = Recentstr;
-    });
-}
-if(!demo){
-    obj = JSON.parse(json);
-    if (obj.files.length == 0) {
-        document.getElementById('RecentList').innerHTML = '<i>No recent file found</i>';
-        console.warn("No Recent File Found.")
+fs.stat(recentFilePath, function (err, stats) {
+    if (err) {
+        alert(err);
     }
-    else {
-        obj.files.forEach(function (file) {
-            if (file.extension.toUpperCase() == "BAS")
-                icon = "fa fa-file-code-o"
+})
 
-            else if (file.extension.toUpperCase() == "TXT")
-                icon = "fa fa-file-text-o"
+json = fs.readFileSync(recentFilePath, "utf8");
+obj = JSON.parse(json);
 
-            else if (file.extension.toUpperCase() == "BAZ" || file.extension.toUpperCase() == "ZIP")
-                icon = "fa fa-file-archive-o"
+if (obj.files.length == 0) {
+    document.getElementById('RecentList').innerHTML = '<span class="nav-group-item" style="text-align: center;"><small><i>No file to display</i></small></span>';
+}
+else {
+    obj.files.forEach(function (file) {
+        if (file.extension.toUpperCase() == "BAS")
+            icon = "fa fa-file-code-o"
 
-            else
-                icon = "fa fa-file-o"
+        else if (file.extension.toUpperCase() == "TXT")
+            icon = "fa fa-file-text-o"
+
+        else if (file.extension.toUpperCase() == "BAZ" || file.extension.toUpperCase() == "ZIP")
+            icon = "fa fa-file-archive-o"
+
+        else
+            icon = "fa fa-file-o"
 
 
-            Recentstr = Recentstr + '<span class="nav-group-item" onclick="openRecent(this)">' +
-                '<span class="' + icon + '"></span>' +
-                file.Name + '<small class="hidden">' + file.Path + '</small>' +
-                '</span>';
-        }, this);
-    }
-
+        Recentstr = Recentstr + '<span class="nav-group-item" onclick="openRecent(this)">' +
+            '<span class="' + icon + '"></span>' +
+            file.Name + '<small class="hidden">' + file.Path + '</small>' +
+            '</span>';
+    }, this);
     document.getElementById('RecentList').innerHTML = Recentstr;
 }
+
+
 function openRecent(element) {
     var filename = element.getElementsByTagName('span')[0].innerHTML;
     var filepath = element.getElementsByTagName('small')[0].innerHTML;
