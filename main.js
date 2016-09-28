@@ -55,9 +55,10 @@ let template = [
                 {name: 'All Files', extensions: ['*']}
               ]
             }, function (files) {
-              
-              if (typeof files == 'object') mainWindow.webContents.send('OpenFile', files[0]);
-              else mainWindow.webContents.send('OpenFile', files);
+              if (files != null){
+                if (typeof files == 'object') mainWindow.webContents.send('OpenFile', files[0]);
+                else mainWindow.webContents.send('OpenFile', files);
+              }
             })
           }
       }, {type: 'separator'}, {
