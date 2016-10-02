@@ -1,0 +1,25 @@
+{
+  "name": "SkelEktron",
+  "productName": "SkelEktron",
+  "description": "Electron Template Desktop Application",
+  "version": "0.0.3",
+  "homepage": "https://github.com/BZCoding/SkelEktron",
+  "author": {
+    "name": "Vito Tardia / BZ Coding",
+    "email": "vito@bzcoding.com",
+    "url": "https://bzcoding.com/"
+  },
+  "main": "main.js",
+  "electronVersion": "1.0.0",
+  "dependencies": {
+    "electron-debug": "^1",
+    "devtron": "^1.1",
+    "lodash": "^4"
+  },
+  "config": {
+    "url": "index.html",
+    "update": {
+      "url": false
+    }
+  }
+}
