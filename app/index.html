@@ -1,0 +1,186 @@
+<html>
+<head>
+    
+    <!-- add the jQWidgets base styles and one of the theme stylesheets -->
+    <link rel="stylesheet" href="assets/jqwidgets/styles/jqx.base.css" type="text/css" />
+    <link rel="stylesheet" href="assets/jqwidgets/styles/jqx.darkblue.css" type="text/css" />
+    <!-- Icons-->
+    <link href="./assets/css/simple-line-icons.css" rel="stylesheet" type="text/css" />
+    <link href="./assets/css/font-awesome.css" rel="stylesheet" type="text/css" />
+    <!-- Custom style sheets -->
+    <link rel="stylesheet" href="assets/css/photon.css" type="text/css" />
+    <link rel="stylesheet" href="assets/css/bootstrap.css" type="text/css" />
+    <link rel="stylesheet" href="assets/css/app.css" type="text/css" />
+    <link rel="stylesheet" href="assets/css/goldenlayout-Material-theme.css" type="text/css" />
+    <link rel="stylesheet" href="assets/css/goldenlayout-base.css" type="text/css" />
+</head>
+<body>
+  <div class="window">
+
+    <div class="window-content">
+      <div class="pane-group">
+        <div class="pane pane-mini primary-sidebar" id="sidebar">
+          <ul class="list-unstyled sidebar-button-list" id="sidetab">
+              <li><a id="home_tab_a" data-toggle="tab" href="#home"><i class="icon-note"></i></a></li>
+              <li><a id="files_tab_a" data-toggle="tab" href="#files"><i class="icon-list"></i></a></li>
+              <li><a id="comparer_tab_a" data-toggle="tab" href="#comparer"><i class="icon-docs"></i></a></li>
+              <li><a id="docs_tab_a" data-toggle="tab" href="#docs"><i class="icon-notebook"></i></a></li>
+          </ul>
+        </div>
+
+        <div id="MainSideSplitter">
+            <div class="splitter-panel" id="side_pane">
+              <div class="pane pane-sm sidebar" style="overflow: hidden;">
+                <div class="tab-content">
+                    <div id="home" class="tab-pane fade in active">
+                        <h5 class="text-center">Explorer</h5>
+                        <h5 class="nav-group-title">Tabs</h5>
+                        <div id="tabs-list-div" style="overflow:hidden;" onscroll="shadow(this)">
+                            <nav class="nav-group" id="tabsList">
+                                
+                            </nav>
+                        </div>
+
+                        <h5 class="nav-group-title">Recents</h5>
+                        <div id="recent-list-div" style="overflow:hidden;" onscroll="shadow(this)">
+                            <nav class="nav-group" id="RecentList">
+
+                            </nav>
+                        </div>
+                    </div>
+
+                    <div id="files" class="tab-pane fade">
+                        <h5 class="text-center">Examples</h5>
+                        <nav class="nav-group">
+                            <div id="users" style="padding-top: 10px; padding-bottom: 10px;">
+                                <div style="margin-left:10px; margin-right:10px; margin-bottom:10px;">
+                                    <form action="#">
+                                        <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                                            <input class="mdl-textfield__input search" type="text" id="sample3">
+                                            <label class="mdl-textfield__label" for="sample3" style="font-weight:100;"><i class="fa fa-search"></i>Search</label>
+                                        </div>
+                                    </form>
+                                    <!--<input class="form-control search" type="text" placeholder="Search">-->
+                                    <div class="row" style="margin-top: -10px; margin-bottom: -15px;">
+                                        <small style="padding-top:6px;padding-left:6px; vertical-align: sub;">Sort by:</small>
+                                        <ul class="list-unstyled list-inline pull-right">
+                                            <li>
+                                                <button id="sort-cat" class="sort mdl-button mdl-js-button mdl-button--icon" data-sort="type"><i class="fa fa-sort-amount-asc"></i></button>
+                                                <span for="sort-cat" class="mdl-tooltip">Sort By Catagory</span>
+                                            </li>
+                                            <li>
+                                                <button id="sort-name" class="sort mdl-button mdl-js-button mdl-button--icon" data-sort="name"><i class="fa fa-sort-alpha-asc"></i></button>
+                                                <span for="sort-name" class="mdl-tooltip">Sort By Name</span>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                                <div id="example-list-div" style="overflow:hidden;" onscroll="shadow(this)">
+                                    <ul class="list list-group" id="example-list" style="margin-left:10px; padding-bottom:10px; padding-right: 23px;"></ul>
+                                </div>
+                            </div>
+
+                        </nav>
+                    </div>
+
+                    <div id="comparer" class="tab-pane fade">
+                        <h5 class="text-center">File Comparer</h5>
+                        <h5 class="nav-group-title">Select Files</h5>
+                        <div class="row" style="margin-left:10px; margin-top:15px;">
+                            <button class="mdl-button mdl-js-button mdl-button--raised" style="margin-right:20px;" onclick="openOrigianl()"><span class="icn icn-folder" style="margin-right:5px;"></span> Original File</button>
+                            <p class="nav-group-title pull-right" id="originalName">No File Selected</p>
+                            <span for="originalName" class="mdl-tooltip"><span id="originalPath">Please Select any File</span></span>
+                        </div>
+                        <div class="row" style="margin-left:10px; margin-top:10px; margin-bottom:10px;">
+                            <button class="mdl-button mdl-js-button mdl-button--raised" style="margin-right:20px;" onclick="openModified()"><span class="icn icn-folder" style="margin-right:5px;"></span> Modified File</button>                            
+                            <p class="nav-group-title pull-right" id="modifiedName">No File Selected </p>
+                            <span for="modifiedName" class="mdl-tooltip"><span id="modifiedPath">Please Select any File</span></span>
+                        </div>
+                        <button class="mdl-button mdl-js-button mdl-button--raised pull-right" style="margin-right:20px;" onclick="compare()"><span class="icn icn-docs" style="margin-right:5px;"></span>Compare</button>
+                    </div>
+
+                    <div id="docs" class="tab-pane fade">
+                        <h5 class="text-center">Documentation</h5>
+                        <nav class="nav-group">
+                            <div id="docs-list" style="padding-top: 10px; padding-bottom: 10px;">
+                                <div style="margin-left:10px; margin-right:10px; margin-bottom:10px;">
+                                    
+                                        <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label" style="margin-top:-10px; margin-bottom:-10px;">
+                                            <input class="mdl-textfield__input search" type="text" id="doc-search">
+                                            <label class="mdl-textfield__label" for="doc-search" style="font-weight:100;"><i class="fa fa-search"></i>Search</label>
+                                        </div>
+                                    
+                                </div>
+                                <div id="doc-list-div" style="overflow:hidden;" onscroll="shadow(this)">
+                                    <ul class="list list-unstyled" id="doc-list" style="margin-top:0; margin-left:10px; padding-bottom:10px;">
+
+                                    </ul>
+                                </div>
+                            </div>
+                        </nav>
+
+                    </div>
+
+                    <div id="settings" class="tab-pane fade">
+                        <h5 class="text-center">Settings</h5>
+                        <!--<h5 class="nav-group-title">Theme</h5>-->
+                        <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label getmdl-select" style="width: 150px;margin-left: 30px;padding-left: 10px;padding-right: 10px; margin-top:20px">
+                            <input class="mdl-textfield__input" value="Material Dark" type="text" id="theme" readonly tabIndex="-1" data-val="Material Dark"/>
+                            <label class="mdl-textfield__label" for="theme">Theme</label>
+                            <label for="theme" class="pull-right" style="margin-top: -25px; margin-right: -10px;"><i class="fa fa-angle-down"></i></label>
+                            <ul class="mdl-menu mdl-menu--bottom-left mdl-js-menu" for="theme">
+                                <li class="mdl-menu__item">Codepen</li>
+                                <li class="mdl-menu__item">Github</li>
+                                <li class="mdl-menu__item">Solarized Dark</li>
+                                <li class="mdl-menu__item">Solarized Light</li>
+                                <li class="mdl-menu__item">VS default</li>
+                                <li class="mdl-menu__item">VS Dark</li>
+                                <li class="mdl-menu__item">Material Dark</li>
+                                <li class="mdl-menu__item">Material Light</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+              </div>
+            </div>
+            <div class="splitter-panel" id="pane_main">
+              <div class="pane" style="overflow: hidden;">
+                <div id="MainhorizontalSplitter">
+                  <div id="MainDocker" class="splitter-panel">
+                  </div>
+
+                  <div id="bottomPane" class="splitter-panel">
+                      
+                  </div>
+                </div>
+              </div>
+            </div>
+        </div>
+      </div>
+    </div>
+
+
+    <script>if (typeof module === 'object') {window.module = module; module = undefined;}</script>
+    <!-- add the jQuery script -->
+    <script type="text/javascript" src="assets/js/jquery.js"></script>	
+    <!-- add the jQWidgets framework -->
+    <script type="text/javascript" src="assets/jqwidgets/jqxcore.js"></script>
+    <script type="text/javascript" src="assets/jqwidgets/jqxribbon.js"></script>
+    <script type="text/javascript" src="assets/jqwidgets/jqxwindow.js"></script>
+    <script type="text/javascript" src="assets/jqwidgets/jqxlayout.js"></script>
+    <script type="text/javascript" src="assets/js/goldenLayout.js"></script>
+    <script type="text/javascript" src="assets/jqwidgets/jqxsplitter.js"></script>
+
+    <script src="assets/js/bootstrap.min.js"></script>
+    <script src="assets/js/jquery.slimscroll.min.js"></script>
+
+    <script type="text/javascript" src="assets/js/layoutInitializer.js"></script>
+    <script>if (window.module) module = window.module;</script>
+  </div>
+</body>
+  <script>
+    // You can also require other files to run in this process
+    require('./assets/js/ex-links.js')
+    require('./assets/js/notifications.js')
+  </script>
+</html>
