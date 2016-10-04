@@ -14,8 +14,6 @@
   },
   "main": "main.js",
   "scripts": {
-    "integration": "standard && mocha test/integration --recursive",
-    "coverage": "istanbul cover node_modules/.bin/_mocha -- --recursive",
     "depcheck": "dependency-check app --entry main.js --unused --no-dev",
     "lint": "standard",
     "start": "electron ./app/main",

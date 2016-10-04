@@ -3802,7 +3802,7 @@ of the horizontal scrollbar.*/
 /*applied to header areas. Tabs, Menu, Window, Calendar.*/
 .jqx-widget-header {-moz-box-sizing: content-box; box-sizing: content-box; -ms-touch-action: none;-moz-background-clip: padding; -webkit-text-size-adjust: none; background-clip: padding-box; -webkit-background-clip: padding-box; -webkit-tap-highlight-color: rgba(0,0,0,0); border-color: #c5c5c5; background: #e8e8e8; }
 
-.jqx-fill-state-normal{-moz-box-sizing: content-box; box-sizing: content-box; -ms-touch-action: none;font-family: Verdana,Arial,sans-serif; font-style: normal; font-size: 13px; border-color:#aaa; background: #efefef; }
+.jqx-fill-state-normal{-moz-box-sizing: content-box; box-sizing: content-box; -ms-touch-action: none;font-family: Verdana,Arial,sans-serif; font-style: normal; font-size: 13px; border-color:#aaa; background: orange; opacity: 0.5}
 .jqx-fill-state-hover {-moz-box-sizing: content-box; box-sizing: content-box; border-color:#999;  background: #e8e8e8;}
 .jqx-fill-state-pressed{-moz-box-sizing: content-box; box-sizing: content-box; border-color:#999; background: #d1d1d1;}
 .jqx-fill-state-focus {border-color: #555; }

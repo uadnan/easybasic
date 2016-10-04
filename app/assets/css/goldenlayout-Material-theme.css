@@ -155,10 +155,9 @@
 .lm_splitter:hover{
 	background: orange;
 	opacity: 0.5
-
 }
 .lm_controls{
-	padding-top: 13 !important;
+	top: 25%;
 }
 .lm_close_tab>i{
 	padding-top: 1
