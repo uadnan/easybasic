@@ -1,4 +1,5 @@
 .jqx-splitter-splitbar-vertical,
+.jqx-splitter-splitbar-horizontal,
 .jqx-splitter{
     border-width: 0px;
 }
@@ -8,22 +9,37 @@
 }
 .jqx-splitter-splitbar-vertical{
     position: absolute;
-    z-index: 100;
+    z-index: 1000;
     cursor: e-resize !important;
 }
 #pane_main{
     margin-left: -6px;
     padding-right: 6px;
 }
-.jqx-splitter-splitbar-hover,
-.jqx-splitter-splitbar-vertical,
-.jqx-splitter-collapse-button-vertical{
+.jqx-splitter-splitbar-vertical{
     opacity: 0;
-    background: #1e1e1e;
+}
+.jqx-splitter-splitbar-horizontal{
+    background: rgba(62, 71, 76, 1);
+    
 }
 .jqx-splitter-splitbar-hover{
-    opacity: .1;
+    background: orange !important;
 }
-.jqx-splitter-collapse-button-vertical{
+.jqx-splitter-collapse-button-vertical,
+.jqx-splitter-collapse-button-horizontal{
+    display: none;
+}
+#MainhorizontalSplitter{
+    background: #283339;
+}
+#bottomPane{
+    background: #283339;
+}
+#bottomPane .lm_tab .lm_title,
+#bottomPane .lm_tab .lm_close_tab{
+    padding: 4;
+}
+#bottomPane .lm_controls{
     display: none;
 }

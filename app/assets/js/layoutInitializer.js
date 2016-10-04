@@ -24,18 +24,62 @@ var config = {
         content: [
             {
             type:'component',
-            componentName: 'example',
+            componentName: 'Editor',
+            title: 'Untitled',
+            componentState: { path: 'Component 1', id: 'Editor1' }
+            }
+        ]
+    }]
+};
+
+var bottom_config = {
+    settings:{
+        hasHeaders: true,
+        constrainDragToContainer: true,
+        reorderEnabled: true,
+        selectionEnabled: false,
+        popoutWholeStack: false,
+        blockedPopoutsThrowError: true,
+        closePopoutsOnUnload: true,
+        showPopoutIcon: false,
+        showMaximiseIcon: false,
+        showCloseIcon: true
+    },
+    dimensions: {
+        borderWidth: 5,
+        minItemHeight: 10,
+        minItemWidth: 10,
+        headerHeight: 30,
+        dragProxyWidth: 300,
+        dragProxyHeight: 200
+    },
+    content: [{
+        type: 'row',
+        content: [
+            {
+            type:'component',
+            componentName: 'Editor',
+            title: 'nauman',
             componentState: { text: 'Component 1' }
             }
         ]
     }]
 };
 
-var myLayout = new GoldenLayout( config, $('#MainDocker') );
+var MainDockerLayout = new GoldenLayout( config, $('#MainDocker') );
+var BottomDockerLayout = new GoldenLayout( bottom_config, $('#bottomPane') );
 
-myLayout.registerComponent( 'example', function( container, state ){
+MainDockerLayout.registerComponent( 'Editor', function( container, state ){
+    container.getElement().html('<div id="'+state.id+'"></div>');
+    //InitializeEditor(state.id);
+});
+MainDockerLayout.on('tabCreated', function(){
+    
+})
+BottomDockerLayout.registerComponent( 'Editor', function( container, state ){
     container.getElement().html( '<h2>' + state.text + '</h2>');
 });
+
 $(document).ready(function () {
     // spliting main and side pane
     $("#MainSideSplitter").jqxSplitter({
@@ -58,22 +102,20 @@ $(document).ready(function () {
         orientation: 'horizontal',
         panels: [{
             min: 200,
-            size: '100%',
+            size: '75%',
             collapsible: false
-        },{
-            min: 60,
-            size: 100,
-            collapsed: true
         }]
     });
 
-    myLayout.init();
-    var fisrtItem = myLayout.root.contentItems[0];
-    myLayout.selectItem(fisrtItem);
+    MainDockerLayout.init();
+    BottomDockerLayout.init();
+    var fisrtItem = MainDockerLayout.root.contentItems[0];
+    MainDockerLayout.selectItem(fisrtItem);
 });
 
 $(window).resize(function() {
     setTimeout(function(){
-        myLayout.updateSize();
+        MainDockerLayout.updateSize();
+        BottomDockerLayout.updateSize();
     }, 200)
 })
