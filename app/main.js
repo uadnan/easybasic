@@ -72,7 +72,7 @@ function initialize () {
       'height': 768,
       'title': app.getName(),
       'webPreferences': {
-        'nodeIntegration': pjson.config.nodeIntegration || true, // Disabling node integration allows to use libraries such as jQuery/React, etc
+        'nodeIntegration': false, //pjson.config.nodeIntegration || true, // Disabling node integration allows to use libraries such as jQuery/React, etc
         'preload': path.resolve(path.join(__dirname, 'preload.js'))
       }
     })

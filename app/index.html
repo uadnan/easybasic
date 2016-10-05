@@ -1,6 +1,11 @@
 <html>
 <head>
-    
+    <script>
+        window.nodeRequire = require;
+        delete window.require;
+        delete window.exports;
+        delete window.module;
+    </script>
     <!-- add the jQWidgets base styles and one of the theme stylesheets -->
     <link rel="stylesheet" href="assets/jqwidgets/styles/jqx.base.css" type="text/css" />
     <link rel="stylesheet" href="assets/jqwidgets/styles/jqx.darkblue.css" type="text/css" />
@@ -139,9 +144,10 @@
     </div>
 
 
-    <script>if (typeof module === 'object') {window.module = module; module = undefined;}</script>
+    <!--<script>window.$ = window.jQuery = require('./assets/js/jquery.js');</script>-->
+    <script type="text/javascript" src="assets/js/jquery.js"></script>
+    <!--<script type="text/javascript" src="assets/js/jquery.js" onload="window.$ = window.jQuery = module.exports;"></script>-->
     <!-- add the jQuery script -->
-    <script type="text/javascript" src="assets/js/jquery.js"></script>	
     <!-- add the jQWidgets framework -->
     <script type="text/javascript" src="assets/jqwidgets/jqxcore.js"></script>
     <script type="text/javascript" src="assets/jqwidgets/jqxlayout.js"></script>
@@ -155,13 +161,6 @@
     <script src="lib/monaco-editor/min/vs/loader.js"></script>
     <script type="text/javascript" src="assets/js/EditorInitializer.js"></script>
     <script type="text/javascript" src="assets/js/layoutInitializer.js"></script>
-    <script>if (window.module) module = window.module;</script>
-    <script>
-        require.config({ paths: { 'vs': 'lib/monaco-editor/min/vs' }});
-require(['vs/editor/editor.main'], function() {
-      
-})
-        </script>
   </div>
 </body>
   <script>
