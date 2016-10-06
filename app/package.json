@@ -1,13 +1,13 @@
 {
-  "name": "SkelEktron",
-  "productName": "SkelEktron",
-  "description": "Electron Template Desktop Application",
-  "version": "0.0.3",
-  "homepage": "https://github.com/BZCoding/SkelEktron",
+  "name": "easybasic",
+  "productName": "Easy Basic",
+  "description": "An IDE for gwbasic",
+  "version": "1.0.0",
+  "homepage": "https://naumanumer.github.io/easybasic",
   "author": {
-    "name": "Vito Tardia / BZ Coding",
-    "email": "vito@bzcoding.com",
-    "url": "https://bzcoding.com/"
+    "name": "Nauman Umer",
+    "email": "u.nauman@outlook.com.com",
+    "url": "https://naumanumer.github.io/easybasic"
   },
   "main": "main.js",
   "electronVersion": "1.0.0",

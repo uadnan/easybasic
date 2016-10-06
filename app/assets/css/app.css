@@ -43,3 +43,6 @@
 #bottomPane .lm_controls{
     display: none;
 }
+.Editor{
+    height: 100%;
+}

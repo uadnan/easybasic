@@ -70,11 +70,12 @@ var MainDockerLayout = new GoldenLayout( config, $('#MainDocker') );
 var BottomDockerLayout = new GoldenLayout( bottom_config, $('#bottomPane') );
 
 MainDockerLayout.registerComponent( 'Editor', function( container, state ){
-    container.getElement().html('<div id="'+state.id+'"></div>');
-    //InitializeEditor(state.id);
-});
-MainDockerLayout.on('tabCreated', function(){
+    container.getElement().html('<div class="Editor" id="'+state.id+'"></div>');
     
+});
+MainDockerLayout.on('tabCreated', function(e){
+    var id = e.contentItem.element[0].childNodes[0].childNodes[0].id;
+    setTimeout(function(){InitializeEditor(id)}, 2000);
 })
 BottomDockerLayout.registerComponent( 'Editor', function( container, state ){
     container.getElement().html( '<h2>' + state.text + '</h2>');

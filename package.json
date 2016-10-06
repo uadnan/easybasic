@@ -22,16 +22,9 @@
   ],
   "devDependencies": {
     "async": "^1.5",
-    "chai": "^3.5",
-    "chai-as-promised": "5.3.0",
-    "dependency-check": "^2.5",
-    "electron-builder": "^3",
     "electron-is-dev": "^0.1.2",
     "electron-prebuilt": "^1",
-    "istanbul": "^0.4",
     "pre-commit": "^1.1",
-    "rimraf": "^2.5",
-    "shelljs": "^0.7",
-    "spectron": "~3.0.0"
+    "shelljs": "^0.7"    
   }
 }
