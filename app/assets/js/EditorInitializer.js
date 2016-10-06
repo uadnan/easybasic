@@ -9,6 +9,7 @@ function InitializeEditor(id, value = '', language='gb'){
         language: language,
         parameterHints: true,
         automaticLayout:true,
-        folding: true
+        folding: true,
+        theme: 'material-dark'
     });
 }
