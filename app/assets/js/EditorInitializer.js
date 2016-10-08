@@ -1,11 +1,4 @@
 var path = require('path');
-function uriFromPath(_path) {
-    var pathName = path.resolve(_path).replace(/\\/g, '/');
-    if (pathName.length > 0 && pathName.charAt(0) !== '/') {
-        pathName = '/' + pathName;
-    }
-    return encodeURI('file://' + pathName);
-}
 amdRequire.config({
     baseUrl: uriFromPath(path.join(__dirname, './lib/monaco-editor/min'))
 });

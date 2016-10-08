@@ -9,4 +9,4 @@ Returns the code point (ASCII value) for the first character of `char`.
 
 ## Errors
 * `char` has a numeric value: `Type mismatch`.
-* `char` equals "": `Illegal function call`.
+* `char` equals `""`: `Illegal function call`.
