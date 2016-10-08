@@ -11,6 +11,14 @@
     font-family: roboto;
     color: rgba(255, 255, 255, .7)!important;
     padding: 20px;
+    height: 100%;
+    overflow-y: scroll;
+}
+.doc-body .credits{
+     background: rgba(0, 0, 0, .1);
+     padding: 15 10;
+     margin-top: 30px;
+     border-radius: 5px;
 }
 .doc-body p{
     font-weight: 400;
@@ -36,12 +44,12 @@
 }
 ::-webkit-scrollbar {
     height: 10px;
+    width: 10px;
 }
  
 ::-webkit-scrollbar-track {
     background: transparent;
-}
- 
+} 
 ::-webkit-scrollbar-thumb {
     background: rgba(256,256,256, .3);
     border-radius: 1px;
@@ -56,4 +64,7 @@
     border: 1px solid #444;
     border-radius: 2px;
     margin-bottom: 10px;
+}
+.credits .caption{
+    opacity: .5;
 }

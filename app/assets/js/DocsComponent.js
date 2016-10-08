@@ -10,16 +10,26 @@ MainDockerLayout.registerComponent( 'docs', function( container, state ){
 function InitializeDocs(id, name){
     var text = getTextFormFile(getDocpath(name));
     var html = converter.makeHtml(text)
+    var credits = `<div class="credits">
+                    <span>
+                        <span class="caption">Taken from:</span>
+                        <span>http://robhagemans.github.io/pcbasic/doc/</span>
+                    </span>
+                    <span class="pull-right">
+                        <span class="caption">MarkDown written by:</span>
+                        <span>Zain Akbar</span>
+                    </sapn>
+                    </div>`;
     id = '#'+id;
     $(id).ready(function() {
-        $(id).append(html);
+        $(id).append(html+credits);
     });
     
 }
 function getDocpath(name){
     return path.join(__dirname, `./docs/${name}.md`)
 }
-function getTextFormFile(path, encoding = "utf8"){
+function getTextFormFile(path, encoding = "utf-8"){
     return fs.readFileSync(path, encoding);
 }
 function openDoc(name){
