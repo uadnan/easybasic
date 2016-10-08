@@ -71,7 +71,6 @@ var BottomDockerLayout = new GoldenLayout( bottom_config, $('#bottomPane') );
 
 MainDockerLayout.registerComponent( 'Editor', function( container, state ){
     container.getElement().html('<div class="Editor" id="'+state.id+'"></div>');
-    
 });
 MainDockerLayout.on('tabCreated', function(e){
     var id = e.contentItem.element[0].childNodes[0].childNodes[0].id;
