@@ -74,7 +74,9 @@ MainDockerLayout.registerComponent( 'Editor', function( container, state ){
 });
 MainDockerLayout.on('tabCreated', function(e){
     var id = e.contentItem.element[0].childNodes[0].childNodes[0].id;
-    setTimeout(function(){InitializeEditor(id)}, 2000);
+    var componentName = e.contentItem.componentName;
+    if (componentName == "Editor")
+        setTimeout(function(){InitializeEditor(id)}, 2000);
 })
 BottomDockerLayout.registerComponent( 'Editor', function( container, state ){
     container.getElement().html( '<h2>' + state.text + '</h2>');

@@ -8,13 +8,13 @@ MainDockerLayout.registerComponent( 'docs', function( container, state ){
     InitializeDocs(state.id, state.name);
 });
 function InitializeDocs(id, name){
-    var text = getTextFormFile("D:\\Documents\\Nauman Umer\\New folder\\easybasic\\README.md");//getDocpath(name));
+    var text = getTextFormFile(getDocpath(name));
     var html = converter.makeHtml(text)
     console.log('#'+id);
     $('#'+id).append(html);
 }
 function getDocpath(name){
-    return path.join(__dirname, `./app/min${name}`)
+    return path.join(__dirname, `./docs/${name}.html`)
 }
 function getTextFormFile(path, encoding = "utf8"){
     return fs.readFileSync(path, encoding);
