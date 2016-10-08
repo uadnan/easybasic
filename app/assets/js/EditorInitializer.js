@@ -1,10 +1,6 @@
-var Monaco;
-require.config({ paths: { 'vs': 'lib/monaco-editor/min/vs' }});
-require(['vs/editor/editor.main'], function() {
-    Monaco = monaco;
-});
+var editor;
 function InitializeEditor(id, value = '', language='gb'){
-    var editor = Monaco.editor.create(document.getElementById(id), {
+    editor = monaco.editor.create(document.getElementById(id), {
         value: value,
         language: language,
         parameterHints: true,

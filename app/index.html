@@ -14,6 +14,7 @@
     <link rel="stylesheet" href="assets/css/goldenlayout-base.css" type="text/css" />
     <!-- Editor style sheets -->
     <link rel="stylesheet" href="assets/Editor themes/material-dark.css" type="text/css" />
+    <link rel="stylesheet" data-name="vs/editor/editor.main" href="lib/monaco-editor/min/vs/editor/editor.main.css">
 </head>
 <body>
   <div class="window">
@@ -141,8 +142,8 @@
 
 
     <!--<script>window.$ = window.jQuery = require('./assets/js/jquery.js');</script>-->
-    <script type="text/javascript" src="assets/js/jquery.js"></script>
-    <!--<script type="text/javascript" src="assets/js/jquery.js" onload="window.$ = window.jQuery = module.exports;"></script>-->
+    <!--<script type="text/javascript" src="assets/js/jquery.js"></script>-->
+    <script type="text/javascript" src="assets/js/jquery.js" onload="window.$ = window.jQuery = module.exports;"></script>
     <!-- add the jQuery script -->
     <!-- add the jQWidgets framework -->
     <script type="text/javascript" src="assets/jqwidgets/jqxcore.js"></script>
@@ -153,8 +154,12 @@
 
     <script src="assets/js/bootstrap.min.js"></script>
     <script src="assets/js/jquery.slimscroll.min.js"></script>
-
+    <!-- loading monaco editor -->
+    <script>var require = { paths: { 'vs': './lib/monaco-editor/min/vs' } };</script>
     <script src="lib/monaco-editor/min/vs/loader.js"></script>
+    <script src="lib/monaco-editor/min/vs/editor/editor.main.nls.js"></script>
+    <script src="lib/monaco-editor/min/vs/editor/editor.main.js"></script>
+
     <script type="text/javascript" src="assets/js/EditorInitializer.js"></script>
     <script type="text/javascript" src="assets/js/layoutInitializer.js"></script>
   </div>
