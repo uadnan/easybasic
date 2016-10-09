@@ -9,3 +9,13 @@ function uriFromPath(_path) {
     }
     return encodeURI('file://' + pathName);
 }
+function shadow(sendr) {
+    var id = sendr.id;
+    var sender = $("#" + id)
+    if (sender.scrollTop() == 0) {
+        sender.removeClass('drop-shadow');
+    }
+    else {
+        sender.addClass('drop-shadow');
+    }
+}

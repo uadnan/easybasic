@@ -83,6 +83,15 @@ BottomDockerLayout.registerComponent( 'Editor', function( container, state ){
 });
 
 $(document).ready(function () {
+    //adding docs in list
+    addDocsList();
+    $('#doc-list-div').slimScroll({
+        height: $(window).height() - 130,
+        railVisible: false,
+        size: '12px',
+        color: '#000'
+    });
+
     // spliting main and side pane
     $("#MainSideSplitter").jqxSplitter({
         width: '100%',

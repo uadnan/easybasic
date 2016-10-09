@@ -46,3 +46,6 @@
 .Editor{
     height: 100%;
 }
+.drop-shadow {
+    box-shadow: inset -30px 36px 25px -45px rgba(0, 0, 0, 0.75);
+}

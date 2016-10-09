@@ -26,13 +26,18 @@ function InitializeDocs(id, name){
     });
     
 }
-function getDocpath(name){
-    return path.join(__dirname, `./docs/${name}.md`)
+function getDocpath(name, extension="md"){
+    return path.join(__dirname, `./docs/${name}.${extension}`)
 }
 function getTextFormFile(path, encoding = "utf-8"){
     return fs.readFileSync(path, encoding);
 }
-function openDoc(name){
+function onDocsClick(element){
+    var firstSpan = element.getElementsByTagName('span')[0]
+    var name = firstSpan.getElementsByTagName('span')[1].innerHTML;
+    openDocs(name);
+}
+function openDocs(name){
     if (name == "Language Guide" ||
         name == "Calculations and maths" ||
         name == "Devices and files" ||
@@ -54,4 +59,53 @@ function openDoc(name){
         componentState: { name: name, id: id }
     };
     MainDockerLayout.selectedItem.addChild( docitem );
+}
+
+var hudDocs = [];
+function addDocsList(){
+    var docsJson = getTextFormFile(getDocpath('docs', 'json'));
+    var docsObj = JSON.parse(docsJson);
+    var list = "";
+
+    docsObj.doc.forEach(function (node) {
+        if (typeof (node) == "string") {
+            list += '<li onclick="onDocsClick(this)"><span class="nav-group-item"><span class="fa fa-file-o"></span><span class="name">' + node + '</span></span></li>'
+            hudDocs.push({
+                'caption': node,
+                'command': 'onDocsClick'
+            })
+        }
+        else if (typeof (node) == "object") {
+            list += '<li onclick="onDocsClick(this)"><span class="nav-group-item" style="padding-left:0px;"><span class="fa fa-folder-open-o"></span><span class="name">' + node.name + '</span></span></li>'
+            hudDocs.push({
+                'caption': node.name,
+                'command': 'onDocsClick'
+            })
+            node.data.forEach(function (subnode) {
+                if (typeof (subnode) == "string") {
+                    list += '<li onclick="onDocsClick(this)"><span class="nav-group-item" style="padding-left:10px;"><span class="fa fa-file-o"></span><span class="name">' + subnode + '</span></span></li>'
+                    hudDocs.push({
+                        'caption': subnode,
+                        'command': 'onDocsClick'
+                    })
+                }
+                else if (typeof (subnode) == "object") {
+                    list += '<li onclick="onDocsClick(this)"><span class="nav-group-item" style="padding-left:10px;"><span class="fa fa-folder-open-o"></span><span class="name">' + subnode.name + '</span></span></li>'
+                    hudDocs.push({
+                        'caption': subnode.name,
+                        'command': 'onDocsClick'
+                    })
+                    subnode.data.forEach(function (sub_subnode) {
+                        list += '<li onclick="onDocsClick(this)"><span class="nav-group-item" style="padding-left:30px;"><span class="fa fa-file-o"></span><span class="name">' + sub_subnode + '</span></span></li>'
+                        hudDocs.push({
+                            'caption': sub_subnode,
+                            'command': 'onDocsClick'
+                        })
+                    }, this);
+                }
+            }, this);
+        }
+    }, this);
+
+    document.getElementById('doc-list').innerHTML = list;
 }
