@@ -94,6 +94,13 @@ $(document).ready(function () {
         color: '#000'
     });
 
+    //Docs Search init
+    var options = {
+        valueNames: ['name', 'type']
+    };
+
+    var userList = new List('docs-list', options);
+
     // spliting main and side pane
     $("#MainSideSplitter").jqxSplitter({
         width: '100%',

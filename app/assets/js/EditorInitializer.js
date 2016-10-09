@@ -10,6 +10,7 @@ amdRequire(['vs/editor/editor.main'], function() {
 function InitializeEditor(id, grammer = 'gb'){
     var editor = Monaco.editor.create(document.getElementById(id), {
         language: grammer,
-        theme: 'material-dark'
+        theme: 'material-dark',
+        automaticLayout: true
     });
 }
