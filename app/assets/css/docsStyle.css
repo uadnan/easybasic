@@ -95,3 +95,9 @@ table{
 table>tbody>tr:nth-of-type(odd){
     background: #2F383E;
 }
+pre{
+    padding: 10px;
+    background: rgb(51, 60, 66)!important;
+    border-radius: 5px;
+    font-size: 15 !important;
+}

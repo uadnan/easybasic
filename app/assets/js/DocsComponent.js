@@ -59,8 +59,7 @@ function openDocs(name){
         componentState: { name: name, id: id }
     };
     if(!(MainDockerLayout.root.contentItems[ 0 ])) {
-        MainDockerLayout.createContentItem(config);
-        MainDockerLayout.root.contentItems[ 0 ].addChild( docitem );
+        alert('Oops! Something wants wrong. :(')
     } else {
         MainDockerLayout.root.contentItems[ 0 ].contentItems[0].addChild( docitem );
     }
