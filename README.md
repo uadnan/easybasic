@@ -9,7 +9,8 @@ This project is built using Electron.js and is the continuity of [GwBasic.Net](h
 
 ## For Developers
 
-* Install node modules with `npm install .`
+* Install development node modules with `npm install .`(from project root)
+* Install other mode modules with `npm install .`(Inside app folder)
 * run with `npm start`
 
 ## Documentation
