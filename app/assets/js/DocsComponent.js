@@ -1,7 +1,7 @@
 var showdown  = require('showdown'),
     path = require('path'),
     fs = require('fs'),
-    converter = new showdown.Converter();
+    converter = new showdown.Converter({tables: true});
 
 MainDockerLayout.registerComponent( 'docs', function( container, state ){
     container.getElement().html('<div class="doc-body" id="'+state.id+'"></div>');

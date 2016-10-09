@@ -54,6 +54,9 @@
     background: rgba(256,256,256, .3);
     border-radius: 1px;
 }
+::-webkit-scrollbar-corner{
+    background: transparent;
+}
 .doc-body p{
     text-align: justify;
     text-indent: 1em;
@@ -67,4 +70,28 @@
 }
 .credits .caption{
     opacity: .5;
+}
+table>thead>tr>th{
+    background: #333C42;
+}
+table>tbody>tr>td,
+table>tbody>tr>th,
+table>tfoot>tr>td,
+table>tfoot>tr>th,
+table>thead>tr>td,
+table>thead>tr>th{
+    padding: 8px !important;
+    border-top: 1px solid #555 !important;
+    white-space: -o-pre-wrap; 
+    word-wrap: break-word;
+    white-space: pre-wrap; 
+    white-space: -moz-pre-wrap; 
+    white-space: -pre-wrap;
+}
+table{
+    border-collapse:collapse;    
+    width: 100%
+}
+table>tbody>tr:nth-of-type(odd){
+    background: #2F383E;
 }
