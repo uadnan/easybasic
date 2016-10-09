@@ -49,3 +49,8 @@
 .drop-shadow {
     box-shadow: inset -30px 36px 25px -45px rgba(0, 0, 0, 0.75);
 }
+#Home_tab{
+    background: radial-gradient(#40494e, #283339)!important;
+    width: 100%;
+    height: 100%;
+}

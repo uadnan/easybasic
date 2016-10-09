@@ -58,7 +58,12 @@ function openDocs(name){
         componentName: 'docs',
         componentState: { name: name, id: id }
     };
-    MainDockerLayout.selectedItem.addChild( docitem );
+    if(!(MainDockerLayout.root.contentItems[ 0 ])) {
+        MainDockerLayout.createContentItem(config);
+        MainDockerLayout.root.contentItems[ 0 ].addChild( docitem );
+    } else {
+        MainDockerLayout.root.contentItems[ 0 ].contentItems[0].addChild( docitem );
+    }
 }
 
 var hudDocs = [];

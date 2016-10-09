@@ -3,7 +3,7 @@ var config = {
         hasHeaders: true,
         constrainDragToContainer: true,
         reorderEnabled: true,
-        selectionEnabled: true,
+        selectionEnabled: false,
         popoutWholeStack: false,
         blockedPopoutsThrowError: true,
         closePopoutsOnUnload: true,
@@ -20,15 +20,14 @@ var config = {
         dragProxyHeight: 200
     },
     content: [{
-        type: 'row',
-        content: [
-            {
-            type:'component',
-            componentName: 'Editor',
-            title: 'Untitled',
-            componentState: { path: 'Component 1', id: 'Editor1' }
-            }
-        ]
+       type: 'row',
+       content: [{
+           isClosable: false,
+           type:'component',
+           componentName: 'Home',
+           title: 'Home_tab',
+           componentState: {id: 'Home_tab' }
+        }]
     }]
 };
 
@@ -69,6 +68,9 @@ var bottom_config = {
 var MainDockerLayout = new GoldenLayout( config, $('#MainDocker') );
 var BottomDockerLayout = new GoldenLayout( bottom_config, $('#bottomPane') );
 
+MainDockerLayout.registerComponent( 'Home', function( container, state ){
+    container.getElement().html('<div id="'+state.id+'"></div>');
+});
 MainDockerLayout.registerComponent( 'Editor', function( container, state ){
     container.getElement().html('<div class="Editor" id="'+state.id+'"></div>');
 });
@@ -120,8 +122,9 @@ $(document).ready(function () {
 
     MainDockerLayout.init();
     BottomDockerLayout.init();
-    var fisrtItem = MainDockerLayout.root.contentItems[0];
-    MainDockerLayout.selectItem(fisrtItem);
+    //var fisrtItem = MainDockerLayout.root.contentItems[0];
+    //MainDockerLayout.selectItem(fisrtItem);
+    $($('li[title="Home_tab"]')[0]).addClass('hidden')
 });
 
 $(window).resize(function() {
