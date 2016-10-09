@@ -21,7 +21,7 @@
 
     <!-- Docs Style Sheets -->
     <link rel="stylesheet" href="assets/css/docsStyle.css" type="text/css" />
-    
+
     <!-- Material Design --> 
     <link href="./assets/css/getmdl-select.css" rel="stylesheet" type="text/css" />
     <link rel="stylesheet" href="./assets/css/material.blue_grey-teal.min.css">
@@ -46,6 +46,13 @@
                 <div class="tab-content">
                     <div id="home" class="tab-pane fade in active">
                         <h5 class="text-center">Explorer</h5>
+                        <h5 class="nav-group-title">Tasks</h5>
+                        <nav class="nav-group" id="tabsList">
+                            <span class="nav-group-item" id="addNew" onclick="addNew();">
+                                <span class="fa fa-file-o"></span>
+                                <span class="name">Create New</span>
+                            </span>
+                        </nav>
                         <h5 class="nav-group-title">Tabs</h5>
                         <div id="tabs-list-div" style="overflow:hidden;" onscroll="shadow(this)">
                             <nav class="nav-group" id="tabsList">
