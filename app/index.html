@@ -25,6 +25,9 @@
     <!-- Material Design --> 
     <link href="./assets/css/getmdl-select.css" rel="stylesheet" type="text/css" />
     <link rel="stylesheet" href="./assets/css/material.blue_grey-teal.min.css">
+
+    <!-- Pace loader -->
+    <link href="./assets/css/pace.css" rel="stylesheet" type="text/css" />
 </head>
 <body>
   <div class="window">
@@ -162,6 +165,17 @@
     <!-- add the jQuery script -->
     <script type="text/javascript" src="assets/js/jquery.js" onload="window.$ = window.jQuery = module.exports;"></script>
 
+    <!-- Pace loader -->
+    <script>window.paceOptions = {startOnPageLoad: false}</script>
+    <script type="text/javascript" src="assets/js/pace.min.js"></script>
+    <script>
+        Pace.once('start', function(){
+            var element = '<div id="loader"><center><img src="assets/img/easybasic.png" width="100"/><div class="spinner"><div class="double-bounce1"></div><div class="double-bounce2"></div></div></center></div>'
+            $('body').prepend(element);
+        })
+        Pace.start()
+    </script>
+
     <!-- Custom Functions -->
     <script type="text/javascript" src="assets/js/extendedFunctions.js"></script>
 
@@ -198,5 +212,6 @@
     // You can also require other files to run in this process
     require('./assets/js/ex-links.js')
     //require('./assets/js/notifications.js')
+    //debugger;
   </script>
 </html>

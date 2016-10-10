@@ -69,6 +69,7 @@ var MainDockerLayout = new GoldenLayout( config, $('#MainDocker') );
 var BottomDockerLayout = new GoldenLayout( bottom_config, $('#bottomPane') );
 
 MainDockerLayout.registerComponent( 'Home', function( container, state ){
+
     container.getElement().html('<div id="'+state.id+'"></div>');
 });
 MainDockerLayout.registerComponent( 'Editor', function( container, state ){
@@ -142,4 +143,15 @@ $(window).resize(function() {
         MainDockerLayout.updateSize();
         BottomDockerLayout.updateSize();
     }, 200)
+})
+paceOptions = {
+  ajax: true, // disabled
+  document: true, // disabled
+  eventLag: true, // disabled
+  elements: {
+    selectors: ['#Home_tab']
+  }
+};
+Pace.once('hide', function(){
+    $('#loader').animate({opacity: 0}, 1000)
 })
