@@ -48,14 +48,7 @@
                 "Metasyntax",
                 "Definitions",
                 "Literals",
-                {
-                    "name": "Variables",
-                    "data": [
-                        "Types and sigils",
-                        "Arrays",
-                        "Conversions"
-                    ]
-                },
+                "Variables",
                 {
                     "name": "Operators",
                     "data": [
@@ -303,5 +296,14 @@
                 "PcBasic Documenation"
             ]
         }
-    ]
+    ],
+    "credits":[{
+        "Zain_Akbar":["ABS", "ASC", "INP"],
+        "Nauman_Umer": [
+            "Definitions", "Literals", "Metasyntax", "Variables", "Order of precedence",
+            "String operators", "GNU GPL", "Tokenised file format", "Tokenised BASIC",
+            "e-ASCII codes", "Scancodes", "Codepage 437"
+        ],
+        "Hunzala_Khan": ["test_data"]
+    }]
 }

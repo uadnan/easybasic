@@ -8,8 +8,11 @@ MainDockerLayout.registerComponent( 'docs', function( container, state ){
     InitializeDocs(state.id, state.name);
 });
 function InitializeDocs(id, name){
+    if (name == "EasyBasic" || name == "PcBasic")
+        name = "GNU GPL";
     var text = getTextFormFile(getDocpath(name));
     var html = converter.makeHtml(text)
+    var AuthorName = getCredit(name);
     var credits = `<div class="credits">
                     <span>
                         <span class="caption">Taken from:</span>
@@ -17,7 +20,7 @@ function InitializeDocs(id, name){
                     </span>
                     <span class="pull-right">
                         <span class="caption">MarkDown written by:</span>
-                        <span>Zain Akbar</span>
+                        <span>${AuthorName}</span>
                     </sapn>
                     </div>`;
     id = '#'+id;
@@ -47,8 +50,11 @@ function openDocs(name){
         name == "Technical reference" ||
         name == "Keycodes" ||
         name == "Acknowledgements" ||
-        name == "Statements")
+        name == "Statements"||
+        name == "License"){
         console.info(`No documenation available for '${name}' `);
+        return;
+    }
 
 
     var id = ((String(name).replaceAll(" ", "_") + "_tabli").replaceAll("$", "_s")).replaceAll("(", "").replaceAll(")", "");
@@ -112,4 +118,23 @@ function addDocsList(){
     }, this);
 
     document.getElementById('doc-list').innerHTML = list;
+}
+function getCredit(name){
+    console.log(name);
+    var writer;
+    var docsJson = getTextFormFile(getDocpath('docs', 'json'));
+    var docsObj = JSON.parse(docsJson);
+    docsObj.credits[0].Zain_Akbar.forEach(function(node){
+        if (name == node)
+            writer = "Zain Akbar"
+    });
+    docsObj.credits[0].Nauman_Umer.forEach(function(node){
+        if (name == node)
+            writer = "Nauman Umer"
+    });
+    docsObj.credits[0].Hunzala_Khan.forEach(function(node){
+        if (name == node)
+            writer = "Hunzala Khan"
+    });
+    return writer;
 }
