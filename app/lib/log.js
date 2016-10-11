@@ -34,10 +34,10 @@ module.exports = (logFileName) => {
   }
 
   // If we are in production and a log file is defined we redirect logs to that file
-  //if (!isDev && logFile) {
+  if (!isDev && logFile) {
     output = fs.createWriteStream(logFile)
     errorOutput = fs.createWriteStream(logFile)
-  //}
+  }
 
   // Create common logger
   const logger = new console.Console(output, errorOutput)

@@ -132,7 +132,7 @@ var hud = (function ($, Handlebars, Fuse) {
                 presentSuggestions(allCmds)
             }
             else if (fieldText === "#") {
-                presentSuggestions(hudJson);
+                presentSuggestions(hudDocs);
             }
             else if (fieldText === "!") {
                 presentSuggestions(hudExamples);
@@ -207,8 +207,8 @@ var hud = (function ($, Handlebars, Fuse) {
             ipc.send('run-shell', '');
         else if (suggestion.command == 'closeAll')
             closeAllTabs();
-        else if (suggestion.command == 'openDocs')
-            addDocTab(suggestion.caption);
+        else if (suggestion.command == 'onDocsClick')
+            openDocs(suggestion.caption);
         else if (suggestion.command == 'openExample')
             addExampleTab(suggestion.caption);
     }  
