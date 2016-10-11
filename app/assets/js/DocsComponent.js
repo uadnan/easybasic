@@ -10,7 +10,7 @@ MainDockerLayout.registerComponent( 'docs', function( container, state ){
 function InitializeDocs(id, name){
     if (name == "EasyBasic" || name == "PcBasic")
         name = "GNU GPL";
-    var text = getTextFormFile(getDocpath(name));
+    var text = getTextFormFile(getDocpath(name));    
     var html = converter.makeHtml(text)
     var AuthorName = getCredit(name);
     var credits = `<div class="credits">
@@ -33,7 +33,13 @@ function getDocpath(name, extension="md"){
     return path.join(__dirname, `./docs/${name}.${extension}`)
 }
 function getTextFormFile(path, encoding = "utf-8"){
-    return fs.readFileSync(path, encoding);
+    var IsExsits = fs.existsSync(path)
+    if (IsExsits)
+        return fs.readFileSync(path, encoding);
+    else{
+        showNotification("ERR", `File not found '${path}'`);
+        throw `ENOENT: File Not Found '${path}'`;
+    }
 }
 function onDocsClick(element){
     var firstSpan = element.getElementsByTagName('span')[0]
@@ -52,7 +58,7 @@ function openDocs(name){
         name == "Acknowledgements" ||
         name == "Statements"||
         name == "License"){
-        console.info(`No documenation available for '${name}' `);
+        showNotification("INFO", `No documentation avaiable for: '${name}'`)
         return;
     }
 
