@@ -195,3 +195,6 @@ function showNotification(type, message, title="", button = ""){
         '</div>' 
     });
 }
+function compare(){
+    showNotification("WARN", `Feature not added yet. Contact the author for more info.`);
+}
