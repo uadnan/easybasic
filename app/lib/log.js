@@ -34,39 +34,39 @@ module.exports = (logFileName) => {
   }
 
   // If we are in production and a log file is defined we redirect logs to that file
-  if (!isDev && logFile) {
+  //if (!isDev && logFile) {
     output = fs.createWriteStream(logFile)
     errorOutput = fs.createWriteStream(logFile)
-  }
+  //}
 
   // Create common logger
   const logger = new console.Console(output, errorOutput)
 
   // Override default log utilities
   console.log = function () {
-    arguments[0] = new Date().toISOString() + ' - ' + arguments[0]
+    arguments[0] = '[' + new Date().toISOString() + '] - ' + arguments[0]
     logger.log.apply(null, arguments)
   }
 
   console.debug = function () {
-    arguments[0] = new Date().toISOString() + ' - <Debug> ' + arguments[0]
+    arguments[0] = '[' + new Date().toISOString() + '] - [Debug] ' + arguments[0]
     if (isDev || (global.appSettings && global.appSettings.debug)) {
       logger.log.apply(null, arguments)
     }
   }
 
   console.info = function () {
-    arguments[0] = new Date().toISOString() + ' - <Info> ' + arguments[0]
+    arguments[0] = '[' + new Date().toISOString() + '] - [Info] ' + arguments[0]
     logger.log.apply(null, arguments)
   }
 
   console.warn = function () {
-    arguments[0] = new Date().toISOString() + ' - <Warning> ' + arguments[0]
+    arguments[0] = '[' + new Date().toISOString() + '] - [Warning] ' + arguments[0]
     logger.log.apply(null, arguments)
   }
 
   console.error = function () {
-    arguments[0] = new Date().toISOString() + ' - <Error> ' + arguments[0]
+    arguments[0] = '[' + new Date().toISOString() + '] - [Error] ' + arguments[0]
     logger.log.apply(null, arguments)
   }
 }
