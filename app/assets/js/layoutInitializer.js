@@ -125,17 +125,17 @@ $(document).ready(function () {
         orientation: 'horizontal',
         panels: [{
             min: 200,
-            size: '75%',
+            size: '99%',
             collapsible: false
         }]
     });
-
     MainDockerLayout.init();
     BottomDockerLayout.init();
     //var fisrtItem = MainDockerLayout.root.contentItems[0];
     //MainDockerLayout.selectItem(fisrtItem);
     // MainDockerLayout.createDragSource( $('#addNew'), getEditorConfig());
     $($('li[title="Home_tab"]')[0]).addClass('hidden')
+
 });
 
 $(window).resize(function() {
@@ -153,5 +153,45 @@ paceOptions = {
   }
 };
 Pace.once('hide', function(){
-    $('#loader').animate({opacity: 0}, 1000)
+    setTimeout(function(){
+        $('#loader').animate({opacity: 0}, 1000);
+        setTimeout(function(){$('#loader').remove()}, 1000);
+    }, 500)
 })
+
+function showNotification(type, message, title="", button = ""){
+    $.notify({
+        icon: null,
+        title: title,
+        message: message,
+    },{
+        position: 'absolute',
+        type: type,
+        newest_on_top: false,
+        placement: {
+            from: "top",
+            align: "center"
+        },
+        offset: 0,
+        spacing: 1,
+        //onShown: function(){debugger},
+        icon_type: 'class',
+        template: '<div data-notify="container" class="row col-xs-11 col-sm-3 alert alert-{0}" role="alert">' +
+                '<div class="noti-icon noti-icon-{0}" style="display: inline; margin-top: 6;">{0}</div>'+
+            '<div class="block">'+
+            '<div class="btn-group pull-right">' +
+                '<button type="button" class="mdl-button mdl-js-button mdl-button--raised" data-notify="dismiss">Close</button>' +
+                button+
+            '</div>'+
+            '<div class="message" style="display: inline"">'+
+                '<span data-notify="title">{1}</span> ' +
+                '<span data-notify="message">{2}</span>'+
+            '</div>' +
+            '</div>'+
+
+            '<div class="progress" data-notify="progressbar">' +
+                '<div class="progress-bar progress-bar-{0}" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width: 0%;"></div>' +
+            '</div>' +
+        '</div>' 
+    });
+}
