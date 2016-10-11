@@ -10,7 +10,7 @@ This table shows the characters that are produced by the 256 single-byte code po
 | 4_ | @ | A | B | C | D | E | F | G | H | I | J | K | L | M | N | O |
 | 5_ | P | Q | R | S | T | U | V | W | X | Y | Z | [ | \ | ] | ^ | _ |
 | 6_ | ` | a | b | c | d | e | f | g | h | i | j | k | l | m | n | o |
-| 7_ | p | q | r | s | t | u | v | w | x | y | z | { | | | } | ~ | ⌂ |
+| 7_ | p | q | r | s | t | u | v | w | x | y | z | { | &#124; | } | ~ | ⌂ |
 | 8_ | Ç | ü | é | â | ä | à | å | ç | ê | ë | è | ï | î | ì | Ä | Å |
 | 9_ | É | æ | Æ | ô | ö | ò | û | ù | ÿ | Ö | Ü | ¢ | £ | ¥ | ₧ | ƒ |
 | A_ | á | í | ó | ú | ñ | Ñ | ª | º | ¿ | ⌐ | ¬ | ½ | ¼ | ¡ | « | » |
