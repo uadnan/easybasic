@@ -177,11 +177,11 @@ function showNotification(type, message, title="", button = ""){
         //onShown: function(){debugger},
         icon_type: 'class',
         template: '<div data-notify="container" class="row col-xs-11 col-sm-3 alert alert-{0}" role="alert">' +
-                '<div class="noti-icon noti-icon-{0}" style="display: inline; margin-top: 6;">{0}</div>'+
+                '<div class="noti-icon noti-icon-{0} mdl-button mdl-js-button mdl-button--raised" style="display: inline; margin-top: 6;">{0}</div>'+
             '<div class="block">'+
             '<div class="btn-group pull-right">' +
+                button +
                 '<button type="button" class="mdl-button mdl-js-button mdl-button--raised" data-notify="dismiss">Close</button>' +
-                button+
             '</div>'+
             '<div class="message" style="display: inline"">'+
                 '<span data-notify="title">{1}</span> ' +

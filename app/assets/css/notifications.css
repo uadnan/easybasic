@@ -7,22 +7,25 @@
     padding: 7 20;
 }
 .noti-icon{
-    border-radius: 4px;
     clear:both;
     float:left;
-    padding: 5px;
-    color: rgba(255,255,255,0.7)
+    color: rgba(255,255,255,0.7);
+    cursor: default;
 }
-.noti-icon-DONE{
+.noti-icon-DONE,
+.noti-icon-DONE:hover{
     background: #5cb85c
 }
-.noti-icon-WARN{
+.noti-icon-WARN,
+.noti-icon-WARN:hover{
     background: #f0ad4e
 }
-.noti-icon-INFO{
+.noti-icon-INFO,
+.noti-icon-INFO:hover{
     background: #5bc0de
 }
-.noti-icon-ERR{
+.noti-icon-ERR,
+.noti-icon-ERR:hover{
     background: #d9534f
 }
 .alert span{
