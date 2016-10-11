@@ -1,3 +1,5 @@
+const ipc = require('electron').ipcRenderer;
+
 var config = {
     settings:{
         hasHeaders: true,
@@ -134,8 +136,9 @@ $(document).ready(function () {
     //var fisrtItem = MainDockerLayout.root.contentItems[0];
     //MainDockerLayout.selectItem(fisrtItem);
     // MainDockerLayout.createDragSource( $('#addNew'), getEditorConfig());
-    $($('li[title="Home_tab"]')[0]).addClass('hidden')
-
+    $($('li[title="Home_tab"]')[0]).addClass('hidden');
+    hud.presentSuggestions(tabs);
+    hud.hide();
 });
 
 $(window).resize(function() {
@@ -145,9 +148,9 @@ $(window).resize(function() {
     }, 200)
 })
 paceOptions = {
-  ajax: true, // disabled
-  document: true, // disabled
-  eventLag: true, // disabled
+  ajax: true, 
+  document: true,
+  eventLag: true,
   elements: {
     selectors: ['#Home_tab']
   }
@@ -198,3 +201,9 @@ function showNotification(type, message, title="", button = ""){
 function compare(){
     showNotification("WARN", `Feature not added yet. Contact the author for more info.`);
 }
+
+ipc.on('openCmdPalette', function (e, bar) {
+    hud.updateSuggestions(tabs);
+    var CmdShown = hud.isShown();
+    CmdShown ? hud.hide(): hud.show(); 
+});

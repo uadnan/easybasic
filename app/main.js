@@ -45,7 +45,7 @@ require('electron-debug')({
 })
 
 // Prevent window being garbage collected
-let mainWindow
+let mainWindow;
 
 // Other windows we may need
 let infoWindow = null
@@ -71,6 +71,7 @@ function initialize () {
       'width': 1024,
       'height': 768,
       'title': app.getName(),
+      'backgroundColor' : '#14243d',
       'webPreferences': {
         'nodeIntegration': pjson.config.nodeIntegration || true, // Disabling node integration allows to use libraries such as jQuery/React, etc
         'preload': path.resolve(path.join(__dirname, 'preload.js'))
