@@ -298,7 +298,9 @@
         }
     ],
     "credits":[{
-        "Zain_Akbar":["ABS", "ASC", "INP"],
+        "Zain_Akbar":[
+            "ABS", "ASC", "INP", "Mathematical operators", "Relational operators"
+        ],
         "Nauman_Umer": [
             "Definitions", "Literals", "Metasyntax", "Variables", "Order of precedence",
             "String operators", "GNU GPL", "Tokenised file format", "Tokenised BASIC",
