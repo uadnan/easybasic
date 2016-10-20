@@ -299,7 +299,10 @@
     ],
     "credits":[{
         "Zain_Akbar":[
-            "ABS", "ASC", "INP", "Mathematical operators", "Relational operators"
+            "ABS", "ASC", "INP", "Mathematical operators", "Relational operators","Bitwise operators","ATN","CDBL","CHR$","CINT","COS","CSNG","CSRLIN","CVI","CVD","DATE$","ENVIRON$","EOF","ERDEV","ERDEV$","ERL","ERR","EXP","EXTERR"
+  ,"FIX","FN","FRE","HEX$","INKEY$","INPUT$","INSTR","INT","IOCTL$","LEFT$","LEN","LOC","LOF","LOG","LPOS","MID$","MKI$","MKS$","MKD$","OCT$","PEEK","PEN","PLAY (function)","PMAP","POINT","POS","RIGHT$","RND","SCREEN","SGN","SIN","SPACE$","SQR"
+  ,"STICK","STR$","STRIG","STRING$","TAN","TIME$","TIMER","USR","VAL","VARPTR","VARPTR$"            
+
         ],
         "Nauman_Umer": [
             "Definitions", "Literals", "Metasyntax", "Variables", "Order of precedence",
