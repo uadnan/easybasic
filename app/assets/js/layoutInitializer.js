@@ -168,6 +168,10 @@ function showNotification(type, message, title="", button = ""){
         title: title,
         message: message,
     },{
+        animate: {
+            enter: 'animated fadeInDown',
+            exit: 'animated fadeOutUp'
+        },
         position: 'absolute',
         type: type,
         newest_on_top: false,
