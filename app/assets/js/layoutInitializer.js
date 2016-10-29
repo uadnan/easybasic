@@ -100,6 +100,22 @@ $(document).ready(function () {
     $($('li[title="Home_tab"]')[0]).addClass('hidden');
     hud.presentSuggestions(tabs);
     hud.hide();
+
+
+
+    var addButton,
+        addButtonWidth = 29,
+        index = 0;
+    // create jqxTabs.
+    $('#jqxTabs').jqxTabs({ height: 250, width: 500,  showCloseButtons: true });
+    var index = 0;
+    $('#jqxTabs').on('tabclick', function (event) {
+        if (event.args.item == $('#unorderedList').find('li').length - 1) {
+            var length = $('#unorderedList').find('li').length;
+            $('#jqxTabs').jqxTabs('addAt', event.args.item, 'Sample title ' + index, 'Sample content number: ' + index);
+            index++;
+        }
+    });
 });
 
 $(window).resize(function() {
