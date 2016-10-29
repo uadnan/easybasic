@@ -33,42 +33,7 @@ var config = {
     }]
 };
 
-var bottom_config = {
-    settings:{
-        hasHeaders: true,
-        constrainDragToContainer: true,
-        reorderEnabled: true,
-        selectionEnabled: false,
-        popoutWholeStack: false,
-        blockedPopoutsThrowError: true,
-        closePopoutsOnUnload: true,
-        showPopoutIcon: false,
-        showMaximiseIcon: false,
-        showCloseIcon: true
-    },
-    dimensions: {
-        borderWidth: 5,
-        minItemHeight: 10,
-        minItemWidth: 10,
-        headerHeight: 30,
-        dragProxyWidth: 300,
-        dragProxyHeight: 200
-    },
-    content: [{
-        type: 'row',
-        content: [
-            {
-            type:'component',
-            componentName: 'Editor',
-            title: 'nauman',
-            componentState: { text: 'Component 1' }
-            }
-        ]
-    }]
-};
-
 var MainDockerLayout = new GoldenLayout( config, $('#MainDocker') );
-var BottomDockerLayout = new GoldenLayout( bottom_config, $('#bottomPane') );
 
 MainDockerLayout.registerComponent( 'Home', function( container, state ){
 
@@ -85,9 +50,6 @@ MainDockerLayout.on('tabCreated', function(e){
         editorNum++;
     }
 })
-BottomDockerLayout.registerComponent( 'Editor', function( container, state ){
-    container.getElement().html( '<h2>' + state.text + '</h2>');
-});
 
 $(document).ready(function () {
     //adding docs in list
@@ -132,7 +94,6 @@ $(document).ready(function () {
         }]
     });
     MainDockerLayout.init();
-    BottomDockerLayout.init();
     //var fisrtItem = MainDockerLayout.root.contentItems[0];
     //MainDockerLayout.selectItem(fisrtItem);
     // MainDockerLayout.createDragSource( $('#addNew'), getEditorConfig());
@@ -144,7 +105,6 @@ $(document).ready(function () {
 $(window).resize(function() {
     setTimeout(function(){
         MainDockerLayout.updateSize();
-        BottomDockerLayout.updateSize();
     }, 200)
 })
 paceOptions = {
