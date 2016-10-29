@@ -316,6 +316,8 @@
             "e-ASCII codes", "Scancodes", "Codepage 437", "Shoulder of Gaints", "ASCII",
             "ASCII", "Fonts", "Development tools"
         ],
-        "Hunzala_Khan": ["test_data"]
+        "Hunzala_Khan": [
+            "WRITE", "WINDOW"
+        ]
     }]
 }
