@@ -9,7 +9,7 @@
     "email": "u.nauman@outlook.com.com",
     "url": "https://naumanumer.github.io/easybasic"
   },
-  "main": "main.js",
+  "main": "main/main.js",
   "electronVersion": "1.0.0",
   "dependencies": {
     "electron-debug": "^1",
