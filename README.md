@@ -1,5 +1,5 @@
 # EasyBasic
-**An Modern IDE for GwBasic programming language**
+**A complete learning tool for GwBasic programming language**
 
 ![Editor][logo]
 
